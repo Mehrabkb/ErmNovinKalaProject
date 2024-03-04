@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/dist/css/AdminLTE.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="{{ asset('plugins/alertify/css/alertify.rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/alertify/css/themes/bootstrap.rtl.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,13 +40,14 @@
     <div class="login-box-body">
         <p class="login-box-msg">فرم زیر را تکمیل کنید و ورود بزنید</p>
 
-        <form action="../../index2.html" method="post">
+        <form action="{{ route('login') }}" method="post" class="login-user-form">
+            @csrf
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="نام کاربری">
+                <input type="text" name="user-name" class="form-control" placeholder="نام کاربری" data-regex="userName">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="رمز عبور">
+                <input type="password" name="password" class="form-control" placeholder="رمز عبور" data-regex="password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -79,6 +82,8 @@
 <script src="{{ asset('panelAdmin') }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="{{ asset('panelAdmin') }}/plugins/iCheck/icheck.min.js"></script>
+<script src="{{ asset('plugins/alertify/alertify.min.js') }}"></script>
+<script src="{{ asset('panelAdmin/myJavaScript/validationForms.js') }}"></script>
 <script>
     $(function () {
         $('input').iCheck({
