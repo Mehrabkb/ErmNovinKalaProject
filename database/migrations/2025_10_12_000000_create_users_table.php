@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('company_address' , 250)->nullable();
             $table->string('company_website' , 250)->nullable();
             $table->string('personal_website' , 250)->nullable();
-            $table->unsignedBigInteger('user_company_role_id');
+            $table->unsignedBigInteger('user_company_role_id')->nullable();
             $table->string('date' , 250 );
         });
     }

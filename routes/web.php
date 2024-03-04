@@ -26,4 +26,5 @@ Route::prefix('panel')->group(function(){
 
 Route::prefix('user')->group(function(){
     Route::get('login' , [\App\Http\Controllers\UserController::class , 'login'])->name('login');
+    Route::post('login' , [\App\Http\Controllers\UserController::class , 'login'])->name('login');
 });

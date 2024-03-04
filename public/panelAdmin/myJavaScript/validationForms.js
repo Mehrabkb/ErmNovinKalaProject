@@ -37,7 +37,22 @@ $(function(){
             let url = that.attr('action');
             let data = that.serialize();
             if(regexChecker(that)){
-                
+            $.ajax({
+                    type : method,
+                    url : url,
+                    data : data,
+                    success : function(result){
+                        let res = JSON.parse(result);
+                        switch (res.type){
+                            case 'error' :
+                                alertify.error(res.message);
+                                break;
+                            case 'success':
+                                alertify.success(res.message);
+                                break;
+                        }
+                    }
+                })
             }
         });
     }
