@@ -19,3 +19,11 @@ Route::get('/', function () {
 Route::get('/panel' , function(){
     return view('panel/master');
 });
+
+Route::prefix('panel')->group(function(){
+    Route::get('home' , [\App\Http\Controllers\AdminPanelController::class , 'index'])->name('panel.home');
+});
+
+Route::prefix('user')->group(function(){
+    Route::get('login' , [\App\Http\Controllers\UserController::class , 'login'])->name('login');
+});
