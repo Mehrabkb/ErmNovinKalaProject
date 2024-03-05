@@ -510,6 +510,7 @@
                 <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>مهم</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>هشدار</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>اطلاعات</span></a></li>
+                <li><a href="{{ route('panel.home') }}"><i class="fa fa-sign-out"></i> <span>داشبرد</span></a></li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-product-hunt"></i> <span>محصولات</span>
@@ -519,10 +520,11 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ route('products') }}"><i class="fa fa-circle-o"></i>همه محصولات</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>افزودن</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>درون ریزی / برون ریزی </a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>ویژگی ها</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>دسته بندی ها</a></li>
+                        <li><a href="{{ route('add.product') }}"><i class="fa fa-circle-o"></i>افزودن</a></li>
+                        <li><a href="{{ route('importexport.product') }}"><i class="fa fa-circle-o"></i>درون ریزی / برون ریزی </a></li>
+                        <li><a href="{{ route('feature.product') }}"><i class="fa fa-circle-o"></i>ویژگی ها</a></li>
+                        <li><a href="{{ route('category.product') }}"><i class="fa fa-circle-o"></i>دسته بندی ها</a></li>
+                        <li><a href="{{ route('unit.product') }}"><i class="fa fa-circle-o"></i>واحدها</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('logout' , ['id' => \Illuminate\Support\Facades\Auth::user()->user_id]) }}"><i class="fa fa-sign-out"></i> <span>خروج</span></a></li>
