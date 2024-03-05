@@ -510,7 +510,22 @@
                 <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>مهم</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>هشدار</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>اطلاعات</span></a></li>
-                <li><a href="{{ route('logout' , ['id' => \Illuminate\Support\Facades\Auth::user()->user_id]) }}"><i class="fa fa-exit"></i> <span>خروج</span></a></li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-product-hunt"></i> <span>محصولات</span>
+                        <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('products') }}"><i class="fa fa-circle-o"></i>همه محصولات</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>افزودن</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>درون ریزی / برون ریزی </a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>ویژگی ها</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>دسته بندی ها</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ route('logout' , ['id' => \Illuminate\Support\Facades\Auth::user()->user_id]) }}"><i class="fa fa-sign-out"></i> <span>خروج</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->

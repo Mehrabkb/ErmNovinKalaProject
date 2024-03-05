@@ -17,6 +17,12 @@ class AdminPanelController extends Controller
     public function index(Request $request){
         return view('panel/home');
     }
+    public function product(Request $request){
+        switch ($request->method()){
+            case 'GET':
+                return view('panel/product/all');
+        }
+    }
     public function logout($id){
         if($this->userRepository->logoutUserById($id)){
             return redirect()->route('login');
