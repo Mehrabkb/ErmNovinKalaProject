@@ -22,6 +22,7 @@ Route::get('/panel' , function(){
 
 Route::prefix('panel')->group(function(){
     Route::get('home' , [\App\Http\Controllers\AdminPanelController::class , 'index'])->name('panel.home');
+    Route::get('logout/{id}' , [\App\Http\Controllers\AdminPanelController::class , 'logout'])->name('logout');
 });
 
 Route::prefix('user')->group(function(){

@@ -7,6 +7,10 @@ use App\Repositories\alertifyRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
+use Ramsey\Uuid\Type\Integer;
 use function GuzzleHttp\default_user_agent;
 
 class UserController extends Controller
@@ -39,11 +43,19 @@ class UserController extends Controller
                     $userName = htmlspecialchars($request->input('user-name'));
                     $password = htmlspecialchars($request->input('password'));
                     if($this->userRepository->checkUserExistByUserName($userName)) {
-                        return $this->alertifyRepository->successMessage('کاربر پیدا شد ');
+                        if($this->userRepository->checkUserPasswordByUserName($userName , $password)){
+                            $user_id = $this->userRepository->getUserIdByUserName($userName);
+                                if($this->userRepository->loginUserById($user_id)){
+                                    return $this->alertifyRepository->successMessage('با موفقیت وارد شدید');
+                                }else{
+                                    return $this->alertifyRepository->errorMessage('مشکلی در ورود شما رخ داده است');
+                                }
+                        }else{
+                            return $this->alertifyRepository->errorMessage('رمز وارد شده صحیح نمی باشد');
+                        }
                     }
                     return $this->alertifyRepository->errorMessage('کاربری با این مشخصات یافت نشد');
                 }
         }
-
     }
 }

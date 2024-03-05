@@ -33,6 +33,7 @@ $(function(){
         $(document).on('submit' , 'form.login-user-form' , function(e){
             e.preventDefault();
             let that = $(this);
+            let successUrl = that.attr('data-success-url');
             let method = that.attr('method');
             let url = that.attr('action');
             let data = that.serialize();
@@ -49,6 +50,10 @@ $(function(){
                                 break;
                             case 'success':
                                 alertify.success(res.message);
+                                setTimeout(function(){
+                                    location.replace(successUrl);
+                                    location.reload();
+                                } , 2000)
                                 break;
                         }
                     }

@@ -40,7 +40,7 @@
     <div class="login-box-body">
         <p class="login-box-msg">فرم زیر را تکمیل کنید و ورود بزنید</p>
 
-        <form action="{{ route('login') }}" method="post" class="login-user-form">
+        <form action="{{ route('login') }}" method="post" class="login-user-form" data-success-url="{{ route('panel.home') }}">
             @csrf
             <div class="form-group has-feedback">
                 <input type="text" name="user-name" class="form-control" placeholder="نام کاربری" data-regex="userName">
