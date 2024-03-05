@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone' , 13)->nullable();
             $table->unsignedBigInteger('user_role_id');
             $table->unsignedBigInteger('user_status_id');
-            $table->string('avatar' , 250);
+            $table->string('avatar' , 250)->nullable();
             $table->integer('verification_code')->nullable();
             $table->string('company_name' , 250)->nullable();
             $table->string('company_phone' , 15)->nullable();

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->unsignedBigInteger('product_brand_id');
             $table->string('custom_tags')->nullable();
+            $table->unsignedBigInteger('unit_id');
             $table->date('date' , 250);
         });
     }
