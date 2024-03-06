@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('unit_id');
             $table->string('long_title' , 250);
             $table->string('short_title' , 250);
-            $table->timestamps();
         });
     }
 

@@ -43,11 +43,11 @@
         <form action="{{ route('login') }}" method="post" class="login-user-form" data-success-url="{{ route('panel.home') }}">
             @csrf
             <div class="form-group has-feedback">
-                <input type="text" name="user-name" class="form-control" placeholder="نام کاربری" data-regex="userName">
+                <input type="text" name="user-name" class="form-control" placeholder="نام کاربری" data-regex="userName" data-title="نام کاربری">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" name="password" class="form-control" placeholder="رمز عبور" data-regex="password">
+                <input type="password" name="password" class="form-control" placeholder="رمز عبور" data-regex="password" data-title="رمز عبور">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">

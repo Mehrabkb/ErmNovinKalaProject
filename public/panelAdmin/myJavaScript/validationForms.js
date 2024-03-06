@@ -7,11 +7,19 @@ let Regexes = {
         'regex' : /^[a-zA-Z0-9]+$/,
         'errorMessage' : 'رمز عبور معتبر نمیباشد'
     },
+    'force-english' :{
+        'regex' : /^[a-zA-Z]+$/,
+        'errorMessage' : 'فقط حروف انگلیسی مجاز میباشند'
+    },
+    'force-persian' :{
+        'regex' : /^[\u0600-\u06FF\s]+$/,
+        'errorMessage' : 'فقط حروف فارسی مجاز می باشند'
+    }
 }
-function notificationMessageRegex(key , type){
+function notificationMessageRegex(title , key , type){
     switch (type){
         case 'error' :
-            alertify.error(Regexes[key].errorMessage);
+            alertify.error(title + " : " + Regexes[key].errorMessage);
     }
 }
 function regexChecker(form){
@@ -19,9 +27,10 @@ function regexChecker(form){
     let flag = true;
     for(let i = 0 ; i < inputs.length ; i++){
         let data_regex = inputs[i].getAttribute('data-regex');
+        let data_title = inputs[i].getAttribute('data-title');
         if(data_regex != null){
             if(inputs[i].value.match(Regexes[data_regex].regex) == null){
-                notificationMessageRegex(data_regex , 'error');
+                notificationMessageRegex(data_title , data_regex , 'error');
                 flag = false;
             }
         }
@@ -60,6 +69,34 @@ $(function(){
                 })
             }
         });
+    }
+    if($('form.form-add-unit')){
+        $(document).on('submit' , 'form.form-add-unit' , function(e){
+            e.preventDefault();
+            let that = $(this);
+            let method = that.attr('method');
+            let url = that.attr('action');
+            let data = that.serialize();
+            if(regexChecker(that)){
+                $.ajax({
+                    type : method ,
+                    url : url ,
+                    data : data ,
+                    success  : function(result){
+                        let res = JSON.parse(result);
+                        switch (res.type){
+                            case 'error' :
+                                alertify.error(res.message);
+                                break;
+                            case 'success':
+                                alertify.success(res.message);
+                                that.trigger('reset');
+                                break;
+                        }
+                    }
+                })
+            }
+        })
     }
 
 })

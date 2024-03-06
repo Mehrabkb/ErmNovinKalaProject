@@ -30,6 +30,7 @@ Route::prefix('panel')->group(function(){
         Route::get('feature' , [\App\Http\Controllers\AdminPanelController::class , 'feature'])->name('feature.product');
         Route::get('category' , [\App\Http\Controllers\AdminPanelController::class , 'category'])->name('category.product');
         Route::get('unit' , [\App\Http\Controllers\AdminPanelController::class , 'unit'])->name('unit.product');
+        Route::post('unit/add' , [\App\Http\Controllers\AdminPanelController::class , 'addUnit'])->name('add.unit.product');
     });
 });
 
