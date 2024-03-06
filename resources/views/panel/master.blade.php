@@ -7,6 +7,8 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/dist/css/bootstrap-theme.css">
     <!-- Bootstrap rtl -->
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/dist/css/rtl.css">
@@ -739,6 +741,8 @@
 </div>
 <!-- ./wrapper -->
 
+@yield('modals')
+
 <!-- jQuery 3 -->
 <script src="{{ asset('panelAdmin') }}/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -783,6 +787,9 @@
         alertify.error({{ $errors->first() }});
     </script>
 @endif
+<script>
+
+</script>
 @yield('js')
 </body>
 </html>

@@ -91,12 +91,43 @@ $(function(){
                             case 'success':
                                 alertify.success(res.message);
                                 that.trigger('reset');
+                                location.reload();
                                 break;
                         }
                     }
                 })
             }
         })
+    }
+
+    if($('form.edit-form-unit')){
+        $(document).on('submit' , 'form.edit-form-unit' , function(e){
+            e.preventDefault();
+            let that = $(this);
+            let url = that.attr('action');
+            let method = that.attr('method');
+            let data = that.serialize();
+            if(regexChecker(that)){
+                $.ajax({
+                    method : method ,
+                    url : url ,
+                    data : data,
+                    success : function(result){
+                        let res = JSON.parse(result);
+                        switch (res.type){
+                            case 'error' :
+                                alertify.error(res.message);
+                                break;
+                            case 'success':
+                                alertify.success(res.message);
+                                that.trigger('reset');
+                                location.reload();
+                                break;
+                        }
+                    }
+                })
+            }
+        });
     }
 
 })

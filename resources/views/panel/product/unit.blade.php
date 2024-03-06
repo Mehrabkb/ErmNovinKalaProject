@@ -71,8 +71,8 @@
                                             {{ $unit->short_title }}
                                         </td>
                                         <td>
-                                            <button class="btn btn-danger" data-id="{{ $unit->unit_id }}">حذف</button>
-                                            <button class="btn btn-primary" data-id="{{ $unit->unit_id }}">ویرایش</button>
+                                            <button class="btn btn-danger btn-delete-unit" data-url="{{ route('delete.unit.product') }}" data-id="{{ $unit->unit_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
+                                            <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $unit->unit_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -84,6 +84,66 @@
         </div>
     </section>
 @endsection
+
+@section('modals')
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h5 class="modal-title" id="exampleModalLabel">حذف واحد</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="delete-form-unit" action="{{ route('delete.unit.product') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="unit-data-id" class="unit-data-id">
+                        <p>آیا از حذف این مورد اطمینان دارید؟</p>
+                        <br>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                        <button type="submit" class="btn btn-danger">حذف</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h5 class="modal-title" id="exampleModalLabel">حذف واحد</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="edit-form-unit" action="{{ route('edit.unit.product') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="unit-data-id" class="unit-data-id">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="unit-long">نام کامل واحد</label>
+                                <input type="text" class="form-control long-title" id="unit-long" name="long-title"  placeholder=" نام کامل واحد مثال : سانتیمتر" data-regex="force-persian" data-title="نام کامل واحد">
+                            </div>
+                            <div class="form-group">
+                                <label for="unit-short">علامت واحد</label>
+                                <input type="text" class="form-control short-title"  id="unit-short"  name="short-title" placeholder="علامت واحد مثال : CM " data-regex="force-english" data-title="علامت واحد">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                        <button type="submit" class="btn btn-primary">ویرایش</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+
 
 @section('js')
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>

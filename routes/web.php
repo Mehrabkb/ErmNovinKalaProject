@@ -31,6 +31,9 @@ Route::prefix('panel')->group(function(){
         Route::get('category' , [\App\Http\Controllers\AdminPanelController::class , 'category'])->name('category.product');
         Route::get('unit' , [\App\Http\Controllers\AdminPanelController::class , 'unit'])->name('unit.product');
         Route::post('unit/add' , [\App\Http\Controllers\AdminPanelController::class , 'addUnit'])->name('add.unit.product');
+        Route::post('unit/delete' , [\App\Http\Controllers\AdminPanelController::class , 'deleteUnit'])->name('delete.unit.product');
+        Route::get('/unit/get' , [\App\Http\Controllers\AdminPanelController::class , 'getUnit'])->name('get.unit.product');
+        Route::post('/unit/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editUnit'])->name('edit.unit.product');
     });
 });
 

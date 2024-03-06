@@ -82,6 +82,52 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function deleteUnit(Request $request)
+    {
+        if($request->method() == 'POST'){
+            $unit_id = htmlspecialchars($request->input('unit-data-id'));
+            if($this->productRepository->deleteUnitById($unit_id)){
+                return  $this->alertifyRepository->successMessage('با موفقیت حذف شد');
+            }else{
+                return $this->alertifyRepository->errorMessage('خطایی در حذف مورد رخ داده است');
+            }
+        }else{
+            return $this->alertifyRepository->errorMessage('درخواست نامعتبر');
+        }
+
+    }
+    public function getUnit(Request $request){
+        if($request->method() == 'GET'){
+            $unit_id = htmlspecialchars($request->input('id'));
+            $unit = $this->productRepository->getUnitByUnitId($unit_id);
+            return $unit;
+        }
+    }
+    public function editUnit(Request $request){
+        if($request->method() == 'POST'){
+            $validate = $request->validate([
+                'unit-data-id' => 'required',
+                'long-title' => 'required ',
+                'short-title' => 'required | regex:/^[a-zA-Z]+$/'
+            ],[
+                'long-title.required' => 'نام کامل واحد الزامی است',
+//                'long-title.regex' => 'نام کامل واحد به صورت صحیح وارد نشده است',
+                'short-title.required' => 'علامت واحد الزامی است',
+                'short-title.regex' => 'فرمت علامت واحد صحیح نمی باشد'
+            ]);
+            if($validate){
+                $data = [];
+                $unit_id = htmlspecialchars($request->input('unit-data-id'));
+                $data['long_title'] = htmlspecialchars($request->input('long-title'));
+                $data['short_title'] = htmlspecialchars($request->input('short-title'));
+                if($this->productRepository->editUnitBySelectId($unit_id , $data)){
+                    return $this->alertifyRepository->successMessage('با موفقیت ویرایش شد');
+                }else{
+                    return $this->alertifyRepository->errorMessage('مشکلی رخ داده است');
+                }
+            }
+        }
+    }
     public function logout($id){
         if($this->userRepository->logoutUserById($id)){
             return redirect()->route('login');
