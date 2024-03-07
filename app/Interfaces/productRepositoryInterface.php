@@ -12,4 +12,6 @@ interface  productRepositoryInterface
     public function deleteUnitById($unit_id);
     public function getUnitByUnitId($unit_id);
     public function editUnitBySelectId($unit_id , $data);
+    public function getAllCategories();
+    public function getAllTags();
 }

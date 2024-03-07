@@ -527,6 +527,7 @@
                         <li><a href="{{ route('importexport.product') }}"><i class="fa fa-circle-o"></i>درون ریزی / برون ریزی </a></li>
                         <li><a href="{{ route('feature.product') }}"><i class="fa fa-circle-o"></i>ویژگی ها</a></li>
                         <li><a href="{{ route('category.product') }}"><i class="fa fa-circle-o"></i>دسته بندی ها</a></li>
+                        <li><a href="{{ route('tag.product') }}"><i class="fa fa-circle-o"></i>تگ ها</a></li>
                         <li><a href="{{ route('unit.product') }}"><i class="fa fa-circle-o"></i>واحدها</a></li>
                     </ul>
                 </li>
@@ -787,9 +788,26 @@
         alertify.error({{ $errors->first() }});
     </script>
 @endif
+
+@yield('js')
 <script>
+    if($('#data-table-custom-table')){
+        $('#data-table-custom-table').DataTable({
+            "language": {
+                "lengthMenu": "نمایش _MENU_ در هر صفحه",
+                "zeroRecords": "هیچ چیزی برای نمایش وجود ندارد",
+                "info": "نمایش _PAGE_ از _PAGES_",
+                "infoEmpty": "خالی",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "search": "جستجو : ",
+                'paginate': {
+                    'previous': 'قبلی',
+                    'next': 'بعدی'
+                }
+            }
+        });
+    }
 
 </script>
-@yield('js')
 </body>
 </html>

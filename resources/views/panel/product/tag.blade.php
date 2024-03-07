@@ -1,5 +1,5 @@
 @extends('panel.master')
-@section('title' , 'واحدها')
+@section('title' , 'تگ ها')
 @section('css')
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 @endsection
@@ -10,7 +10,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-info-circle"></i>
-                        <h3 class="box-title">افزودن واحد</h3>
+                        <h3 class="box-title">افزودن دسته بندی</h3>
                         <!-- tools box -->
                         <div class="pull-left box-tools">
                             <button type="button" class="btn bg-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -19,16 +19,20 @@
                         <!-- /. tools -->
                     </div>
                     <div class="box-body">
-                        <form role="form" class="form-add-unit" action="{{ route('add.unit.product') }}" method="POST">
+                        <form role="form" class="form-add-tag" action="{{ route('add.tag.product') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="unit-long">نام کامل واحد</label>
-                                    <input type="text" class="form-control" id="unit-long" name="long-title" placeholder=" نام کامل واحد مثال : سانتیمتر" data-regex="force-persian" data-title="نام کامل واحد">
+                                    <label for="tags-title">نام تگ ها</label>
+                                    <input type="text" class="form-control" id="tags-title" name="tags-title" placeholder="نام تگ ها :">
                                 </div>
                                 <div class="form-group">
-                                    <label for="unit-short">علامت واحد</label>
-                                    <input type="text" class="form-control" id="unit-short" name="short-title" placeholder="علامت واحد مثال : CM " data-regex="force-english" data-title="علامت واحد">
+                                    <label for="tags-value">تگ ها</label>
+                                    <input type="text" class="form-control" id="tags-search" autocomplete="off" placeholder="لطفا مقدار تگ مورد نظر را وارد کرده و enter را فشار دهید">
+                                    <input type="hidden" disabled class="form-control " style="margin-top:10px;" id="tags-value" name="tags-value" placeholder="مقدار تگ ها" >
+                                    <div class="delete-buttons" style="margin-top: 10px" >
+
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->
@@ -53,12 +57,12 @@
                         <!-- /. tools -->
                     </div>
                     <div class="box-body">
-                        <table id="unit-table" class="table table-bordered table-hover">
+                        <table id="data-table-custom-table" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>ردیف</th>
-                                <th>نام کامل واحد</th>
-                                <th>علامت واحد</th>
+                                <th>نام انگلیسی دسته</th>
+                                <th>نام فارسی دسته</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
@@ -66,18 +70,18 @@
                             @php
                                 $count = 0 ;
                             @endphp
-                            @foreach($units as $unit)
+                            @foreach($tags as $tag)
                                 <tr>
                                     <td>{{ ++$count }}</td>
                                     <td>
-                                        {{ $unit->long_title }}
+                                        {{ $tag->tags_title  }}
                                     </td>
                                     <td>
-                                        {{ $unit->short_title }}
+                                        {{ $tag->tags_value }}
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-delete-unit" data-url="{{ route('delete.unit.product') }}" data-id="{{ $unit->unit_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
-                                        <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $unit->unit_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
+                                        <button class="btn btn-danger btn-delete-unit" data-url="{{ route('delete.unit.product') }}" data-id="{{ $tag->tag_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
+                                        <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $tag->tag_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -153,5 +157,5 @@
 @section('js')
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="{{ asset('panelAdmin') }}/myJavaScript/unit.js"></script>
+    <script src="{{ asset('panelAdmin') }}/myJavaScript/tags.js"></script>
 @endsection

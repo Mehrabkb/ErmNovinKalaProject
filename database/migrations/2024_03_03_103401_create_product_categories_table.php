@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id('product_category_id');
-            $table->string('english_category' , 250);
-            $table->string('persian_category' , 250);
-            $table->unsignedBigInteger('parent_category_id');
-            $table->date('date' , 250);
+            $table->string('english_category' , 250)->nullable();
+            $table->string('persian_category' , 250)->nullable();
+            $table->unsignedBigInteger('parent_category_id')->default(0);
+            $table->string('image' , 250)->nullable();
+            $table->unsignedBigInteger('tag_id')->nullable();
+            $table->date('date' , 250)->nullable();
         });
     }
 

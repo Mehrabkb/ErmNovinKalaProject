@@ -56,14 +56,19 @@
                         <table id="unit-table" class="table table-bordered table-hover">
                              <thead>
                                  <tr>
+                                     <th>ردیف</th>
                                      <th>نام کامل واحد</th>
                                      <th>علامت واحد</th>
                                      <th>عملیات</th>
                                  </tr>
                                 </thead>
                                 <tbody>
+                                @php
+                                    $count = 0 ;
+                                @endphp
                                 @foreach($units as $unit)
                                     <tr>
+                                        <td>{{ ++$count }}</td>
                                         <td>
                                             {{ $unit->long_title }}
                                         </td>

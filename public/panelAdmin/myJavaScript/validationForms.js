@@ -14,6 +14,14 @@ let Regexes = {
     'force-persian' :{
         'regex' : /^[\u0600-\u06FF\s]+$/,
         'errorMessage' : 'فقط حروف فارسی مجاز می باشند'
+    },
+    'english-number' :{
+        'regex'  : /^[a-zA-Z0-9]+$/,
+        'errorMessage' : 'از واژه های انگلیسی و اعداد استفاده شود'
+    },
+    'perisan-number':{
+        'regex' : /[\u0600-\u06FF\s0-9]+$/,
+        'errorMessage' : 'از واژه های فارسی و اعداد استفاده شود'
     }
 }
 function notificationMessageRegex(title , key , type){

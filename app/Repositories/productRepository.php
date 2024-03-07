@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Interfaces\productRepositoryInterface;
+use App\Models\productCategory;
+use App\Models\publicTags;
 use App\Models\Unit;
 
 class productRepository implements productRepositoryInterface{
@@ -22,6 +24,17 @@ class productRepository implements productRepositoryInterface{
         // TODO: Implement getAllUnits() method.
         return Unit::all();
     }
+    public function getAllCategories()
+    {
+        // TODO: Implement getAllCategories() method.
+        return productCategory::all();
+    }
+    public function getAllTags()
+    {
+        // TODO: Implement getAllTags() method.
+        return publicTags::all();
+    }
+
     public function deleteUnitById($unit_id)
     {
         // TODO: Implement deleteUnitById() method.

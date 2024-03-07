@@ -27,6 +27,16 @@ class AdminPanelController extends Controller
                 return view('panel/product/all');
         }
     }
+    public function tag(Request $request){
+        switch($request->method()){
+            case 'GET' :
+                $tags = $this->productRepository->getAllTags();
+                return view('panel/product/tag' , compact('tags'));
+        }
+    }
+    public function addTag(Request $request){
+        
+    }
     public function addProduct(Request $request){
         switch($request->method()){
             case 'GET':
@@ -53,9 +63,11 @@ class AdminPanelController extends Controller
         }
     }
     public function category(Request $request){
-        switch($request->method()){
+        switch ($request->method()){
             case 'GET':
-
+                $categories = $this->productRepository->getAllCategories();
+                return view('panel/product/category' , compact('categories'));
+                break;
         }
     }
     public function addUnit(Request $request){
