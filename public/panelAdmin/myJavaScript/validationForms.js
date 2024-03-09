@@ -137,5 +137,35 @@ $(function(){
             }
         });
     }
-
+    if($('form.form-add-tag')){
+        $(document).on('submit' , 'form.form-add-tag' , function(e){
+            e.preventDefault();
+            let that = $(this);
+            let url = that.attr('action');
+            let method = that.attr('method');
+            let data = that.serialize();
+            if($('input[name="tags-title"]').val() != '' && $('input[name="tags-value"]').val() != ''){
+                $.ajax({
+                    url : url ,
+                    method : method ,
+                    data : data ,
+                    success : function(result){
+                        let res = JSON.parse(result);
+                        switch (res.type){
+                            case 'error' :
+                                alertify.error(res.message);
+                                break;
+                            case 'success':
+                                alertify.success(res.message);
+                                that.trigger('reset');
+                                location.reload();
+                                break;
+                        }
+                    }
+                })
+            }else{
+                alertify.error('کاربر گرامی لطفا مقادیر تعیین شده را تکمیل و سپس اقدام به ثبت آیتم مورد نظر کنید');
+            }
+        });
+    }
 })

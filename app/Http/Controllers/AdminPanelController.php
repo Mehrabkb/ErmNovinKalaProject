@@ -35,7 +35,29 @@ class AdminPanelController extends Controller
         }
     }
     public function addTag(Request $request){
-        
+        if($request->method() == 'POST'){
+            $validate = $request->validate([
+                'tags-title' => 'required',
+                'tags-value' => 'required'
+            ],
+            [
+                'tags-title.required' => 'نام تگ نمیتواند خالی باشد',
+                'tags-value.required' => 'مقدار تگ نمی تواند خالی باشد'
+            ]);
+            if($validate){
+                $tags_title = htmlspecialchars($request->input('tags-title'));
+                $tags_value = htmlspecialchars($request->input('tags-value'));
+                $data = [
+                    'tags-title' => $tags_title,
+                    'tags-value' => $tags_value
+                ];
+                if($this->productRepository->addTag($data)){
+                    return $this->alertifyRepository->successMessage('با موفقیت ذخیره شد');
+                }else{
+                    return $this->alertifyRepository->errorMessage('مشکلی در ثبت تگ رخ داده است');
+                }
+            }
+        }
     }
     public function addProduct(Request $request){
         switch($request->method()){

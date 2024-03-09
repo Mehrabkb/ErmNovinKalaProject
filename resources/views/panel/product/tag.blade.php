@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label for="tags-value">تگ ها</label>
                                     <input type="text" class="form-control" id="tags-search" autocomplete="off" placeholder="لطفا مقدار تگ مورد نظر را وارد کرده و enter را فشار دهید">
-                                    <input type="hidden" disabled class="form-control " style="margin-top:10px;" id="tags-value" name="tags-value" placeholder="مقدار تگ ها" >
+                                    <input type="hidden"  class="form-control " style="margin-top:10px;" id="tags-value" name="tags-value" placeholder="مقدار تگ ها" >
                                     <div class="delete-buttons" style="margin-top: 10px" >
 
                                     </div>

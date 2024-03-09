@@ -6,6 +6,7 @@ use App\Interfaces\productRepositoryInterface;
 use App\Models\productCategory;
 use App\Models\publicTags;
 use App\Models\Unit;
+use Carbon\Carbon;
 
 class productRepository implements productRepositoryInterface{
     public function addUnit($longTitle, $shortTitle)
@@ -19,6 +20,19 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function addTag($data)
+    {
+        // TODO: Implement addTag() method.
+        $tag = new publicTags();
+        $tag->tags_title = $data['tags-title'];
+        $tag->tags_value = $data['tags-value'];
+        $tag->date = Carbon::now()->timestamp;
+        if($tag->save()){
+            return true;
+        }
+        return false;
+    }
+
     public function getAllUnits()
     {
         // TODO: Implement getAllUnits() method.

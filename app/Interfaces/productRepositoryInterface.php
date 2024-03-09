@@ -14,4 +14,5 @@ interface  productRepositoryInterface
     public function editUnitBySelectId($unit_id , $data);
     public function getAllCategories();
     public function getAllTags();
+    public function addTag($data);
 }
