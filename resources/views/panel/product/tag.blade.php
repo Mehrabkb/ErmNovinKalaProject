@@ -80,8 +80,8 @@
                                         {{ $tag->tags_value }}
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-delete-unit" data-url="{{ route('delete.unit.product') }}" data-id="{{ $tag->tag_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
-                                        <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $tag->tag_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
+                                        <button class="btn btn-danger btn-delete-tag" data-url="{{ route('delete.tag.product') }}" data-id="{{ $tag->public_tag_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
+                                        <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $tag->public_tag_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -105,9 +105,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="delete-form-unit" action="{{ route('delete.unit.product') }}" method="POST">
+                    <form class="delete-form-tag" action="{{ route('delete.tag.product') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="unit-data-id" class="unit-data-id">
+                        <input type="hidden" name="tag-data-id" class="tag-data-id">
                         <p>آیا از حذف این مورد اطمینان دارید؟</p>
                         <br>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>

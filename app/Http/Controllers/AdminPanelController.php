@@ -59,6 +59,24 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function deleteTag(Request $request){
+        if($request->method() == 'POST'){
+            $validate = $request->validate([
+                'tag-data-id' => 'required'
+            ],
+            [
+                'tag-data-id.required' => 'مشکلی رخ داده است'
+            ]);
+            if($validate){
+                $tag_data_id = htmlspecialchars($request->input('tag-data-id'));
+                if($this->productRepository->deleteTag($tag_data_id)){
+                    return $this->alertifyRepository->successMessage('با موفقیت حذف شد');
+                }else{
+                    return $this->alertifyRepository->errorMessage('مشکلی در حذف آیتم رخ داده است');
+                }
+            }
+        }
+    }
     public function addProduct(Request $request){
         switch($request->method()){
             case 'GET':

@@ -32,6 +32,15 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function deleteTag($tag_id)
+    {
+        // TODO: Implement deleteTag() method.
+        $tag = publicTags::where('public_tag_id' , $tag_id)->first();
+        if($tag->delete()){
+            return true;
+        }
+        return false;
+    }
 
     public function getAllUnits()
     {
