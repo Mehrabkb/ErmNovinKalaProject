@@ -6,6 +6,7 @@ use App\Repositories\alertifyRepository;
 use App\Repositories\productRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Middleware\ThrottleRequestsWithRedis;
 use Illuminate\Support\Facades\Auth;
 
 class AdminPanelController extends Controller
@@ -137,8 +138,31 @@ class AdminPanelController extends Controller
         switch ($request->method()){
             case 'GET':
                 $categories = $this->productRepository->getAllCategories();
-                return view('panel/product/category' , compact('categories'));
+                $tags = $this->productRepository->getAllTags();
+                return view('panel/product/category' , compact('categories' , 'tags'));
                 break;
+        }
+    }
+    public function addCategory(Request $request){
+        if($request->method() == 'POST'){
+            $validate = $request->validate([
+                'persian-category' => 'required',
+                'main-image' => 'image|mimes:jpeg,jpg,png,webp'
+            ],[
+                'persian-category.required' => 'نام فارسی دسته بندی الزامی می باشد',
+                'main-image.image' => 'فایل تصویر معتبر نمی باشد',
+                'main-image.mimes' => 'فرمت عکس معتبر نمی باشد'
+            ]);
+            if($validate){
+                $english_category = htmlspecialchars($request->input('english-category'));
+                $persian_category = htmlspecialchars($request->input('persian-category'));
+                $tag_id = htmlspecialchars($request->input('tag-id'));
+                $category_parent = htmlspecialchars($request->input('category-parent'));
+                if($request->hasFile('main-image')){
+                    $customFileName = time() . '-' . $request->file('main-image')->getClientOriginalName();
+                    $path = $request->file('input_field_name')->storeAs('directory_name', $customFileName);
+                }
+            }
         }
     }
     public function addUnit(Request $request){

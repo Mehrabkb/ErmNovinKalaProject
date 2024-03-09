@@ -785,7 +785,7 @@
 <script src="{{ asset('panelAdmin/myJavaScript/validationForms.js') }}"></script>
 @if($errors->any())
     <script>
-        alertify.error({{ $errors->first() }});
+        alertify.error('{{ $errors->first() }}');
     </script>
 @endif
 

@@ -1,5 +1,5 @@
 @extends('panel.master')
-@section('title' , 'واحدها')
+@section('title' , 'دسته بندی')
 @section('css')
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 @endsection
@@ -19,23 +19,41 @@
                         <!-- /. tools -->
                     </div>
                     <div class="box-body">
-                        <form role="form" class="form-add-unit" action="{{ route('add.unit.product') }}" method="POST" enctype="multipart/form-data">
+                        <form role="form" class="form-add-category" action="{{ route('add.category.product') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="english-category">نام انگلیسی دسته بندی</label>
-                                    <input type="text" class="form-control" id="english-category" name="english-category" placeholder="نام انگلیسی دسته بندی را وارد کنید مثال : pipe" data-regex="english-number" data-title="نام انگلیسی دسته بندی">
+                                    <input type="text" class="form-control" id="english-category" name="english-category" placeholder="نام انگلیسی دسته بندی را وارد کنید مثال : pipe">
                                 </div>
                                 <div class="form-group">
                                     <label for="persian-category">نام فارسی دسته بندی</label>
-                                    <input type="text" class="form-control" id="persian-category" name="persian-category" placeholder="نام فارسی دسته بندی مثال : لوله فلزی " data-regex="force-english" data-title="علامت واحد">
+                                    <input type="text" class="form-control" id="persian-category" name="persian-category" placeholder="نام فارسی دسته بندی مثال : لوله فلزی " >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">عکس دسته بندی</label>
-                                    <input type="file" id="exampleInputFile">
-
+                                    <input type="file" name="main-image" />
                                     <p class="help-block">فایل های معتبر : PNG , JPG , JPEG , WEBP</p>
                                 </div>
+                                <div class="form-group">
+                                    <label for="parent-category">دسته والد</label>
+                                    <select class="form-control" name="category-parent">
+                                        <option disabled selected>میتوانید دسته والد را انتخاب کنید ( اختیاری )</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->product_category_id }}">{{ $category->persian_category }} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tag-select">تگ دسته بندی را انتخاب کنید</label>
+                                    <select name="tag-id" class="form-control">
+                                        <option selected disabled>انتخاب تگ ( در نظر داشته باشید که باید یک مورد انتخاب شود ) </option>
+                                        @foreach($tags as $tag)
+                                            <option value="{{ $tag->public_tag_id }}">{{ $tag->tags_title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                             </div>
                             <!-- /.box-body -->
 
@@ -159,5 +177,5 @@
 @section('js')
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="{{ asset('panelAdmin') }}/myJavaScript/unit.js"></script>
+    <script src="{{ asset('panelAdmin/myJavaScript/category.js') }}"></script>
 @endsection

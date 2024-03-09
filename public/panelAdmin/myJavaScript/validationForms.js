@@ -107,7 +107,6 @@ $(function(){
             }
         })
     }
-
     if($('form.edit-form-unit')){
         $(document).on('submit' , 'form.edit-form-unit' , function(e){
             e.preventDefault();
