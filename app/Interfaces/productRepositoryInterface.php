@@ -16,4 +16,6 @@ interface  productRepositoryInterface
     public function getAllTags();
     public function addTag($data);
     public function deleteTag($tag_id);
+    public function getTagById($tag_id);
+    public function editTagById($tag_id , $data);
 }

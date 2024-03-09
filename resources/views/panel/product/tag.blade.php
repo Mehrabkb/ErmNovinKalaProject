@@ -81,7 +81,7 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-danger btn-delete-tag" data-url="{{ route('delete.tag.product') }}" data-id="{{ $tag->public_tag_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
-                                        <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $tag->public_tag_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
+                                        <button class="btn btn-primary btn-edit-tag-step-one" data-url="{{ route('edit.tag.product') }}" data-id="{{ $tag->public_tag_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -129,17 +129,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="edit-form-unit" action="{{ route('edit.unit.product') }}" method="POST">
+                    <form class="edit-form-tag" action="{{ route('edit.tag.product') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="unit-data-id" class="unit-data-id">
+                        <input type="hidden" name="tag-data-id" class="tag-data-id">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="unit-long">نام کامل واحد</label>
-                                <input type="text" class="form-control long-title" id="unit-long" name="long-title"  placeholder=" نام کامل واحد مثال : سانتیمتر" data-regex="force-persian" data-title="نام کامل واحد">
+                                <label for="tags-title">نام تگ ها</label>
+                                <input type="text" class="form-control" id="tags-title" name="tags-title" placeholder="نام تگ ها :">
                             </div>
                             <div class="form-group">
-                                <label for="unit-short">علامت واحد</label>
-                                <input type="text" class="form-control short-title"  id="unit-short"  name="short-title" placeholder="علامت واحد مثال : CM " data-regex="force-english" data-title="علامت واحد">
+                                <label for="tags-value">تگ ها</label>
+                                <input type="text" class="form-control" id="tags-search-edit" autocomplete="off" placeholder="لطفا مقدار تگ مورد نظر را وارد کرده و enter را فشار دهید">
+                                <input type="hidden"  class="form-control " style="margin-top:10px;" id="tags-value" name="tags-value" placeholder="مقدار تگ ها" >
+                                <div class="delete-buttons" style="margin-top: 10px" >
+
+                                </div>
                             </div>
                         </div>
                         <br>

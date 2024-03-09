@@ -41,6 +41,22 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function getTagById($tag_id)
+    {
+        // TODO: Implement getTagById() method.
+        return publicTags::where('public_tag_id' , $tag_id)->first();
+    }
+    public function editTagById($tag_id , $data)
+    {
+        // TODO: Implement editTagById() method.
+        $tag = publicTags::where('public_tag_id' , $tag_id)->first();
+        $tag->tags_title = $data['tags-title'];
+        $tag->tags_value = $data['tags-value'];
+        if($tag->save()){
+            return true;
+        }
+        return false;
+    }
 
     public function getAllUnits()
     {
