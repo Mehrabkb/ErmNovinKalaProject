@@ -14,6 +14,12 @@ $(function(){
                 that.val('');
             }
         }
+    });
+    $('form.form-add-tag').keypress(function(e){
+        if(e.which === 13){
+            e.preventDefault();
+            return false;
+        }
     })
     $(document).on('click' , 'button.btn-delete-tag-item' , function(e){
         let that = $(this);
@@ -22,7 +28,6 @@ $(function(){
         let testTxt = '';
         testTxt = input.val();
         testTxt = testTxt.replace(',' +txt , '');
-        console.log(testTxt);
         input.val(testTxt);
         that.parent().remove();
     });
