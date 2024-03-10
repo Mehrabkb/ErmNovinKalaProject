@@ -137,7 +137,7 @@ class AdminPanelController extends Controller
     public function category(Request $request){
         switch ($request->method()){
             case 'GET':
-                $categories = $this->productRepository->getAllCategories();
+                $categories = $this->productRepository->allCategoriesWithParentName();
                 $tags = $this->productRepository->getAllTags();
                 return view('panel/product/category' , compact('categories' , 'tags'));
                 break;

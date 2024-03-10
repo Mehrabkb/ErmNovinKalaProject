@@ -19,4 +19,6 @@ interface  productRepositoryInterface
     public function getTagById($tag_id);
     public function editTagById($tag_id , $data);
     public function addCategory($data);
+    public function getCategoryById($category_id);
+    public function allCategoriesWithParentName();
 }

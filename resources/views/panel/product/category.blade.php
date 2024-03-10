@@ -84,6 +84,7 @@
                                 <th>نام انگلیسی دسته</th>
                                 <th>نام فارسی دسته</th>
                                 <th>عکس</th>
+                                <th>والد</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
@@ -102,6 +103,9 @@
                                     </td>
                                     <td>
                                         <img style="width: 60px;" src="{{ asset($category->image)}}">
+                                    </td>
+                                    <td>
+                                        {{ $category->parent_category_id }}
                                     </td>
                                     <td>
                                         <button class="btn btn-danger btn-delete-unit" data-url="{{ route('delete.unit.product') }}" data-id="{{ $category->category_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>

@@ -72,6 +72,20 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function getCategoryById($category_id)
+    {
+        // TODO: Implement getCategoryById() method.
+        return productCategory::where('product_category_id' , $category_id)->first();
+    }
+    public function allCategoriesWithParentName()
+    {
+        // TODO: Implement allCategoriesWithParentName() method.
+        $categories = productCategory::all();
+        foreach($categories as $category){
+            $category->parent_category_id = $category->parent_category_id != 0 ? $this->getCategoryById($category->parent_category_id)->persian_category : 'خالی';
+        }
+        return $categories;
+    }
 
     public function getAllUnits()
     {
