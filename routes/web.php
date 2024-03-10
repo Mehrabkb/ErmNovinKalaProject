@@ -41,7 +41,7 @@ Route::prefix('panel')->group(function(){
         Route::post('/tag/delete' , [\App\Http\Controllers\AdminPanelController::class , 'deleteTag'])->name('delete.tag.product');
         Route::get('/tag/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editTag'])->name('edit.tag.product');
         Route::post('/tag/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editTag'])->name('edit.tag.product');
-
+        Route::post('category/delete' , [\App\Http\Controllers\AdminPanelController::class , 'deleteCategory'])->name('delete.category.product');
     });
 });
 

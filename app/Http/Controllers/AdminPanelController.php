@@ -143,6 +143,23 @@ class AdminPanelController extends Controller
                 break;
         }
     }
+    public function deleteCategory(Request $request){
+        if($request->method() == 'POST'){
+            $validate = $request->validate([
+                'category-data-id' => 'required'
+            ],[
+                'category-data-id.required' => 'آیدی دسته بندی الزامی می باشد'
+            ]);
+            if($validate){
+                $product_category_id = htmlspecialchars($request->input('category-data-id'));
+                if($this->productRepository->deleteCategoryById($product_category_id)){
+                    return $this->alertifyRepository->successMessage('با موفقیت حذف شد');
+                }else{
+                    return $this->alertifyRepository->errorMessage('مشکلی در حذف آیتم مورد نظر رخ داده است');
+                }
+            }
+        }
+    }
     public function addCategory(Request $request){
         if($request->method() == 'POST'){
             $validate = $request->validate([

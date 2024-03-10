@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="tag-select">تگ دسته بندی را انتخاب کنید</label>
                                     <select name="tag-id" class="form-control">
-                                        <option selected disabled>انتخاب تگ ( در نظر داشته باشید که باید یک مورد انتخاب شود ) </option>
+                                        <option selected disabled>انتخاب تگ </option>
                                         @foreach($tags as $tag)
                                             <option value="{{ $tag->public_tag_id }}">{{ $tag->tags_title }}</option>
                                         @endforeach
@@ -108,7 +108,7 @@
                                         {{ $category->parent_category_id }}
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-delete-unit" data-url="{{ route('delete.unit.product') }}" data-id="{{ $category->category_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
+                                        <button class="btn btn-danger btn-delete-category" data-url="{{ route('delete.category.product') }}" data-id="{{ $category->product_category_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
                                         <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $category->category_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                     </td>
                                 </tr>
@@ -133,9 +133,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="delete-form-unit" action="{{ route('delete.unit.product') }}" method="POST">
+                    <form class="delete-form-category" action="{{ route('delete.category.product') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="unit-data-id" class="unit-data-id">
+                        <input type="hidden" name="category-data-id" class="category-data-id">
                         <p>آیا از حذف این مورد اطمینان دارید؟</p>
                         <br>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>

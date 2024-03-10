@@ -21,4 +21,5 @@ interface  productRepositoryInterface
     public function addCategory($data);
     public function getCategoryById($category_id);
     public function allCategoriesWithParentName();
+    public function deleteCategoryById($product_category_id);
 }

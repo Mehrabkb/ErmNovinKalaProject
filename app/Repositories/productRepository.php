@@ -86,6 +86,22 @@ class productRepository implements productRepositoryInterface{
         }
         return $categories;
     }
+    public function deleteCategoryById($product_category_id)
+    {
+        // TODO: Implement deleteCategoryById() method.
+        if($product_category_id > 0) {
+            if (productCategory::where('product_category_id', $product_category_id)->delete()) {
+                $categories = $this->getAllCategories();
+                foreach($categories as $category){
+                    if($category->parent_category_id == $product_category_id){
+                        $category->delete();
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 
     public function getAllUnits()
     {
