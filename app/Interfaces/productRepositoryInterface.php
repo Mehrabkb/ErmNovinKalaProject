@@ -18,4 +18,5 @@ interface  productRepositoryInterface
     public function deleteTag($tag_id);
     public function getTagById($tag_id);
     public function editTagById($tag_id , $data);
+    public function addCategory($data);
 }

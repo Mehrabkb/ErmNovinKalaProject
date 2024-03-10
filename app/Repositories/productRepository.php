@@ -57,6 +57,21 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function addCategory($data)
+    {
+        // TODO: Implement addCategory() method.
+        $category = new productCategory();
+        $category->english_category = $data['english_category'] != '' ? $data['english_category'] : '' ;
+        $category->persian_category = $data['persian_category'];
+        $category->tag_id = $data['tag_id'] != '' ? (int)$data['tag_id'] : 0;
+        $category->parent_category_id = $data['parent_category_id'] != '' ? (int)$data['parent_category_id']: 0;
+        $category->image = $data['image'] != '' ? $data['image'] : '';
+        $category->date = Carbon::now()->timestamp;
+        if($category->save()){
+            return true;
+        }
+        return false;
+    }
 
     public function getAllUnits()
     {

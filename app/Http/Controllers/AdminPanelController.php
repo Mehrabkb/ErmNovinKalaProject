@@ -158,10 +158,27 @@ class AdminPanelController extends Controller
                 $persian_category = htmlspecialchars($request->input('persian-category'));
                 $tag_id = htmlspecialchars($request->input('tag-id'));
                 $category_parent = htmlspecialchars($request->input('category-parent'));
+                $imageName = '';
                 if($request->hasFile('main-image')){
-                    $customFileName = time() . '-' . $request->file('main-image')->getClientOriginalName();
-                    $path = $request->file('input_field_name')->storeAs('directory_name', $customFileName);
+                    $image = $request->file('main-image');
+                    $imageName = 'images/' . time() . '.' . request()->file('main-image')->getClientOriginalExtension();
+
+                    $image->move(public_path('images'), $imageName);
+
                 }
+                $data = [
+                    'english_category' => $english_category,
+                    'persian_category' => $persian_category,
+                    'tag_id' => $tag_id,
+                    'parent_category_id' => $category_parent,
+                    'image' => url($imageName)
+                ];
+                if($this->productRepository->addCategory($data)){
+                    return redirect()->back()->with(['success' => 'با موفقیت ثبت شد']);
+                }else{
+                    return redirect()->back()->withErrors('مشکلی رخ داده است');
+                }
+
             }
         }
     }

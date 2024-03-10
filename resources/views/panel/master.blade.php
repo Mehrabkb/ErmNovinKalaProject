@@ -788,7 +788,11 @@
         alertify.error('{{ $errors->first() }}');
     </script>
 @endif
-
+@if(session('success'))
+    <script>
+        alertify.success('{{ session('success') }}');
+    </script>
+@endif
 @yield('js')
 <script>
     if($('#data-table-custom-table')){

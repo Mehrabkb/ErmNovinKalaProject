@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_category_id')->default(0);
             $table->string('image' , 250)->nullable();
             $table->unsignedBigInteger('tag_id')->nullable();
-            $table->date('date' , 250)->nullable();
+            $table->string('date' , 250)->nullable();
         });
     }
 
