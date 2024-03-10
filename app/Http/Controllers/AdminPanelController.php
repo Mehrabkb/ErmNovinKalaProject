@@ -91,6 +91,7 @@ class AdminPanelController extends Controller
             }
         }
     }
+
     public function deleteTag(Request $request){
         if($request->method() == 'POST'){
             $validate = $request->validate([
@@ -197,6 +198,12 @@ class AdminPanelController extends Controller
                 }
 
             }
+        }
+    }
+    public function getCategorySingle(Request $request){
+        if($request->method() == 'GET'){
+            $product_category_id = htmlspecialchars($request->input('category_id'));
+            return $this->productRepository->getCategoryById($product_category_id);
         }
     }
     public function addUnit(Request $request){

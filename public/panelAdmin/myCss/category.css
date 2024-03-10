@@ -1,0 +1,6 @@
+.now-parent-category , .now-tag-category{
+    display: none;
+}
+.now-parent-category.show , .now-tag-category.show{
+    display: block;
+}

@@ -75,7 +75,9 @@ class productRepository implements productRepositoryInterface{
     public function getCategoryById($category_id)
     {
         // TODO: Implement getCategoryById() method.
-        return productCategory::where('product_category_id' , $category_id)->first();
+        $category = productCategory::where('product_category_id' , $category_id)->first();
+        $category->parent_category_id = $category->parent_category_id != 0 ? productCategory::where('product_category_id' , $category->parent_category_id)->first()->persian_category : 0;
+        return $category;
     }
     public function allCategoriesWithParentName()
     {

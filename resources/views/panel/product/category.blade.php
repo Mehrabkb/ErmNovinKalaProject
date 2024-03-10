@@ -2,6 +2,7 @@
 @section('title' , 'دسته بندی')
 @section('css')
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('panelAdmin/myCss/category.css') }}" >
 @endsection
 @section('content')
     <section class="content">
@@ -109,7 +110,7 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-danger btn-delete-category" data-url="{{ route('delete.category.product') }}" data-id="{{ $category->product_category_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
-                                        <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $category->category_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
+                                        <button class="btn btn-primary btn-edit-category-step-one" data-url="{{ route('get.category.product') }}" data-id="{{ $category->product_category_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -157,18 +158,54 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="edit-form-unit" action="{{ route('edit.unit.product') }}" method="POST">
+                    <form class="edit-form-category" action="{{ route('edit.category.product') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="unit-data-id" class="unit-data-id">
+                        <input type="hidden" name="product-category-data-id" class="unit-data-id">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="unit-long">نام کامل واحد</label>
-                                <input type="text" class="form-control long-title" id="unit-long" name="long-title"  placeholder=" نام کامل واحد مثال : سانتیمتر" data-regex="force-persian" data-title="نام کامل واحد">
+                                <label for="english-category">نام انگلیسی دسته بندی</label>
+                                <input type="text" class="form-control" id="english-category" name="english-category" placeholder="نام انگلیسی دسته بندی را وارد کنید مثال : pipe">
                             </div>
                             <div class="form-group">
-                                <label for="unit-short">علامت واحد</label>
-                                <input type="text" class="form-control short-title"  id="unit-short"  name="short-title" placeholder="علامت واحد مثال : CM " data-regex="force-english" data-title="علامت واحد">
+                                <label for="persian-category">نام فارسی دسته بندی</label>
+                                <input type="text" class="form-control" id="persian-category" name="persian-category" placeholder="نام فارسی دسته بندی مثال : لوله فلزی " >
                             </div>
+                            <div class="form-group">
+                                <label for="image">عکس فعلی </label>
+                                <img class="image" style="width: 50px;">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">عکس دسته بندی</label>
+                                <input type="file" name="main-image" />
+                                <p class="help-block">فایل های معتبر : PNG , JPG , JPEG , WEBP</p>
+                            </div>
+                            <div class="form-group now-parent-category">
+                                <label for="now-parent-category">دسته والد فعلی</label>
+                                <input disabled type="text" class="now-parent-category-input form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label for="parent-category">دسته والد</label>
+                                <select class="form-control" name="category-parent">
+                                    <option disabled selected>میتوانید دسته والد را انتخاب کنید ( اختیاری )</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->product_category_id }}">{{ $category->persian_category }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group now-tag-category">
+                                <label for="">تگ فعلی</label>
+                                <input disabled type="text" class="now-tag-category-input form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="tag-select">تگ دسته بندی را انتخاب کنید</label>
+                                <select name="tag-id" class="form-control">
+                                    <option selected disabled>انتخاب تگ </option>
+                                    @foreach($tags as $tag)
+                                        <option value="{{ $tag->public_tag_id }}">{{ $tag->tags_title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                         </div>
                         <br>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
