@@ -271,6 +271,21 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function deleteBrand(Request $request){
+        $validate = $request->validate([
+            'brand-data-id' => 'required'
+        ],[
+            'brand-data-id.required' => 'ایدی نمیتواند خالی باشد'
+        ]);
+        if($validate){
+            $brand_id = htmlspecialchars($request->input('brand-data-id'));
+            if($this->productRepository->deleteBrandById($brand_id)) {
+                return redirect()->back()->with(['success' => 'با موفقیت حذف شد']);
+            }else {
+                return redirect()->back()->withErrors('مشکلی رخ داده است');
+            }
+        }
+    }
     public function addUnit(Request $request){
         if($request->method() == 'POST'){
             $validate = $request->validate([

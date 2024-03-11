@@ -149,6 +149,15 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function deleteBrandById($brand_id)
+    {
+        // TODO: Implement deleteBrandById() method.
+        if(productBrand::where('product_brand_id' , $brand_id)->delete()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public function getAllUnits()
     {

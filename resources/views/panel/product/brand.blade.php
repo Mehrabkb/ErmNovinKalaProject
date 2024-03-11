@@ -82,7 +82,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-delete-category" data-url="{{ route('delete.category.product') }}" data-id="{{ $brand->product_brand_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
+                                        <button class="btn btn-danger btn-delete-brand" data-id="{{ $brand->product_brand_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
                                         <button class="btn btn-primary btn-edit-category-step-one" data-url="{{ route('get.category.product') }}" data-id="{{ $brand->product_brand_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                     </td>
                                 </tr>
@@ -107,9 +107,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="delete-form-category" action="{{ route('delete.category.product') }}" method="POST">
+                    <form class="delete-form-brand" action="{{ route('delete.brand.product') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="category-data-id" class="category-data-id">
+                        <input type="hidden" name="brand-data-id" class="brand-data-id">
                         <p>آیا از حذف این مورد اطمینان دارید؟</p>
                         <br>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
@@ -168,4 +168,5 @@
 @section('js')
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="{{ asset('panelAdmin/myJavaScript/brand.js') }}"></script>
 @endsection

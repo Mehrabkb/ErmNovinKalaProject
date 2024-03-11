@@ -26,4 +26,5 @@ interface  productRepositoryInterface
     public function getCategoryByIdWithPureData($category_id);
     public function getAllBrand();
     public function addBrand($data);
+    public function deleteBrandById($brand_id);
 }
