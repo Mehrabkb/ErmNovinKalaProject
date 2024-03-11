@@ -36,5 +36,16 @@ class DatabaseSeeder extends Seeder
             'user_status_id' => 1,
             'date' => Carbon::now()->timestamp
         ]);
+        $statuses = [[
+            'english_title' => 'active' ,
+            'persian_title' => 'فعال',
+            'date' => Carbon::now()->timestamp
+        ],[
+            'english_title' => 'not active',
+            'persian_title' => 'غیرفعال',
+            'date' => Carbon::now()->timestamp
+        ]];
+        DB::table('product_statuses')->insert($statuses);
+
     }
 }

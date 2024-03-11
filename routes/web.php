@@ -44,6 +44,8 @@ Route::prefix('panel')->group(function(){
         Route::get('/tag/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editTag'])->name('edit.tag.product');
         Route::post('/tag/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editTag'])->name('edit.tag.product');
         Route::post('category/delete' , [\App\Http\Controllers\AdminPanelController::class , 'deleteCategory'])->name('delete.category.product');
+        Route::get('brand' , [\App\Http\Controllers\AdminPanelController::class , 'brand'])->name('brand.product');
+        Route::post('brand/add' , [\App\Http\Controllers\AdminPanelController::class , 'addBrand'])->name('add.brand.product');
     });
 });
 

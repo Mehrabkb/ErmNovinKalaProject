@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\productRepositoryInterface;
+use App\Models\productBrand;
 use App\Models\productCategory;
 use App\Models\publicTags;
 use App\Models\Unit;
@@ -127,6 +128,23 @@ class productRepository implements productRepositoryInterface{
         }
         $category->date = Carbon::now()->timestamp;
         if($category->save()){
+            return true;
+        }
+        return false;
+    }
+    public function getAllBrand()
+    {
+        // TODO: Implement getAllBrand() method.
+        return productBrand::all();
+    }
+    public function addBrand($data)
+    {
+        // TODO: Implement addBrand() method.
+        $brand = new productBrand();
+        $brand->brand_name = $data['brand_title'];
+        isset($data['brand_logo']) ? $brand->brand_logo = $data['brand_logo'] : '';
+        $brand->date = Carbon::now()->timestamp;
+        if($brand->save()){
             return true;
         }
         return false;

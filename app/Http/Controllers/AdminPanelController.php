@@ -237,6 +237,40 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function brand(Request $request){
+        if($request->method() == 'GET'){
+            $brands = $this->productRepository->getAllBrand();
+            return view('panel/product/brand' , compact('brands'));
+        }
+    }
+    public function addBrand(Request $request){
+        if($request->method() == 'POST'){
+            $validate = $request->validate([
+                'brand-title' => 'required',
+                'main-image' => 'image|mimes:jpeg,jpg,png,webp'
+            ],[
+                'brand-title.required' => 'نام  برند نمیتواند خالی باشد',
+                'main-image.image' => 'فایل عکس معتبر نمیباشد',
+                'main-image.mimes' => 'فرمت عکس معتبر نمی باشد'
+            ]);
+            if($validate){
+                $data = [];
+                $data['brand_title'] = htmlspecialchars($request->input('brand-title'));
+                if($request->hasFile('main-image')){
+                    $image = $request->file('main-image');
+                    $imageName = 'images/' . time() . '.' . request()->file('main-image')->getClientOriginalExtension();
+
+                    $image->move(public_path('images'), $imageName);
+                    $data['brand_logo'] = $imageName;
+                }
+                if($this->productRepository->addBrand($data)){
+                    return redirect()->back()->with(['success' => 'با موفقیت ثبت شد']);
+                }else{
+                    return redirect()->back()->withErrors('مشکلی رخ داده است');
+                }
+            }
+        }
+    }
     public function addUnit(Request $request){
         if($request->method() == 'POST'){
             $validate = $request->validate([

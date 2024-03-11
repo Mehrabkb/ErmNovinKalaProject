@@ -525,7 +525,8 @@
                         <li><a href="{{ route('products') }}"><i class="fa fa-circle-o"></i>همه محصولات</a></li>
                         <li><a href="{{ route('add.product') }}"><i class="fa fa-circle-o"></i>افزودن</a></li>
                         <li><a href="{{ route('importexport.product') }}"><i class="fa fa-circle-o"></i>درون ریزی / برون ریزی </a></li>
-                        <li><a href="{{ route('feature.product') }}"><i class="fa fa-circle-o"></i>ویژگی ها</a></li>
+                        <li><a href="{{ route('brand.product') }}"><i class="fa fa-circle-o"></i>برند ها</a></li>
+{{--                        <li><a href="{{ route('feature.product') }}"><i class="fa fa-circle-o"></i>ویژگی ها</a></li>--}}
                         <li><a href="{{ route('category.product') }}"><i class="fa fa-circle-o"></i>دسته بندی ها</a></li>
                         <li><a href="{{ route('tag.product') }}"><i class="fa fa-circle-o"></i>تگ ها</a></li>
                         <li><a href="{{ route('unit.product') }}"><i class="fa fa-circle-o"></i>واحدها</a></li>
