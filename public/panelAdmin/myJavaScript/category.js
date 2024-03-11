@@ -42,7 +42,7 @@ $(function(){
             },
             success : function(result){
                 let form = $('form.edit-form-category');
-                form.find('input.product-category-data-id').val(result.product_category_id);
+                form.find('input[name="product-category-data-id"]').val(result.product_category_id);
                 form.find('input#english-category').val(result.english_category);
                 form.find('input#persian-category').val(result.persian_category);
                 form.find('img.image').attr('src' , result.image);

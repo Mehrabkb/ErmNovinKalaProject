@@ -22,4 +22,6 @@ interface  productRepositoryInterface
     public function getCategoryById($category_id);
     public function allCategoriesWithParentName();
     public function deleteCategoryById($product_category_id);
+    public function editCategoryById($category_id , $data);
+    public function getCategoryByIdWithPureData($category_id);
 }

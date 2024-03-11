@@ -103,7 +103,7 @@
                                         {{ $category->persian_category }}
                                     </td>
                                     <td>
-                                        <img style="width: 60px;" src="{{ asset($category->image)}}">
+                                        <img style="width: 60px; height: 60px; object-fit: contain;" src="{{ asset($category->image)}}">
                                     </td>
                                     <td>
                                         {{ $category->parent_category_id }}
@@ -158,9 +158,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="edit-form-category" action="{{ route('edit.category.product') }}" method="POST">
+                    <form class="edit-form-category" action="{{ route('edit.category.product') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="product-category-data-id" class="unit-data-id">
+                        <input type="hidden" name="product-category-data-id" class="category-data-id">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="english-category">نام انگلیسی دسته بندی</label>
@@ -176,7 +176,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">عکس دسته بندی</label>
-                                <input type="file" name="main-image" />
+                                <input type="file" name="main-image-edit" />
                                 <p class="help-block">فایل های معتبر : PNG , JPG , JPEG , WEBP</p>
                             </div>
                             <div class="form-group now-parent-category">

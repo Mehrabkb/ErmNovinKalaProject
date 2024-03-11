@@ -206,6 +206,37 @@ class AdminPanelController extends Controller
             return $this->productRepository->getCategoryById($product_category_id);
         }
     }
+    public function editCategory(Request $request){
+        if($request->method() == 'POST'){
+            $category_id = htmlspecialchars($request->input('product-category-data-id'));
+            $english_category = htmlspecialchars($request->input('english-category'));
+            $persian_category = htmlspecialchars($request->input('persian-category'));
+            $tag_id = htmlspecialchars($request->input('tag-id'));
+            $category_parent = htmlspecialchars($request->input('category-parent'));
+            $imageName = '';
+            if($request->hasFile('main-image-edit')){
+                $image = $request->file('main-image-edit');
+                $imageName = 'images/' . time() . '.' . request()->file('main-image-edit')->getClientOriginalExtension();
+
+                $image->move(public_path('images'), $imageName);
+
+            }
+            $data = [
+                'english_category' => $english_category,
+                'persian_category' => $persian_category,
+                'tag_id' => $tag_id,
+                'parent_category_id' => $category_parent,
+            ];
+            if($imageName != ''){
+                $data['image'] = url($imageName);
+            }
+            if($this->productRepository->editCategoryById($category_id , $data)){
+                return redirect()->back()->with(['success' => 'با موفقیت ثبت شد']);
+            }else{
+                return redirect()->back()->withErrors('مشکلی رخ داده است');
+            }
+        }
+    }
     public function addUnit(Request $request){
         if($request->method() == 'POST'){
             $validate = $request->validate([
