@@ -116,9 +116,15 @@ class productRepository implements productRepositoryInterface{
         $category = $this->getCategoryByIdWithPureData($category_id);
         $category->english_category = $data['english_category'] != '' ? $data['english_category'] : '' ;
         $category->persian_category = $data['persian_category'];
-        $category->tag_id = $data['tag_id'] != '' ? (int)$data['tag_id'] : 0;
-        $category->parent_category_id = $data['parent_category_id'] != '' ? (int)$data['parent_category_id']: 0;
-        $category->image = $data['image'] != '' ? $data['image'] : '';
+        if($data['tag_id'] != ''){
+            $category->tag_id = (int)$data['tag_id'];
+        }
+        if($data['parent_category_id'] != ''){
+            $category->parent_category_id = (int)$data['parent_category_id'];
+        }
+        if(isset($data['image'])){
+            $category->image =  $data['image'] ;
+        }
         $category->date = Carbon::now()->timestamp;
         if($category->save()){
             return true;
