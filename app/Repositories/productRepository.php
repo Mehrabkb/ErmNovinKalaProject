@@ -158,6 +158,22 @@ class productRepository implements productRepositoryInterface{
             return false;
         }
     }
+    public function getBrandByBrandId($brand_id)
+    {
+        // TODO: Implement getBrandByBrandId() method.
+        return productBrand::where('product_brand_id' , $brand_id)->first();
+    }
+    public function updateBrandById($brand_id, $data)
+    {
+        // TODO: Implement updateBrandById() method.
+        $brand = productBrand::where('product_brand_id' , $brand_id)->first();
+        isset($data['brand_name']) ? $brand->brand_name =  $data['brand_name'] : '';
+        isset($data['brand_logo']) ? $brand->brand_logo = $data['brand_logo'] : '';
+        if($brand->save()){
+            return true;
+        }
+        return false;
+    }
 
     public function getAllUnits()
     {

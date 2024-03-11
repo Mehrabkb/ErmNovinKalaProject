@@ -1,0 +1,6 @@
+.show-imaged-brand{
+    display: none;
+}
+.show-imaged-brand.show{
+    display: block;
+}

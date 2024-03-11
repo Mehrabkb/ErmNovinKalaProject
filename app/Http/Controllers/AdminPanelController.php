@@ -261,7 +261,7 @@ class AdminPanelController extends Controller
                     $imageName = 'images/' . time() . '.' . request()->file('main-image')->getClientOriginalExtension();
 
                     $image->move(public_path('images'), $imageName);
-                    $data['brand_logo'] = $imageName;
+                    $data['brand_logo'] = url($imageName);
                 }
                 if($this->productRepository->addBrand($data)){
                     return redirect()->back()->with(['success' => 'با موفقیت ثبت شد']);
@@ -284,6 +284,51 @@ class AdminPanelController extends Controller
             }else {
                 return redirect()->back()->withErrors('مشکلی رخ داده است');
             }
+        }
+    }
+    public function getBrandSingle(Request $request){
+        if($request->isMethod('GET')){
+            $validate = $request->validate([
+                'product-brand-id' => 'required'
+            ],[
+                'product-brand-id.required' => 'ایدی نمیتواند خالی باشد'
+            ]);
+            if($validate){
+                $brand_id = htmlspecialchars($request->input('product-brand-id'));
+                return $this->productRepository->getBrandByBrandId($brand_id);
+            }
+        }
+    }
+    public function editBrand(Request $request){
+        if($request->isMethod('POST')){
+            $validate = $request->validate([
+                'product-brand-data-id' => 'required',
+                'main-image' => 'image|mimes:jpg,jpeg,png,webp'
+            ],[
+                'product-brand-data-id.required' => 'ایدی الزامی می باشد',
+                'main-image.image' => 'فایل نامعتبر است',
+                'main-image.mimes' => 'فرمت فایل نامعتبر است'
+            ]);
+            if($validate){
+                $brand_id = htmlspecialchars($request->input('product-brand-data-id'));
+                $brand_title = htmlspecialchars($request->input('brand-title'));
+                $data = [];
+                isset($brand_id) ? $data['product-brand-id'] = $brand_id : '';
+                isset($brand_title) ? $data['brand_name'] = $brand_title : '';
+                if($request->hasFile('main-image')){
+                    $image = $request->file('main-image');
+                    $imageName = 'images/' . time() . '.' . request()->file('main-image')->getClientOriginalExtension();
+
+                    $image->move(public_path('images'), $imageName);
+                    $data['brand_logo'] = url($imageName);
+                }
+                if($this->productRepository->updateBrandById($brand_id , $data)){
+                    return redirect()->back()->with(['success' => 'با موفقیت ذخیره شد']);
+                }else{
+                    return redirect()->back()->withErrors('مشکلی در آپدیت مورد نظر رخ داده است ');
+                }
+            }
+
         }
     }
     public function addUnit(Request $request){

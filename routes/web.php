@@ -47,6 +47,8 @@ Route::prefix('panel')->group(function(){
         Route::get('brand' , [\App\Http\Controllers\AdminPanelController::class , 'brand'])->name('brand.product');
         Route::post('brand/add' , [\App\Http\Controllers\AdminPanelController::class , 'addBrand'])->name('add.brand.product');
         Route::post('/brand/delete' , [\App\Http\Controllers\AdminPanelController::class , 'deleteBrand'])->name('delete.brand.product');
+        Route::get('brand/single' , [\App\Http\Controllers\AdminPanelController::class , 'getBrandSingle'])->name('get.brand.single');
+        Route::post('brand/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editBrand'])->name('edit.brand.product');
     });
 });
 

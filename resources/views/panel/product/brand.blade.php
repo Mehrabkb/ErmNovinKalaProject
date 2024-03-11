@@ -2,7 +2,8 @@
 @section('title' , 'برند')
 @section('css')
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('panelAdmin/myCss/category.css') }}" >
+    <link rel="stylesheet" href="{{ asset('panelAdmin/myCss/brand.css') }}" >
+
 @endsection
 @section('content')
     <section class="content">
@@ -83,7 +84,7 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-danger btn-delete-brand" data-id="{{ $brand->product_brand_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
-                                        <button class="btn btn-primary btn-edit-category-step-one" data-url="{{ route('get.category.product') }}" data-id="{{ $brand->product_brand_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
+                                        <button class="btn btn-primary btn-edit-brand-step-one" data-url="{{ route('get.brand.single') }}" data-id="{{ $brand->product_brand_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -125,31 +126,27 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content ">
                 <div class="modal-header ">
-                    <h5 class="modal-title" id="exampleModalLabel">حذف واحد</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">ویرایش واحد</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="edit-form-category" action="{{ route('edit.category.product') }}" method="POST" enctype="multipart/form-data">
+                    <form class="edit-form-brand" action="{{ route('edit.brand.product') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="product-category-data-id" class="category-data-id">
+                        <input type="hidden" name="product-brand-data-id" class="brand-data-id">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="english-category">نام انگلیسی دسته بندی</label>
-                                <input type="text" class="form-control" id="english-category" name="english-category" placeholder="نام انگلیسی دسته بندی را وارد کنید مثال : pipe">
+                                <label for="persian-brand">نام برند</label>
+                                <input type="text" class="form-control" id="brand-title" name="brand-title" placeholder="نام  برند مثال : بنکن " >
+                            </div>
+                            <div class="form-group show-imaged-brand">
+                                <label for="main-image">عکس فعلی</label>
+                                <img style="width:60px; height: 60px">
                             </div>
                             <div class="form-group">
-                                <label for="persian-category">نام فارسی دسته بندی</label>
-                                <input type="text" class="form-control" id="persian-category" name="persian-category" placeholder="نام فارسی دسته بندی مثال : لوله فلزی " >
-                            </div>
-                            <div class="form-group">
-                                <label for="image">عکس فعلی </label>
-                                <img class="image" style="width: 50px;">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">عکس دسته بندی</label>
-                                <input type="file" name="main-image-edit" />
+                                <label for="exampleInputFile">عکس برند</label>
+                                <input type="file" name="main-image" />
                                 <p class="help-block">فایل های معتبر : PNG , JPG , JPEG , WEBP</p>
                             </div>
                         </div>

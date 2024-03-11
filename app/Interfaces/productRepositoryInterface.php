@@ -27,4 +27,6 @@ interface  productRepositoryInterface
     public function getAllBrand();
     public function addBrand($data);
     public function deleteBrandById($brand_id);
+    public function getBrandByBrandId($brand_id);
+    public function updateBrandById($brand_id , $data);
 }
