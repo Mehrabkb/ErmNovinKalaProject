@@ -45,7 +45,9 @@ $(function(){
                 form.find('input[name="product-category-data-id"]').val(result.product_category_id);
                 form.find('input#english-category').val(result.english_category);
                 form.find('input#persian-category').val(result.persian_category);
-                form.find('img.image').attr('src' , result.image);
+                if(result.image != ''){
+                    form.find('img.image').attr('src' , result.image);
+                }
                 if(result.parent_category_id != 0){
                     form.find('.now-parent-category').addClass('show');
                     form.find('input.now-parent-category-input').val(result.parent_category_id);

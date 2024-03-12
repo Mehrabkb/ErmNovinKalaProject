@@ -26,6 +26,7 @@ Route::prefix('panel')->group(function(){
     Route::prefix('product')->group(function(){
         Route::get('/' , [\App\Http\Controllers\AdminPanelController::class , 'product'])->name('products');
         Route::get('add' , [\App\Http\Controllers\AdminPanelController::class , 'addProduct'])->name('add.product');
+        Route::post('add' , [\App\Http\Controllers\AdminPanelController::class , 'addProduct'])->name('add.product');
         Route::get('importExport' , [\App\Http\Controllers\AdminPanelController::class , 'importExport'])->name('importexport.product');
         Route::get('feature' , [\App\Http\Controllers\AdminPanelController::class , 'feature'])->name('feature.product');
         Route::get('category' , [\App\Http\Controllers\AdminPanelController::class , 'category'])->name('category.product');

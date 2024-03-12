@@ -81,6 +81,7 @@ class productRepository implements productRepositoryInterface{
         // TODO: Implement getCategoryById() method.
         $category = productCategory::where('product_category_id' , $category_id)->first();
         $category->parent_category_id = $category->parent_category_id != 0 ? productCategory::where('product_category_id' , $category->parent_category_id)->first()->persian_category : 0;
+        $category->image = url($category->image);
         return $category;
     }
     public function allCategoriesWithParentName()
@@ -233,5 +234,8 @@ class productRepository implements productRepositoryInterface{
     {
         // TODO: Implement allProductStatuses() method.
         return productStatus::all();
+    }
+    public function addProduct($data){
+
     }
 }

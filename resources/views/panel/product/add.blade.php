@@ -20,7 +20,7 @@
                         <!-- /. tools -->
                     </div>
                     <div class="box-body">
-                        <form role="form" class="form-add-brand" action="{{ route('add.brand.product') }}" method="POST" enctype="multipart/form-data">
+                        <form role="form" class="form-add-product" action="{{ route('add.product') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">توضیحات</label>
-                                    <textarea name="descript" class="form-control" placeholder="توضیحات محصول ... "></textarea>
+                                    <textarea name="description" class="form-control" placeholder="توضیحات محصول ... "></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="product-balance">موجودی</label>
@@ -76,7 +76,7 @@
                                     <select name="product-tag-id" class="form-control">
                                         <option selected disabled>لطفا تگ محصول را انتخاب نمایید</option>
                                         @foreach($tags as $tag)
-                                            <option value="{{ $tag->product_tag_id }}">{{ $tag->tags_title }}</option>
+                                            <option value="{{ $tag->public_tag_id }}">{{ $tag->tags_title }}</option>
                                         @endforeach
                                     </select>
                                 </div>

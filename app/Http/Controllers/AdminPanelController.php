@@ -119,6 +119,37 @@ class AdminPanelController extends Controller
                 $brands = $this->productRepository->getAllBrand();
                 $tags = $this->productRepository->getAllTags();
                 return view('panel/product/add' , compact('products' , 'categories' , 'productStatuses' , 'brands' , 'tags'));
+                break;
+            case 'POST':
+                $validate = $request->validate([
+                    'product-title' => 'required',
+                    'product-balance' => 'required',
+                    'product-price' => 'required',
+                    'product-category-id' => 'required',
+                    'product-status-id' => 'required',
+                    'product-brand-id' => 'required',
+                    'product-tag-id' => 'required'
+                ],[
+                    'product-title.required' => 'عنوان محصول الزامی می باشد',
+                    'product-balance.required' => 'موجودی الزامی می باشد',
+                    'product-price.required' => 'قیمت الزامی می باشد',
+                    'product-category-id.required' => 'دسته بندی الزامی می باشد',
+                    'product-status-id.required' => 'وضعیت نمی تواند خالی باشد',
+                    'product-brand-id.required' => 'برند نمیتواند خالی باشد',
+                    'product-tag-id.required' => 'تگ نمیتواند خالی باشد'
+                ]);
+                if($validate){
+                    $data = [];
+                    $data['product-title'] = htmlspecialchars($request->input('product-title'));
+                    $data['product-balance'] = htmlspecialchars($request->input('product-balance'));
+                    $data['product-price'] = htmlspecialchars($request->input('product-price'));
+                    $data['product-category-id'] = htmlspecialchars($request->input('product-category-id'));
+                    $data['product-status-id'] = htmlspecialchars($request->input('product-status-id'));
+                    $data['product-brand-id'] = htmlspecialchars($request->input('product-brand-id'));
+                    $data['product-tag-id'] = htmlspecialchars($request->input('product-tag-id'));
+                    
+                }
+                break;
         }
     }
     public function unit(Request $request){
@@ -194,7 +225,7 @@ class AdminPanelController extends Controller
                     'persian_category' => $persian_category,
                     'tag_id' => $tag_id,
                     'parent_category_id' => $category_parent,
-                    'image' => url($imageName)
+                    'image' => $imageName
                 ];
                 if($this->productRepository->addCategory($data)){
                     return redirect()->back()->with(['success' => 'با موفقیت ثبت شد']);

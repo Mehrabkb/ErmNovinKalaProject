@@ -31,4 +31,5 @@ interface  productRepositoryInterface
     public function updateBrandById($brand_id , $data);
     public function allProductsFrontEndData();
     public function allProductStatuses();
+    public function addProduct($data);
 }

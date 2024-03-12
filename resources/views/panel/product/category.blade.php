@@ -78,7 +78,7 @@
                         <!-- /. tools -->
                     </div>
                     <div class="box-body">
-                        <table id="unit-table" class="table table-bordered table-hover">
+                        <table id="unit-table" class="table table-bordered table-hover table-info">
                             <thead>
                             <tr>
                                 <th>ردیف</th>
@@ -103,7 +103,9 @@
                                         {{ $category->persian_category }}
                                     </td>
                                     <td>
-                                        <img style="width: 60px; height: 60px; object-fit: contain;" src="{{ asset($category->image)}}">
+                                        @if($category->image != '')
+                                            <img style="width: 60px; height: 60px; object-fit: contain;" src="{{ asset($category->image)}}">
+                                        @endif
                                     </td>
                                     <td>
                                         {{ $category->parent_category_id }}
