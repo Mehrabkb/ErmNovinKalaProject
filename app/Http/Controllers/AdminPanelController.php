@@ -113,7 +113,12 @@ class AdminPanelController extends Controller
     public function addProduct(Request $request){
         switch($request->method()){
             case 'GET':
-                return view('panel/product/add');
+                $products = $this->productRepository->allProductsFrontEndData();
+                $categories = $this->productRepository->getAllCategories();
+                $productStatuses = $this->productRepository->allProductStatuses();
+                $brands = $this->productRepository->getAllBrand();
+                $tags = $this->productRepository->getAllTags();
+                return view('panel/product/add' , compact('products' , 'categories' , 'productStatuses' , 'brands' , 'tags'));
         }
     }
     public function unit(Request $request){

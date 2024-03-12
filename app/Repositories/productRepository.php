@@ -3,11 +3,14 @@
 namespace App\Repositories;
 
 use App\Interfaces\productRepositoryInterface;
+use App\Models\Product;
 use App\Models\productBrand;
 use App\Models\productCategory;
+use App\Models\productStatus;
 use App\Models\publicTags;
 use App\Models\Unit;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class productRepository implements productRepositoryInterface{
     public function addUnit($longTitle, $shortTitle)
@@ -217,5 +220,18 @@ class productRepository implements productRepositoryInterface{
             }
         }
         return false;
+    }
+    public function allProductsFrontEndData()
+    {
+        // TODO: Implement allProductsFrontEndData() method.
+        $products = DB::table('products')
+            ->join('product_categories' , 'products.product_category_id' , '=' , 'product_categories.product_category_id')
+            ->get();
+        return $products;
+    }
+    public function allProductStatuses()
+    {
+        // TODO: Implement allProductStatuses() method.
+        return productStatus::all();
     }
 }

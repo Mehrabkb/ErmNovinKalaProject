@@ -29,4 +29,6 @@ interface  productRepositoryInterface
     public function deleteBrandById($brand_id);
     public function getBrandByBrandId($brand_id);
     public function updateBrandById($brand_id , $data);
+    public function allProductsFrontEndData();
+    public function allProductStatuses();
 }

@@ -783,6 +783,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('panelAdmin') }}/dist/js/demo.js"></script>
 <script src="{{ asset('plugins/alertify/alertify.min.js') }}"></script>
+<script src="{{ asset('plugins/easyNumberSeperator/easy-number-separator.js') }}"></script>
 <script src="{{ asset('panelAdmin/myJavaScript/validationForms.js') }}"></script>
 @if($errors->any())
     <script>
@@ -812,6 +813,20 @@
             }
         });
     }
+    $('.table-info').DataTable({
+        "language": {
+            "lengthMenu": "نمایش _MENU_ در هر صفحه",
+            "zeroRecords": "هیچ چیزی برای نمایش وجود ندارد",
+            "info": "نمایش _PAGE_ از _PAGES_",
+            "infoEmpty": "خالی",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search": "جستجو : ",
+            'paginate': {
+                'previous': 'قبلی',
+                'next': 'بعدی'
+            }
+        }
+    })
 
 </script>
 </body>
