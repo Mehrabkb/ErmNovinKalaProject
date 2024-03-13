@@ -332,6 +332,30 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function importProduct(Request $request){
+        $validate = $request->validate([
+            'excel-file' => 'required|mimes:xls,xlsx,csv'
+        ],[
+            'excel-file.required' => 'لطفا فایل را وارد کنید',
+            'excel-file.mimes' => 'لطفا فایل را با فرمت csv وارد کنید '
+        ]);
+        if($validate){
+            $file = $request->file('excel-file');
+            $row = 1;
+            $customArray = [];
+        }
+        if (($handle = fopen($file, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                array_push( $customArray , $data);
+
+            }
+            fclose($handle);
+        }
+        for($i = 0 ; $i < count($customArray) ; $i++){
+            print_r($customArray[$i][3]);
+            echo '<br>';
+        }
+    }
     public function brand(Request $request){
         if($request->method() == 'GET'){
             $brands = $this->productRepository->getAllBrand();
