@@ -10,6 +10,7 @@ use App\Models\productStatus;
 use App\Models\publicTags;
 use App\Models\Unit;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class productRepository implements productRepositoryInterface{
@@ -236,6 +237,23 @@ class productRepository implements productRepositoryInterface{
         return productStatus::all();
     }
     public function addProduct($data){
-
+        $product = new Product();
+        $product->title = $data['product-title'];
+        $product->balance = $data['product-balance'];
+        $product->price = (int)str_replace( ',' , '' , $data['product-price']);
+        $product->sku = rand(1 , 1000) + Carbon::now()->timestamp;
+        $product->product_category_id = $data['product-category-id'];
+        $product->product_status_id = $data['product-status-id'];
+        $product->user_publisher_id = Auth::user()->user_id;
+        $product->active = 1 ;
+        $product->product_brand_id = $data['product-brand-id'];
+        $product->date = Carbon::now()->timestamp;
+        $product->description = $data['product-description'];
+        $data['product-tag-id'] != '' ? $product->product_tag_id = $data['product-tag-id'] : '';
+        isset($data['image']) ? $product->main_image = $data['image'] : '';
+        if($product->save()){
+            return true;
+        }
+        return false;
     }
 }

@@ -128,7 +128,7 @@ class AdminPanelController extends Controller
                     'product-category-id' => 'required',
                     'product-status-id' => 'required',
                     'product-brand-id' => 'required',
-                    'product-tag-id' => 'required'
+                    'main-image' => 'image | mimes:jpg,jpeg,png,webp'
                 ],[
                     'product-title.required' => 'عنوان محصول الزامی می باشد',
                     'product-balance.required' => 'موجودی الزامی می باشد',
@@ -136,7 +136,8 @@ class AdminPanelController extends Controller
                     'product-category-id.required' => 'دسته بندی الزامی می باشد',
                     'product-status-id.required' => 'وضعیت نمی تواند خالی باشد',
                     'product-brand-id.required' => 'برند نمیتواند خالی باشد',
-                    'product-tag-id.required' => 'تگ نمیتواند خالی باشد'
+                    'main-image.image' => 'فایل عکس معتبر نمی باشد',
+                    'main-image.mimes' => 'فرمت فایل معتبر نمی باشد'
                 ]);
                 if($validate){
                     $data = [];
@@ -147,7 +148,19 @@ class AdminPanelController extends Controller
                     $data['product-status-id'] = htmlspecialchars($request->input('product-status-id'));
                     $data['product-brand-id'] = htmlspecialchars($request->input('product-brand-id'));
                     $data['product-tag-id'] = htmlspecialchars($request->input('product-tag-id'));
-                    
+                    $data['product-description'] = htmlspecialchars($request->input('description'));
+                    if($request->hasFile('main-image')){
+                        $image = $request->file('main-image');
+                        $imageName = 'images/' . time() . '.' . request()->file('main-image')->getClientOriginalExtension();
+
+                        $image->move(public_path('images'), $imageName);
+                        $data['image'] = url($imageName);
+                    }
+                    if($this->productRepository->addProduct($data)){
+                        return redirect()->back()->with(['success' => 'با موفقیت اضافه شد']);
+                    }else{
+                        return redirect()->back()->withErrors('مشکلی در ثبت رخ داده است');
+                    }
                 }
                 break;
         }
