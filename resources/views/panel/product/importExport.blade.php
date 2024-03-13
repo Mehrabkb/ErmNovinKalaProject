@@ -8,7 +8,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-info-circle"></i>
-                        <h3 class="box-title">قالب AdminLTE فارسی ورژن 2.4.0</h3>
+                        <h3 class="box-title">افزودن برند</h3>
                         <!-- tools box -->
                         <div class="pull-left box-tools">
                             <button type="button" class="btn bg-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -17,17 +17,73 @@
                         <!-- /. tools -->
                     </div>
                     <div class="box-body">
-                        <h5>این قالب به صورت html هست و برای بخش کنترل پنل و مدیریت سایت های مختلف مناسب می باشد.</h5>
-                        <h5>نسخه اصلی این قالب AdminLTE می باشد که توسط <a href="https://adminlte.io">Almsaeed Studio</a> به صورت رایگان قرار داده شده است.</h5>
-                        <br><h5><b>ویژگی های قالب و تفاوت های آن با قالب اصلی:</b></h5>
-                        <h5>۱- قالب به صورت کامل و حرفه ای فارسی و راست چین شده.</h5>
-                        <h5>۲- انتخاب تاریخ به صورت شمسی یا دیتا پیکر توسط کتاب خانه باباخانی اضافه شده.</h5>
-                        <h5>۳- ویرایشگر CK Editor فارسی و راست چین شده.</h5>
-                        <h5>۴- ویرایشگر TinyMCE فارسی و راست چین شده و به قالب اضافه شده.</h5>
-                        <h5>۵- همچنین فونت فارسی برای خوانایی بیشتر حروف و اعداد فارسی به قالب افزوده شد.</h5>
-                        <br>
-                        <h6><b>قالب توسط علیرضا حسینی زاده و به صورت رایگان منتشر شده است.</b></h6>
-                        <h6><b>برای دانلود قالب و دریافت آپدیت های آن به این <a href="https://github.com/hosseinizadeh/AdminLTE_Persian">وب سایت</a> مراجعه کنید.</b></h6>
+                        <form role="form" class="form-add-product" action="{{ route('add.product') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="product-title">عنوان محصول</label>
+                                    <input type="text" class="form-control" id="product-title" name="product-title" placeholder="عنوان محصول" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">عکس محصول</label>
+                                    <input type="file" name="main-image" />
+                                    <p class="help-block">فایل های معتبر : PNG , JPG , JPEG , WEBP</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">توضیحات</label>
+                                    <textarea name="description" class="form-control" placeholder="توضیحات محصول ... "></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-balance">موجودی</label>
+                                    <input type="number"  min="0" class="form-control" name="product-balance">
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-price">قیمت</label>
+                                    <input type="text" name="product-price" class="form-control number-separator">
+                                </div>
+                                <div class="form-group">
+                                    <label for="categories">دسته بندی</label>
+                                    <select name="product-category-id" class="form-control">
+                                        <option disabled selected >یک دسته بندی برای محصول خود انتخاب کنید</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->product_category_id }}">{{ $category->persian_category }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-status">وضعیت محصول</label>
+                                    <select name="product-status-id" id="" class="form-control">
+                                        <option disabled selected >لطفا وضعیت محصول را انتخاب نمایید</option>
+                                        @foreach($productStatuses as $productStatus)
+                                            <option value="{{ $productStatus->product_status_id }}">{{ $productStatus->persian_title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-brand">برند محصول</label>
+                                    <select name="product-brand-id" id="" class="form-control">
+                                        <option selected disabled >لطفا برند محصول را انتخاب نمایید</option>
+                                        @foreach($brands as $brand)
+                                            <option value="{{ $brand->product_brand_id }}">{{ $brand->brand_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-tag-id">تگ محصول</label>
+                                    <select name="product-tag-id" class="form-control">
+                                        <option selected disabled>لطفا تگ محصول را انتخاب نمایید</option>
+                                        @foreach($tags as $tag)
+                                            <option value="{{ $tag->public_tag_id }}">{{ $tag->tags_title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">ثبت</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </section>

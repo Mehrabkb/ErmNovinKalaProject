@@ -11,6 +11,36 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-info-circle"></i>
+                        <h3 class="box-title">درون ریزی</h3>
+                        <!-- tools box -->
+                        <div class="pull-left box-tools">
+                            <button type="button" class="btn bg-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <!-- /. tools -->
+                    </div>
+                    <div class="box-body">
+                        <form role="form" class="form-add-category" action="{{ route('import.category.product') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="excel-file">فایل csv را وارد کنید</label>
+                                    <input name="excel-file" type="file" class="form-control">
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">ثبت</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section class="col-lg-12 col-md-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-info-circle"></i>
                         <h3 class="box-title">افزودن دسته بندی</h3>
                         <!-- tools box -->
                         <div class="pull-left box-tools">

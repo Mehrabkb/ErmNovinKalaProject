@@ -39,6 +39,7 @@ Route::prefix('panel')->group(function(){
         Route::post('/category/add' , [\App\Http\Controllers\AdminPanelController::class , 'addCategory'])->name('add.category.product');
         Route::get('category/single' , [\App\Http\Controllers\AdminPanelController::class , 'getCategorySingle'])->name('get.category.product');
         Route::post('category/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editCategory'])->name('edit.category.product');
+        Route::post('category/importer' , [\App\Http\Controllers\AdminPanelController::class , 'importerCategory'])->name('import.category.product');
         Route::get('/tag' , [\App\Http\Controllers\AdminPanelController::class , 'tag'])->name('tag.product');
         Route::post('/tag/add' , [\App\Http\Controllers\AdminPanelController::class , 'addTag'])->name('add.tag.product');
         Route::post('/tag/delete' , [\App\Http\Controllers\AdminPanelController::class , 'deleteTag'])->name('delete.tag.product');

@@ -286,6 +286,17 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function importerCategory(Request $request){
+        $validate = $request->validate([
+            'excel-file' => 'required|mimes:xls,xlsx'
+        ],[
+            'excel-file.required' => 'لطفا فایل را وارد کنید',
+            'excel-file.mimes' => 'لطفا فایل را با فرمت csv وارد کنید '
+        ]);
+        if($validate){
+
+        }
+    }
     public function brand(Request $request){
         if($request->method() == 'GET'){
             $brands = $this->productRepository->getAllBrand();
