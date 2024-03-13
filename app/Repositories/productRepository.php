@@ -256,4 +256,21 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function addCategoryReturnCatId($data)
+    {
+        // TODO: Implement addCategoryReturnCatId() method.
+        $cat = new productCategory();
+        $cat->persian_category = $data['persian-category'];
+        $cat->parent_category_id = $data['product-category-id'];
+        if($cat->save()){
+            return $cat->product_category_id;
+        }
+        return false;
+    }
+    public function getCategoryByPersianName($persian_name)
+    {
+        // TODO: Implement getCategoryByPersianName() method.
+        $cat = productCategory::where('persian_category' , $persian_name)->first();
+        return $cat;
+    }
 }

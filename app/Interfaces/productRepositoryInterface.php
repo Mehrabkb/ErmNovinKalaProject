@@ -32,4 +32,6 @@ interface  productRepositoryInterface
     public function allProductsFrontEndData();
     public function allProductStatuses();
     public function addProduct($data);
+    public function addCategoryReturnCatId($data);
+    public function getCategoryByPersianName($persian_name);
 }

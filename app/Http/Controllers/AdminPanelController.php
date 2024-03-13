@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\categoryImporterClass;
 use App\Repositories\alertifyRepository;
 use App\Repositories\productRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Middleware\ThrottleRequestsWithRedis;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Excel;
 
 class AdminPanelController extends Controller
 {
@@ -286,15 +288,48 @@ class AdminPanelController extends Controller
             }
         }
     }
+
     public function importerCategory(Request $request){
         $validate = $request->validate([
-            'excel-file' => 'required|mimes:xls,xlsx'
+            'excel-file' => 'required|mimes:xls,xlsx,csv'
         ],[
             'excel-file.required' => 'لطفا فایل را وارد کنید',
             'excel-file.mimes' => 'لطفا فایل را با فرمت csv وارد کنید '
         ]);
         if($validate){
+            $file = $request->file('excel-file');
+            $row = 1;
+            $customArray = [];
+            if (($handle = fopen($file, "r")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                    array_push( $customArray , $data);
 
+                }
+                fclose($handle);
+            }
+            $customArray = array_reverse($customArray);
+            for($i = 0 ; $i < count($customArray) ; $i++){
+                    $categoryId = 0 ;
+                    $exsitCat = $this->productRepository->getCategoryByPersianName($customArray[$i][1]);
+                    if($exsitCat){
+                       $categoryId = $exsitCat->product_category_id;
+                    }else{
+                        $d1 = [
+                            'persian-category' => $customArray[$i][1],
+                            'product-category-id' => 0
+                        ];
+                        $categoryId = $this->productRepository->addCategoryReturnCatId($d1);
+                    }
+                        for($j = 0 ; $j < count($customArray) ; $j++){
+                            if($customArray[$i][0] == $customArray[$j][2]){
+                                $d2 = [
+                                    'persian-category' => $customArray[$j][1],
+                                    'product-category-id' => $categoryId
+                                ];
+                                $this->productRepository->addCategoryReturnCatId($d2);
+                            }
+                        }
+            }
         }
     }
     public function brand(Request $request){
