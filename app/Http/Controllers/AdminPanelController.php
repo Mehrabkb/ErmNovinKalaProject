@@ -101,7 +101,23 @@ class AdminPanelController extends Controller
             }
         }
     }
-
+    public function deleteProduct(Request $request){
+        if($request->isMethod('POST')){
+            $validate = $request->validate([
+                'product-id' => 'required'
+            ],[
+                'product-id.required' => 'ایدی محصول نمیتواند خالی باشد'
+            ]);
+            if($validate){
+                $product_id = htmlspecialchars($request->input('product-id'));
+                if($this->productRepository->deleteProductByProductId($product_id)){
+                    return redirect()->back()->with(['success' => 'با موفقیت حذف شد']);
+                }else{
+                    return redirect()->back()->withErrors(['مشکلی در حذف این آیتم رخ داده است']);
+                }
+            }
+        }
+    }
     public function deleteTag(Request $request){
         if($request->method() == 'POST'){
             $validate = $request->validate([

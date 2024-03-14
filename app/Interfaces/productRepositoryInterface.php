@@ -34,4 +34,5 @@ interface  productRepositoryInterface
     public function addProduct($data);
     public function addCategoryReturnCatId($data);
     public function getCategoryByPersianName($persian_name);
+    public function deleteProductByProductId($product_id);
 }

@@ -273,4 +273,13 @@ class productRepository implements productRepositoryInterface{
         $cat = productCategory::where('persian_category' , $persian_name)->first();
         return $cat;
     }
+    public function deleteProductByProductId($product_id)
+    {
+        // TODO: Implement deleteProductByProductId() method.
+        if(Product::where('product_id' , $product_id)->delete()){
+            return true;
+        }
+        return false;
+
+    }
 }
