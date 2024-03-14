@@ -21,10 +21,10 @@
                             <thead>
                             <tr>
                                 <th>ردیف</th>
-                                <th>نام انگلیسی دسته</th>
-                                <th>نام فارسی دسته</th>
-                                <th>عکس</th>
-                                <th>والد</th>
+                                <th>عنوان محصول</th>
+                                <th>دسته بندی</th>
+                                <th>توضیحات</th>
+                                <th>قیمت</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
@@ -32,26 +32,24 @@
                             @php
                                 $count = 0 ;
                             @endphp
-                            @foreach($categories as $category)
+                            @foreach($products as $product)
                                 <tr>
                                     <td>{{ ++$count }}</td>
                                     <td>
-                                        {{ $category->english_category }}
+                                        {{ $product->title }}
                                     </td>
                                     <td>
-                                        {{ $category->persian_category }}
+                                        {{ $product->persian_category }}
                                     </td>
                                     <td>
-                                        @if($category->image != '')
-                                            <img style="width: 60px; height: 60px; object-fit: contain;" src="{{ asset($category->image)}}">
-                                        @endif
+                                        {{ $product->description }}
                                     </td>
                                     <td>
-                                        {{ $category->parent_category_id }}
+                                        {{ number_format($product->price) }}
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-delete-category" data-url="{{ route('delete.category.product') }}" data-id="{{ $category->product_category_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
-                                        <button class="btn btn-primary btn-edit-category-step-one" data-url="{{ route('get.category.product') }}" data-id="{{ $category->product_category_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
+                                        <button class="btn btn-danger btn-delete-category" data-url="{{ route('delete.category.product') }}" data-id="{{ $product->product_category_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
+                                        <button class="btn btn-primary btn-edit-category-step-one" data-url="{{ route('get.category.product') }}" data-id="{{ $product->product_category_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                     </td>
                                 </tr>
                             @endforeach

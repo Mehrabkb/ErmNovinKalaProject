@@ -9,6 +9,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Middleware\ThrottleRequestsWithRedis;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel;
 
 class AdminPanelController extends Controller
@@ -27,7 +28,14 @@ class AdminPanelController extends Controller
     public function product(Request $request){
         switch ($request->method()){
             case 'GET':
-                return view('panel/product/all');
+                $products = DB::table('products')
+                    ->join('product_categories' , 'products.product_category_id' , '=' , 'product_categories.product_category_id')
+                    ->join('product_statuses' , 'products.product_status_id' , '=' , 'product_statuses.product_status_id')
+                    ->join('users' , 'products.user_publisher_id' , '=' , 'users.user_id')
+                    ->join('product_brands' , 'products.product_brand_id' , '=' , 'product_brands.product_brand_id')
+                    ->leftJoin('public_tags' , 'products.product_tag_id' , '=' , 'public_tags.public_tag_id')
+                    ->get();
+                return view('panel/product/all' , compact('products'));
         }
     }
     public function tag(Request $request){
