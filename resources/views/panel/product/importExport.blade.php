@@ -21,7 +21,7 @@
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="ecxel-product">فایل اکسل</label>
+                                    <label for="excel-product">فایل اکسل</label>
                                     <input type="file" name="excel-file" class="form-control">
                                 </div>
                             </div>

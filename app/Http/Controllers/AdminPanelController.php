@@ -191,6 +191,63 @@ class AdminPanelController extends Controller
                 break;
         }
     }
+    public function editProduct(Request $request , $id){
+        if($request->isMethod('GET')){
+            $categories = $this->productRepository->getAllCategories();
+            $productStatuses = $this->productRepository->allProductStatuses();
+            $brands = $this->productRepository->getAllBrand();
+            $tags = $this->productRepository->getAllTags();
+            $product = $this->productRepository->getProductById(htmlspecialchars($id));
+            return view('panel/product/edit' , compact('categories' , 'productStatuses' , 'brands' , 'tags' , 'product'));
+        }
+    }
+    public function editProductSingle(Request $request){
+        $validate = $request->validate([
+            'product-id' => 'required',
+            'product-title' => 'required',
+            'product-balance' => 'required',
+            'product-price' => 'required',
+            'product-category-id' => 'required',
+            'product-status-id' => 'required',
+            'product-brand-id' => 'required',
+            'main-image' => 'image | mimes:jpg,jpeg,png,webp'
+        ],[
+            'product-id.required' => 'ایدی محصول نمیتواند خالی باشد',
+            'product-title.required' => 'عنوان محصول الزامی می باشد',
+            'product-balance.required' => 'موجودی الزامی می باشد',
+            'product-price.required' => 'قیمت الزامی می باشد',
+            'product-category-id.required' => 'دسته بندی الزامی می باشد',
+            'product-status-id.required' => 'وضعیت نمی تواند خالی باشد',
+            'product-brand-id.required' => 'برند نمیتواند خالی باشد',
+            'main-image.image' => 'فایل عکس معتبر نمی باشد',
+            'main-image.mimes' => 'فرمت فایل معتبر نمی باشد'
+        ]);
+        if($validate){
+            $data = [];
+            $product_id = htmlspecialchars($request->input('product-id'));
+            $data['product-id'] = htmlspecialchars($request->input('product-id'));
+            $data['product-title'] = htmlspecialchars($request->input('product-title'));
+            $data['product-balance'] = htmlspecialchars($request->input('product-balance'));
+            $data['product-price'] = htmlspecialchars($request->input('product-price'));
+            $data['product-category-id'] = htmlspecialchars($request->input('product-category-id'));
+            $data['product-status-id'] = htmlspecialchars($request->input('product-status-id'));
+            $data['product-brand-id'] = htmlspecialchars($request->input('product-brand-id'));
+            $data['product-tag-id'] = htmlspecialchars($request->input('product-tag-id'));
+            $data['product-description'] = htmlspecialchars($request->input('description'));
+            if($request->hasFile('main-image')){
+                $image = $request->file('main-image');
+                $imageName = 'images/' . time() . '.' . request()->file('main-image')->getClientOriginalExtension();
+
+                $image->move(public_path('images'), $imageName);
+                $data['image'] = url($imageName);
+            }
+            if($this->productRepository->editProductById($product_id , $data)){
+                return redirect()->back()->with(['success' => 'با موفقیت ویرایش شد']);
+            }else{
+                return redirect()->back()->withErrors('مشکلی در ثبت رخ داده است');
+            }
+        }
+    }
     public function unit(Request $request){
         switch($request->method()){
             case 'GET':

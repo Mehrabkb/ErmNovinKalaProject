@@ -52,7 +52,7 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-danger btn-delete-product"  data-id="{{ $product->product_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
-                                        <button class="btn btn-primary btn-edit-category-step-one" data-url="{{ route('get.category.product') }}" data-id="{{ $product->product_category_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
+                                        <a class="btn btn-primary btn-edit-product-step-one" href="{{ route('edit.product' , ['id' => $product->product_id]) }}" data-id="{{ $product->product_id }}" data-method="GET">ویرایش</a>
                                     </td>
                                 </tr>
                             @endforeach
