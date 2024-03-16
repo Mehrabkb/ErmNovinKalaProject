@@ -20,7 +20,7 @@
                         <!-- /. tools -->
                     </div>
                     <div class="box-body">
-                        <form role="form" class="form-add-product" action="{{ route('edit.product') }}" method="POST" enctype="multipart/form-data">
+                        <form role="form" class="form-add-product" action="{{ route('edit.product.single') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" value="{{ $product->product_id }}" name="product-id">
                             <div class="box-body">

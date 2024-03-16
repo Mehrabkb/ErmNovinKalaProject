@@ -30,7 +30,7 @@ Route::prefix('panel')->group(function(){
         Route::get('importExport' , [\App\Http\Controllers\AdminPanelController::class , 'importExport'])->name('importexport.product');
         Route::post('delete' , [\App\Http\Controllers\AdminPanelController::class , 'deleteProduct'])->name('delete.product');
         Route::get('edit/{id}' , [\App\Http\Controllers\AdminPanelController::class , 'editProduct'])->name('edit.product');
-        Route::post('edit' , [\App\Http\Controllers\AdminPanelController::class , 'editProductSingle'])->name('edit.product');
+        Route::post('edit' , [\App\Http\Controllers\AdminPanelController::class , 'editProductSingle'])->name('edit.product.single');
         Route::get('feature' , [\App\Http\Controllers\AdminPanelController::class , 'feature'])->name('feature.product');
         Route::get('category' , [\App\Http\Controllers\AdminPanelController::class , 'category'])->name('category.product');
         Route::get('unit' , [\App\Http\Controllers\AdminPanelController::class , 'unit'])->name('unit.product');
