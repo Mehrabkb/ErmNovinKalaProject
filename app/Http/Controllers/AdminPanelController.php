@@ -23,7 +23,10 @@ class AdminPanelController extends Controller
     }
 
     public function index(Request $request){
-        return view('panel/home');
+        $productsCount = $this->productRepository->getProductsCount();
+        $brandsCount = $this->productRepository->getBrandsCount();
+        $categoriesCount = $this->productRepository->getCategoriesCount();
+        return view('panel/home' , compact('productsCount' , 'brandsCount' , 'categoriesCount'));
     }
     public function product(Request $request){
         switch ($request->method()){

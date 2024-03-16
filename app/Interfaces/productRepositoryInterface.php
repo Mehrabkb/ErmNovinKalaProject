@@ -37,4 +37,7 @@ interface  productRepositoryInterface
     public function deleteProductByProductId($product_id);
     public function getProductById($product_id);
     public function editProductById($product_id , $data);
+    public function getProductsCount();
+    public function getBrandsCount();
+    public function getCategoriesCount();
 }

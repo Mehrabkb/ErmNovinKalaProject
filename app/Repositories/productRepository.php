@@ -310,4 +310,19 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function getProductsCount()
+    {
+        // TODO: Implement getProductsCount() method.
+        return Product::all()->count();
+    }
+    public function getBrandsCount()
+    {
+        // TODO: Implement getBrandsCount() method.
+        return productBrand::all()->count();
+    }
+    public function getCategoriesCount()
+    {
+        // TODO: Implement getCategoriesCount() method.
+        return productCategory::all()->count();
+    }
 }
