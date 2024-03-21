@@ -270,7 +270,7 @@ class productRepository implements productRepositoryInterface{
     public function getCategoryByPersianName($persian_name)
     {
         // TODO: Implement getCategoryByPersianName() method.
-        $cat = productCategory::where('persian_category' , $persian_name)->first();
+        $cat = productCategory::where('persian_category' , 'like' , trim($persian_name))->first();
         return $cat;
     }
     public function deleteProductByProductId($product_id)

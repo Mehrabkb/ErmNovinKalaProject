@@ -414,6 +414,7 @@ class AdminPanelController extends Controller
                             }
                         }
             }
+            return redirect()->back()->with('success' , 'با موفقیت درون ریزی شد ');
         }
     }
     public function importProduct(Request $request){
@@ -430,15 +431,34 @@ class AdminPanelController extends Controller
         }
         if (($handle = fopen($file, "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                array_push( $customArray , $data);
-
+                $cat_arr = explode(">" , $data[4]);
+                array_push( $customArray , [
+                    'sku' => $data[0],
+                    'name' => $data[1],
+                    'description' => $data[2],
+                    'price' => $data[3],
+                    'category' => $cat_arr[count($cat_arr) - 1]
+                ]);
+                // echo '<br>';
             }
             fclose($handle);
         }
         for($i = 0 ; $i < count($customArray) ; $i++){
-            print_r($customArray[$i][3]);
+            $cat_id = $this->productRepository->getCategoryByPersianName($customArray[$i]['category']);
+            isset($cat_id->product_category_id) ? $customArray[$i]['category'] = $cat_id->product_category_id : '';
+            $data = [];
+            $data['product-title'] = $customArray[$i]['name'];
+            $data['product-balance'] = 100;
+            $data['product-price'] = $customArray[$i]['price'];
+            $data['product-category-id'] = $customArray[$i]['category'];
+            $data['product-status-id'] = 1;
+            $data['product-brand-id'] = 1;
+            $data['product-description'] = $customArray[$i]['description'];
+            $data['product-tag-id'] = '';
+            $this->productRepository->addProduct($data);
             echo '<br>';
         }
+        return redirect()->back()->with('success' , 'با موفقیت درون ریزی شد');
     }
     public function brand(Request $request){
         if($request->method() == 'GET'){
