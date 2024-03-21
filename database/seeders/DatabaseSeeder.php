@@ -46,6 +46,20 @@ class DatabaseSeeder extends Seeder
             'date' => Carbon::now()->timestamp
         ]];
         DB::table('product_statuses')->insert($statuses);
-
+        $user_roles = [
+            [
+                'english_name' => 'admin',
+                'persian_name' => 'ادمین',
+            ],
+            [
+                'english_name' => 'employee',
+                'persian_name' => 'کارمند',
+            ],
+            [
+                'english_name' => 'customer',
+                'persian_name' => 'مشتری'
+            ]
+        ];
+        DB::table('user_roles')->insert($user_roles);
     }
 }

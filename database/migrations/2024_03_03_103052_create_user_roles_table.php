@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('user_role_id');
             $table->string('english_name' , 250);
             $table->string('persian_name' , 250);
-            $table->string('data' , 250);
+            $table->string('date' , 250)->nullable();
         });
     }
 
