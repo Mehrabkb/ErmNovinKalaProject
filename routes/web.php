@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPanelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,9 @@ Route::get('/panel' , function(){
 
 Route::prefix('panel')->group(function(){
     Route::get('home' , [\App\Http\Controllers\AdminPanelController::class , 'index'])->name('panel.home');
+    Route::get('users' , [AdminPanelController::class , 'users'])->name('panel.users');
     Route::get('logout/{id}' , [\App\Http\Controllers\AdminPanelController::class , 'logout'])->name('logout');
+    Route::post('user/add' , [AdminPanelController::class , 'addUser'])->name('user.add');
     Route::prefix('product')->group(function(){
         Route::get('/' , [\App\Http\Controllers\AdminPanelController::class , 'product'])->name('products');
         Route::get('add' , [\App\Http\Controllers\AdminPanelController::class , 'addProduct'])->name('add.product');
@@ -55,6 +58,7 @@ Route::prefix('panel')->group(function(){
         Route::get('brand/single' , [\App\Http\Controllers\AdminPanelController::class , 'getBrandSingle'])->name('get.brand.single');
         Route::post('brand/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editBrand'])->name('edit.brand.product');
         Route::post('import' , [\App\Http\Controllers\AdminPanelController::class , 'importProduct'])->name('import.product');
+
     });
 });
 

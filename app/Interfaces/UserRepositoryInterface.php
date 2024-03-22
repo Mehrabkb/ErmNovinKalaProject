@@ -11,5 +11,8 @@ interface  UserRepositoryInterface{
     public function getUserIdByUserName($userName);
     public function loginUserById($user_id);
     public function logoutUserById($user_id);
+    public function getAllUsersWithUserRoleName();
+    public function getAllUserRoles();
+    public function createUser($data);
 
 }

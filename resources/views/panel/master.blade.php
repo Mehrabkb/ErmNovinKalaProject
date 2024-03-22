@@ -102,6 +102,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li><a href="{{ route('panel.home') }}"><i class="fa fa-home"></i> <span>داشبرد</span></a></li>
+                <li><a href="{{ route('panel.users') }}"><i class="fa fa-users"></i> <span>کاربران</span></a></li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-product-hunt"></i> <span>محصولات</span>
