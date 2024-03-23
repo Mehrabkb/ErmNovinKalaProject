@@ -701,4 +701,63 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function getSingleUser(Request $request){
+        if($request->isMethod('GET')){
+            $validate = $request->validate([
+                'id' => 'required'
+            ],[
+                'id.required' => 'یدی کاربر نمیتواند خالی باشد '
+            ]);
+            if($validate){
+                $user_id = htmlspecialchars($request->input('id'));
+                $user = $this->userRepository->getUserDataByUserId($user_id);
+                if($user){
+                    return $user;
+                }
+            }
+        }
+    }
+    public function editUser(Request $request){
+        if($request->isMethod('POST')){
+            $validate = $request->validate([
+                    'user-data-id' => 'required',
+                    'phone' => 'required|max:11| regex:/[0]{1}[0-9]{10}/',
+                    'first-name' => 'required',
+                    'last-name' => 'required',
+                    'user-role' => 'required',
+                    'username' => 'required| regex:/^[a-zA-Z]+$/'
+            ],[
+                'user-data-id.required' => 'ایدی کاربر نمیتواند خالی باشد',
+                'phone.required' => 'شماره موبایل الزامی می باشد',
+                'phone.max' => 'تعداد ارقام شماره موبایل نامعتبر است',
+                'phone.regex' => 'شماره موبایل نامعتبر',
+                'first-name.required' => 'نام کاربر الزامی میباشد',
+                'last-name.required' => 'نام خانوادگی کاربر نمیتواند خالی باشد',
+                'user-role.required' => 'نقش کاربر الزامی است',
+                'username.required' => 'نام کاربری الزامی است',
+                'username.regex' => 'نام کاربری میتواند شامل حروف انگلیسی باشد'
+            ]);
+            if($validate){
+                $userId = htmlspecialchars($request->input('user-data-id'));
+                $phone = htmlspecialchars($request->input('phone'));
+                $firstName = htmlspecialchars($request->input('first-name'));
+                $lastName = htmlspecialchars($request->input('last-name'));
+                $user_role = htmlspecialchars($request->input('user-role'));
+                $password = htmlspecialchars($request->input('password'));
+                $userName = htmlspecialchars($request->input('username'));
+                $data = [];
+                $data['user-name'] = $userName;
+                $data['phone'] = $phone;
+                $data['first-name'] = $firstName;
+                $data['last-name'] = $lastName;
+                $password != '' ? $data['password'] = $password : '';
+                $data['user-role'] = $user_role;
+            }
+            if($this->userRepository->editUserByUserId($userId , $data)){
+                return redirect()->back()->with(['success' => 'با موفقیت ویرایش شد']);
+            }else{
+                return redirect()->back()->withErrors('مشکلی رخ داده است');
+            }
+        }
+    }
 }

@@ -101,7 +101,7 @@
                                         </td>
                                         <td>
                                             <button class="btn btn-danger btn-delete-user" data-url="{{ route('user.delete') }}" data-id="{{ $user->user_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
-                                            <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $user->user_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
+                                            <button class="btn btn-primary btn-edit-user-step-one" data-url="{{ route('user.data') }}" data-id="{{ $user->user_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -143,23 +143,43 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content ">
                 <div class="modal-header ">
-                    <h5 class="modal-title" id="exampleModalLabel">حذف واحد</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">ویرایش واحد</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="edit-form-unit" action="{{ route('edit.unit.product') }}" method="POST">
+                    <form class="edit-form-user" action="{{ route('user.edit') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="unit-data-id" class="unit-data-id">
+                        <input type="hidden" name="user-data-id" class="user-data-id">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="unit-long">نام کامل واحد</label>
-                                <input type="text" class="form-control long-title" id="unit-long" name="long-title"  placeholder=" نام کامل واحد مثال : سانتیمتر" data-regex="force-persian" data-title="نام کامل واحد">
+                                <label for="phone">شماره:</label>
+                                <input type="text" class="form-control" name="phone" placeholder="شماره موبایل مثل : 09369849997">
                             </div>
                             <div class="form-group">
-                                <label for="unit-short">علامت واحد</label>
-                                <input type="text" class="form-control short-title"  id="unit-short"  name="short-title" placeholder="علامت واحد مثال : CM " data-regex="force-english" data-title="علامت واحد">
+                                <label for="first-name">نام:</label>
+                                <input type="text" class="form-control" id="first-name" name="first-name" placeholder=" نام کاربر مثل : مهراب" >
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">نام خانوادگی:</label>
+                                <input type="text" class="form-control" id="last-name" name="last-name" placeholder="نام خانوادگی مثل : کردبچه " >
+                            </div>
+                            <div class="form-group">
+                                <label for="user-role">نقش کاربر: </label>
+                                <select name="user-role" id="user-role" class="form-control">
+                                    @foreach ($user_roles as $user_role)
+                                        <option value="{{ $user_role->user_role_id }}">{{ $user_role->persian_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">نام کابری:</label>
+                                <input type="text" name="username" class="form-control" placeholder="نام کاربری مثل : mehrabkb">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">رمزعبور:</label>
+                                <input type="password" class="form-control" name="password">
                             </div>
                         </div>
                         <br>

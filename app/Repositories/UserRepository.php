@@ -91,6 +91,23 @@ class UserRepository implements UserRepositoryInterface
         }
         return false;
     }
+    public function editUserByUserId($userId, $data){
+        $user = \App\Models\User::where('user_id' , $userId)->first();
+        if($user){
+            $user->user_name = $data['user-name'];
+            isset($data['password']) ? $user->password = Hash::make($data['password']) : '';
+            $user->user_role_id = $data['user-role'];
+            $user->user_status_id = 1;
+            $user->date = Carbon::now()->timestamp;
+            isset($data['first-name']) ? $user->first_name = $data['first-name'] : '';
+            isset($data['last-name']) ? $user->last_name = $data['last-name'] : '';
+            isset($data['phone']) ? $user->phone = $data['phone'] : '';
+            if($user->save()){
+                return true;
+            }
+            return false;
+        }
+    }
     public function deleteUserByUserId($userId)
     {
         // TODO: Implement deleteUserByUserId() method.
@@ -99,5 +116,11 @@ class UserRepository implements UserRepositoryInterface
             return true;
         }
         return false;
+    }
+    public function getUserDataByUserId($userId)
+    {
+        // TODO: Implement getUserDataByUserId() method.
+        $user = \App\Models\User::where('user_id' , $userId )->first();
+        return $user;
     }
 }

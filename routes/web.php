@@ -27,6 +27,8 @@ Route::prefix('panel')->group(function(){
     Route::get('logout/{id}' , [\App\Http\Controllers\AdminPanelController::class , 'logout'])->name('logout');
     Route::post('user/add' , [AdminPanelController::class , 'addUser'])->name('user.add');
     Route::post('user/delete' , [AdminPanelController::class , 'deleteUser'])->name('user.delete');
+    Route::get('user/data' , [AdminPanelController::class , 'getSingleUser'])->name('user.data');
+    Route::post('user/edit' , [AdminPanelController::class , 'editUser'])->name('user.edit');
     Route::prefix('product')->group(function(){
         Route::get('/' , [\App\Http\Controllers\AdminPanelController::class , 'product'])->name('products');
         Route::get('add' , [\App\Http\Controllers\AdminPanelController::class , 'addProduct'])->name('add.product');

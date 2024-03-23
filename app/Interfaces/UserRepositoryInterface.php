@@ -15,5 +15,6 @@ interface  UserRepositoryInterface{
     public function getAllUserRoles();
     public function createUser($data);
     public function deleteUserByUserId($userId);
-
+    public function getUserDataByUserId($userId);
+    public function editUserByUserId($userId , $data);
 }
