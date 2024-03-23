@@ -680,4 +680,25 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function deleteUser(Request $request){
+        if($request->isMethod('POST')){
+            $validate = $request->validate([
+                'user-data-id' => 'required'
+            ],[
+                'user-data-id.required' => 'ایدی کاربر نمیتواند خالی باشد'
+            ]);
+            if($validate){
+                $user_id = htmlspecialchars($request->input('user-data-id'));
+                if($user_id == Auth::user()->user_id){
+                    return redirect()->back()->withErrors('نمیتوانید کاربر وارد شده را پاک کنید');
+                }else{
+                    if($this->userRepository->deleteUserByUserId($user_id)){
+                        return redirect()->back()->with(['success' => 'با موفقیت حذف شد']);
+                    }else{
+                        return redirect()->back()->withErrors('حذف کاربر با مشکل مواجه شده است');
+                    }
+                }
+            }
+        }
+    }
 }

@@ -100,7 +100,7 @@
                                             {{ $user->persian_name }}
                                         </td>
                                         <td>
-                                            <button class="btn btn-danger btn-delete-unit" data-url="{{ route('delete.unit.product') }}" data-id="{{ $user->user_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
+                                            <button class="btn btn-danger btn-delete-user" data-url="{{ route('user.delete') }}" data-id="{{ $user->user_id }}" data-toggle="modal" data-target="#delete-modal">حذف</button>
                                             <button class="btn btn-primary btn-edit-unit-step-one" data-url="{{ route('get.unit.product') }}" data-id="{{ $user->user_id }}" data-method="GET" data-toggle="modal" data-target="#edit-modal">ویرایش</button>
                                         </td>
                                     </tr>
@@ -125,9 +125,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="delete-form-unit" action="{{ route('delete.unit.product') }}" method="POST">
+                    <form class="delete-form-user" action="{{ route('user.delete') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="unit-data-id" class="unit-data-id">
+                        <input type="hidden" name="user-data-id" class="user-data-id">
                         <p>آیا از حذف این مورد اطمینان دارید؟</p>
                         <br>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
@@ -177,5 +177,5 @@
 @section('js')
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="{{ asset('panelAdmin') }}/myJavaScript/unit.js"></script>
+    <script src="{{ asset('panelAdmin') }}/myJavaScript/users.js"></script>
 @endsection

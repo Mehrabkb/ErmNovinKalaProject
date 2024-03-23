@@ -91,4 +91,13 @@ class UserRepository implements UserRepositoryInterface
         }
         return false;
     }
+    public function deleteUserByUserId($userId)
+    {
+        // TODO: Implement deleteUserByUserId() method.
+        $user = \App\Models\User::where('user_id' , $userId)->first();
+        if($user->delete()){
+            return true;
+        }
+        return false;
+    }
 }
