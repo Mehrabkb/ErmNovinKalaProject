@@ -61,6 +61,9 @@ Route::prefix('panel')->group(function(){
         Route::get('brand/single' , [\App\Http\Controllers\AdminPanelController::class , 'getBrandSingle'])->name('get.brand.single');
         Route::post('brand/edit' , [\App\Http\Controllers\AdminPanelController::class , 'editBrand'])->name('edit.brand.product');
         Route::post('import' , [\App\Http\Controllers\AdminPanelController::class , 'importProduct'])->name('import.product');
+        Route::get('product/edit/price' , [AdminPanelController::class , 'editProductPrice'])->name('product.edit.price');
+        Route::post('product/edit/price' , [AdminPanelController::class , 'editProductPrice'])->name('product.edit.price');
+
 
     });
 });

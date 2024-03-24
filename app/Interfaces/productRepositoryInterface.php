@@ -40,4 +40,5 @@ interface  productRepositoryInterface
     public function getProductsCount();
     public function getBrandsCount();
     public function getCategoriesCount();
+    public function updateProductPriceByProductId($productId , $price);
 }

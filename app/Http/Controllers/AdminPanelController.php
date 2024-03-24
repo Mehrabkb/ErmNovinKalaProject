@@ -760,4 +760,28 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function editProductPrice(Request $request){
+        if($request->isMethod('GET')){
+            $products = $this->productRepository->allProductsFrontEndData();
+            return view('panel/product/priceEdit' , compact('products'));
+        }else if($request->isMethod('POST')){
+            $validate = $request->validate([
+                'id' => 'required',
+                'price' => 'required'
+            ],[
+                'id.required' => 'ایدی الزامی میباشد',
+                'price.required' => 'قیمت الزامی میباشدد'
+            ]);
+            if($validate){
+                $id = htmlspecialchars($request->input('id'));
+                $price = htmlspecialchars($request->input('price'));
+                $final = $this->productRepository->updateProductPriceByProductId($id , $price);
+                if($final){
+                    return $final;
+                }else{
+                    return false;
+                }
+            }
+        }
+    }
 }
