@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPanelController;
+use App\Http\Controllers\customerAuthenticateController;
 use App\Http\Controllers\customerPanel;
 use App\Http\Controllers\customerPanelController;
 use Illuminate\Support\Facades\Route;
@@ -75,5 +76,7 @@ Route::prefix('user')->group(function(){
     Route::post('login' , [\App\Http\Controllers\UserController::class , 'login'])->name('login');
 });
 Route::prefix('customer')->group(function(){
+    Route::get('login' , [customerAuthenticateController::class , 'login'])->name('customer.login');
     Route::get('home' , [customerPanelController::class , 'home'])->name('customer.panel.home');
 });
+

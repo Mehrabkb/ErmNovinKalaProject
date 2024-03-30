@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\checkCustomerLogin;
 use App\Http\Middleware\CheckUserLoggedIn;
 use App\Http\Middleware\checkUserLoginUserRoute;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -71,6 +72,7 @@ class Kernel extends HttpKernel
     ];
     protected $routeMiddleware = [
         'checkUserLogin' => CheckUserLoggedIn::class,
-        'checkUserLoginUserRoute' => checkUserLoginUserRoute::class
+        'checkUserLoginUserRoute' => checkUserLoginUserRoute::class,
+        'checkCustomerLogin' => checkCustomerLogin::class
     ];
 }
