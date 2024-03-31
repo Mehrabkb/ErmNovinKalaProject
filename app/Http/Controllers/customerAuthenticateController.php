@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class customerAuthenticateController extends Controller
 {
     public function __construct(UserRepository $userRepository){
+        $this->middleware('checkCustomerLoginRoute');
         $this->userRepository = $userRepository;
     }
     public function login(Request $request){
