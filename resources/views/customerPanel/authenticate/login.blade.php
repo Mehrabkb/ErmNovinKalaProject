@@ -7,7 +7,7 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<title>:: Aero Bootstrap4 Admin :: Sign In</title>
+<title>ورود</title>
 <!-- Favicon-->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Custom Css -->
@@ -22,19 +22,20 @@
         <div class="row">
             <div class="col-lg-4 col-sm-12">
                 <form class="card auth_form">
+                    @csrf
                     <div class="header">
-                        <img class="logo" src="{{ asset('customerPanel') }}/assets/images/logo.svg" alt="">
+                        <img class="logo" src="{{ asset('pictures/logo.png') }}" alt="">
                         <h5>ورود</h5>
                     </div>
                     <div class="body">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="نام کاربری">
+                            <input type="text" class="form-control" placeholder="نام کاربری" name="user-name">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="رمزعبور">
+                            <input type="text" class="form-control" placeholder="رمزعبور" name="password">
                             <div class="input-group-append">
                                 <span class="input-group-text"><a href="forgot-password.html" class="forgot" title="فراموشی رمز عبور"><i class="zmdi zmdi-lock"></i></a></span>
                             </div>
@@ -43,7 +44,7 @@
                             <input id="remember_me" type="checkbox">
                             <label for="remember_me">مرا به خاطر بسپار</label>
                         </div>
-                        <a href="index.html" class="btn btn-primary btn-block waves-effect waves-light">ورود</a>
+                        <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">ورود</button>
                         {{-- <div class="signin_with mt-3">
                             <p class="mb-0">یا ثبت نام با استفاده از</p>
                             <button class="btn btn-primary btn-icon btn-icon-mini btn-round facebook"><i class="zmdi zmdi-facebook"></i></button>
