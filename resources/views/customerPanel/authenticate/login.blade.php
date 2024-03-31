@@ -13,6 +13,8 @@
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/css/style.min.css">
+<link rel="stylesheet" href="{{ asset('plugins/alertify/css/alertify.rtl.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/alertify/css/themes/bootstrap.rtl.css') }}">
 </head>
 
 <body class="theme-blush">
@@ -21,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-sm-12">
-                <form class="card auth_form">
+                <form class="card auth_form" action="{{ route('customer.login') }}" method="POST">
                     @csrf
                     <div class="header">
                         <img class="logo" src="{{ asset('pictures/logo.png') }}" alt="">
@@ -35,7 +37,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="رمزعبور" name="password">
+                            <input type="password" class="form-control" placeholder="رمزعبور" name="password">
                             <div class="input-group-append">
                                 <span class="input-group-text"><a href="forgot-password.html" class="forgot" title="فراموشی رمز عبور"><i class="zmdi zmdi-lock"></i></a></span>
                             </div>
@@ -71,6 +73,17 @@
 <!-- Jquery Core Js -->
 <script src="{{ asset('customerPanel') }}/assets/bundles/libscripts.bundle.js"></script>
 <script src="{{ asset('customerPanel') }}/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js -->
+<script src="{{ asset('plugins/alertify/alertify.min.js') }}"></script>
+@if($errors->any())
+    <script>
+        alertify.error('{{ $errors->first() }}');
+    </script>
+@endif
+@if(session('success'))
+    <script>
+        alertify.success('{{ session('success') }}');
+    </script>
+@endif
 </body>
 
 </html>

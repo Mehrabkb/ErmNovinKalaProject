@@ -596,6 +596,7 @@
 
 <script src="{{ asset('customerPanel') }}/assets/bundles/mainscripts.bundle.js"></script>
 <script src="{{ asset('customerPanel') }}/assets/js/pages/index.js"></script>
+
 </body>
 
 </html>
