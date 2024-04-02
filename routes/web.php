@@ -80,6 +80,7 @@ Route::prefix('customer')->group(function(){
     Route::post('login' , [customerAuthenticateController::class , 'login'])->name('customer.login');
     Route::get('home' , [customerPanelController::class , 'home'])->name('customer.panel.home');
     Route::get('logout/{id}',  [customerPanelController::class , 'logout'])->name('customer.logout');
-
+    Route::get('factor/add' , [customerPanelController::class , 'addFactor'])->name('customer.factor.add');
+    Route::get('product/search/result' , [customerPanelController::class , 'productSearchResult'])->name('product.search.result');
 });
 

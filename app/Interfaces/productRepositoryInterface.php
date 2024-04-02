@@ -41,4 +41,5 @@ interface  productRepositoryInterface
     public function getBrandsCount();
     public function getCategoriesCount();
     public function updateProductPriceByProductId($productId , $price);
+    public function searchProduct($value , $column);
 }

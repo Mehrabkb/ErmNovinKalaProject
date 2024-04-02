@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
-<title>:: آرئو مدیریت بوت استرپ 4 :: خانه</title>
+<title>@yield('title')</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
 <link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css"/>
@@ -14,7 +14,8 @@
 
 <link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/plugins/morrisjs/morris.min.css" />
 <!-- Custom Css -->
-<link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/css/style.min.css">
+<link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/css/style.min.css" />
+@yield('css')
 </head>
 
 <body class="theme-blush">
@@ -275,6 +276,7 @@
                 </div>
             </li>
             <li class="active open"><a href="{{ route('customer.panel.home') }}"><i class="zmdi zmdi-home"></i><span>داشبورد</span></a></li>
+            <li class="active open"><a href="{{ route('customer.factor.add') }}"><i class="zmdi zmdi-assignment-o"></i><span>ثبت سفارش</span></a></li>
             <li class="active open"><a href="{{ route('customer.logout' , ['id' => Auth::user()->user_id]) }}"><i class="zmdi zmdi-sign-in"></i><span>خروج</span></a></li>
 {{--            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>برنامه</span></a>--}}
 {{--                <ul class="ml-menu">--}}
@@ -597,7 +599,7 @@
 
 <script src="{{ asset('customerPanel') }}/assets/bundles/mainscripts.bundle.js"></script>
 <script src="{{ asset('customerPanel') }}/assets/js/pages/index.js"></script>
-
+@yield('js')
 </body>
 
 </html>

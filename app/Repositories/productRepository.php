@@ -333,4 +333,10 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function searchProduct($value, $column)
+    {
+        // TODO: Implement searchProduct() method.
+        $products = Product::where($column , 'LIKE' , '%'.$value.'%')->get();
+        return $products;
+    }
 }
