@@ -35,7 +35,7 @@ class AdminPanelController extends Controller
                     ->join('product_categories' , 'products.product_category_id' , '=' , 'product_categories.product_category_id')
                     ->join('product_statuses' , 'products.product_status_id' , '=' , 'product_statuses.product_status_id')
                     ->join('users' , 'products.user_publisher_id' , '=' , 'users.user_id')
-                    ->join('product_brands' , 'products.product_brand_id' , '=' , 'product_brands.product_brand_id')
+                    ->leftJoin('product_brands' , 'products.product_brand_id' , '=' , 'product_brands.product_brand_id')
                     ->leftJoin('public_tags' , 'products.product_tag_id' , '=' , 'public_tags.public_tag_id')
                     ->get();
                 return view('panel/product/all' , compact('products'));
