@@ -79,5 +79,7 @@ Route::prefix('customer')->group(function(){
     Route::get('login' , [customerAuthenticateController::class , 'login'])->name('customer.login');
     Route::post('login' , [customerAuthenticateController::class , 'login'])->name('customer.login');
     Route::get('home' , [customerPanelController::class , 'home'])->name('customer.panel.home');
+    Route::get('logout/{id}',  [customerPanelController::class , 'logout'])->name('customer.logout');
+
 });
 
