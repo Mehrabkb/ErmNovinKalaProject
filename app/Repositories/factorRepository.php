@@ -37,4 +37,10 @@ class factorRepository implements factorRepositoryInterface
         }
         return false;
     }
+    public function getFactorsByUserId($user_id)
+    {
+        // TODO: Implement getFactorsByUserId() method.
+        $factor = Factor::where('user_id' , $user_id)->get();
+        return $factor;
+    }
 }

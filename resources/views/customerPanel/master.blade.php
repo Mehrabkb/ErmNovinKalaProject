@@ -280,6 +280,7 @@
             </li>
             <li class="active open"><a href="{{ route('customer.panel.home') }}"><i class="zmdi zmdi-home"></i><span>داشبورد</span></a></li>
             <li class="active open"><a href="{{ route('customer.factor.add') }}"><i class="zmdi zmdi-assignment-o"></i><span>ثبت سفارش</span></a></li>
+            <li class="active open"><a href="{{ route('customer.factors') }}"><i class="zmdi zmdi-assignment"></i><span>فاکتور ها</span></a></li>
             <li class="active open"><a href="{{ route('customer.logout' , ['id' => Auth::user()->user_id]) }}"><i class="zmdi zmdi-sign-in"></i><span>خروج</span></a></li>
 {{--            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>برنامه</span></a>--}}
 {{--                <ul class="ml-menu">--}}

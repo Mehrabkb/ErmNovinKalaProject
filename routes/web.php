@@ -83,5 +83,6 @@ Route::prefix('customer')->group(function(){
     Route::post('basket/add/item' , [customerPanelController::class , 'basketItemAdder'])->name('basket.add.item');
     Route::post('basket/delete/item' , [customerPanelController::class , 'deleteBasketItem'])->name('basket.delete.item');
     Route::get('prefactor/add/{id}' , [customerPanelController::class , 'addPreFactor'])->name('customer.prefactor.add');
+    Route::get('factors' , [customerPanelController::class , 'factors'])->name('customer.factors');
 });
 

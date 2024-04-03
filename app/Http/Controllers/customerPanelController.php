@@ -118,4 +118,10 @@ class customerPanelController extends Controller
                 return redirect()->back()->withErrors('کاربر گرامی شما مجوز انجام این فعالیت را ندارید');
             }
     }
+    public function factors(Request $request){
+        if($request->isMethod('GET')){
+            $factors = $this->factorRepository->getFactorsByUserId(Auth::user()->user_id);
+            return view('customerPanel.factor.factors' , compact('factors'));
+        }
+    }
 }
