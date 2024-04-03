@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\alertifyRepository;
 use App\Repositories\basketRepository;
+use App\Repositories\factorRepository;
 use App\Repositories\productRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -13,12 +14,13 @@ use Illuminate\Support\Facades\DB;
 class customerPanelController extends Controller
 {
     public function __construct(UserRepository $userRepository , productRepository $productRepository, basketRepository $basketRepository ,
-    alertifyRepository $alertifyRepository){
+    alertifyRepository $alertifyRepository , factorRepository $factorRepository){
         $this->middleware('checkCustomerLogin');
         $this->userRepository = $userRepository;
         $this->productRepository = $productRepository;
         $this->basketRepository = $basketRepository;
         $this->alertifyRepository = $alertifyRepository;
+        $this->factorRepository = $factorRepository;
     }
     public function home(Request $request){
         if($request->isMethod('GET')){
@@ -104,5 +106,16 @@ class customerPanelController extends Controller
                 }
             }
         }
+    }
+    public function addPreFactor($id){
+         $basketId = htmlspecialchars($id);
+         $basket = $this->basketRepository->getUserBasketFullModelByBasketId($basketId);
+         if($basket->user_id == Auth::user()->user_id){
+            if($this->factorRepository->addFactor($basket->basket_id)){
+                 return redirect()->back()->with(['success' => 'پیش فاکتور با موفقیت ایجاد شد']);
+            }
+            }else{
+                return redirect()->back()->withErrors('کاربر گرامی شما مجوز انجام این فعالیت را ندارید');
+            }
     }
 }

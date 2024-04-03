@@ -21,7 +21,13 @@ class basketRepository implements basketRepositoryInterface
     {
         // TODO: Implement getUserBasket() method.
         $basket = Basket::where([['user_id' , '=' , $user_id] , ['status' , '=' , 'first-step']])->first();
-        return $basket->basket_id;
+        if($basket){
+            return $basket->basket_id;
+        }else{
+            $basket = $this->createBasket($user_id);
+            return $basket;
+        }
+
     }
     public function getUserBasketFullModelByBasketId($basket_id)
     {
