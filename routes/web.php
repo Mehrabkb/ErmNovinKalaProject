@@ -66,8 +66,6 @@ Route::prefix('panel')->group(function(){
         Route::post('import' , [\App\Http\Controllers\AdminPanelController::class , 'importProduct'])->name('import.product');
         Route::get('product/edit/price' , [AdminPanelController::class , 'editProductPrice'])->name('product.edit.price');
         Route::post('product/edit/price' , [AdminPanelController::class , 'editProductPrice'])->name('product.edit.price');
-
-
     });
 });
 
@@ -82,5 +80,6 @@ Route::prefix('customer')->group(function(){
     Route::get('logout/{id}',  [customerPanelController::class , 'logout'])->name('customer.logout');
     Route::get('factor/add' , [customerPanelController::class , 'addFactor'])->name('customer.factor.add');
     Route::get('product/search/result' , [customerPanelController::class , 'productSearchResult'])->name('product.search.result');
+    Route::post('basket/add/item' , [customerPanelController::class , 'basketItemAdder'])->name('basket.add.item');
 });
 

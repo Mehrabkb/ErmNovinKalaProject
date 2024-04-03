@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/plugins/morrisjs/morris.min.css" />
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{ asset('customerPanel') }}/assets/css/style.min.css" />
+    <link rel="stylesheet" href="{{ asset('plugins/alertify/css/alertify.rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/alertify/css/themes/bootstrap.rtl.css') }}">
 @yield('css')
 </head>
 
@@ -599,6 +601,17 @@
 
 <script src="{{ asset('customerPanel') }}/assets/bundles/mainscripts.bundle.js"></script>
 <script src="{{ asset('customerPanel') }}/assets/js/pages/index.js"></script>
+<script src="{{ asset('plugins/alertify/alertify.min.js') }}"></script>
+@if($errors->any())
+    <script>
+        alertify.error('{{ $errors->first() }}');
+    </script>
+@endif
+@if(session('success'))
+    <script>
+        alertify.success('{{ session('success') }}');
+    </script>
+@endif
 @yield('js')
 </body>
 
