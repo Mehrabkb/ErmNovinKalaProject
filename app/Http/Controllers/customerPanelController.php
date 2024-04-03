@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\alertifyRepository;
 use App\Repositories\basketRepository;
 use App\Repositories\productRepository;
 use App\Repositories\UserRepository;
@@ -11,11 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class customerPanelController extends Controller
 {
-    public function __construct(UserRepository $userRepository , productRepository $productRepository, basketRepository $basketRepository){
+    public function __construct(UserRepository $userRepository , productRepository $productRepository, basketRepository $basketRepository ,
+    alertifyRepository $alertifyRepository){
         $this->middleware('checkCustomerLogin');
         $this->userRepository = $userRepository;
         $this->productRepository = $productRepository;
         $this->basketRepository = $basketRepository;
+        $this->alertifyRepository = $alertifyRepository;
     }
     public function home(Request $request){
         if($request->isMethod('GET')){
@@ -33,7 +36,8 @@ class customerPanelController extends Controller
         if($request->isMethod('GET')){
             $basket = $this->basketRepository->getUserBasket(Auth::user()->user_id);
             $basketItems = $this->basketRepository->getBasketItems($basket);
-            return view('customerPanel.factor.add' , compact('basketItems'));
+            $fullBasket = $this->basketRepository->getUserBasketFullModelByBasketId($basket);
+            return view('customerPanel.factor.add' , compact('basketItems' , 'fullBasket'));
         }
     }
     public function productSearchResult(Request $request){
@@ -64,9 +68,39 @@ class customerPanelController extends Controller
                     $basketId = $this->basketRepository->createBasket($user->user_id);
                 }
                 if($this->basketRepository->addBasketItem($basketId , $product_id , $count)){
+                    $product = $this->productRepository->getProductById($product_id);
+                    $basket = $this->basketRepository->getUserBasketFullModelByBasketId($basketId);
+                    $this->basketRepository->updateBasketPrice($basketId , $basket->total_price + $product->price * $count);
                     return redirect()->back()->with(['success' => 'با موفقیت اضافه شد']);
                 }else{
                     return redirect()->back()->withErrors('مشکلی در افزودن محصول رخ داده است');
+                }
+            }
+        }
+    }
+    public function deleteBasketItem(Request $request){
+        if($request->isMethod('POST')){
+            $validate = $request->validate([
+                'id' => 'required'
+            ],[
+                'id.required' => 'آیدی نمیتواند خالی باشد'
+            ]);
+            if($validate){
+                $id = htmlspecialchars($request->input('id'));
+                $basketItem = $this->basketRepository->getBasketItemByBasketItemId($id);
+                $basket = $this->basketRepository->getUserBasketFullModelByBasketId($basketItem->basket_id);
+                if($basketItem){
+                    $product = $this->productRepository->getProductById($basketItem->product_id);
+                    $price = $basketItem->count * $product->price;
+                    if($this->basketRepository->deleteBasketItemByBasketItemId($basketItem->basket_item_id)){
+                        $totalPrice = $basket->total_price - $price;
+                        $this->basketRepository->updateBasketPrice($basket->basket_id , $totalPrice);
+                        return $this->alertifyRepository->successMessage('با موفقیت حذف شد');
+                    }else{
+                        return $this->alertifyRepository->errorMessage('در حذف رکورد مشکلی رخ داده است');
+                    }
+                }else{
+                    return $this->alertifyRepository->errorMessage('رکورد یافت نشد');
                 }
             }
         }

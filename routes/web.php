@@ -81,5 +81,6 @@ Route::prefix('customer')->group(function(){
     Route::get('factor/add' , [customerPanelController::class , 'addFactor'])->name('customer.factor.add');
     Route::get('product/search/result' , [customerPanelController::class , 'productSearchResult'])->name('product.search.result');
     Route::post('basket/add/item' , [customerPanelController::class , 'basketItemAdder'])->name('basket.add.item');
+    Route::post('basket/delete/item' , [customerPanelController::class , 'deleteBasketItem'])->name('basket.delete.item');
 });
 

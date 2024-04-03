@@ -97,7 +97,7 @@
                                                 <td>{{ $basketItem->count}}</td>
                                                 <td>{{ number_format($basketItem->price * $basketItem->count) }}</td>
                                                 <td>
-                                                    <button class="btn btn-danger" data-id="{{ $basketItem->basket_item_id }}">حذف</button>
+                                                    <button type="button" class="btn btn-danger btn-delete-basket-item" data-id="{{ $basketItem->basket_item_id }}" data-url="{{ route('basket.delete.item') }}">حذف</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -110,15 +110,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h5>توجه</h5>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.</p>
+                                    <p>در نظر داشته باشید که قیمت ها به روز می باشد.پس از ثبت سفارش کارشناسان ما با شما تماس خواهند گرفت</p>
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <ul class="list-unstyled">
-                                        <li><strong>زیر مجموع:-</strong> 2930.00</li>
-                                        <li class="text-danger"><strong>تخفیف:-</strong> 12.9%</li>
-                                        <li><strong>مالیات بر ارزش افزوده:-</strong> 12.9%</li>
+{{--                                        <li><strong> مجموع:</strong> {{ number_format($fullBasket->price) }}</li>--}}
+{{--                                        <li class="text-danger"><strong>تخفیف:-</strong> 12.9%</li>--}}
+{{--                                        <li><strong>مالیات بر ارزش افزوده:-</strong> 12.9%</li>--}}
                                     </ul>
-                                    <h3 class="mb-0 text-success">2930.00 تومان</h3>
+                                    <h3 class="mb-0 text-success">{{ number_format($fullBasket->total_price) }} ریال</h3>
                                     <a href="javascript:void(0);" class="btn btn-info"><i class="zmdi zmdi-print"></i></a>
                                     <a href="javascript:void(0);" class="btn btn-primary">تایید</a>
                                 </div>

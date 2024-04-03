@@ -24,4 +24,30 @@ $(function(){
             }
         });
     });
+    $(document).on('click' , '.btn-delete-basket-item' , function(e){
+       let that = $(this);
+       let url = that.attr('data-url');
+       let id = that.attr('data-id');
+       $.ajax({
+           url : url ,
+           method : 'POST',
+           data : {
+               'id' : id
+           },
+           success : function(result){
+               let res = JSON.parse(result);
+               switch (res.type){
+                   case 'error' :
+                       alertify.error(res.message);
+                       break;
+                   case 'success':
+                       alertify.success(res.message);
+                       setTimeout(function(){
+                           location.reload();
+                       } , 2000)
+                       break;
+               }
+           }
+       });
+    });
 });
