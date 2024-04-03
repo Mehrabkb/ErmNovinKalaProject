@@ -1,6 +1,15 @@
 @extends('customerPanel.master')
 @section('title' , 'ثبت سفارش')
-
+@section('css')
+    <style>
+        @media(max-width: 768px){
+            .title-product-td{
+                width: 80px;
+                white-space: normal!important;
+            }
+        }
+    </style>
+@endsection
 @section('content')
 <section class="content">
     <div class="">
@@ -14,9 +23,9 @@
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
-                <div class="col-lg-5 col-md-6 col-sm-12">
-                    <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
-                </div>
+{{--                <div class="col-lg-5 col-md-6 col-sm-12">--}}
+{{--                    <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>--}}
+{{--                </div>--}}
             </div>
         </div>
         <div class="container-fluid">
@@ -35,7 +44,7 @@
                                             <input id="search-bar" data-url="{{ route('product.search.result') }}" class="form-control" autocomplete="off" placeholder="جستجو محصول...">
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4">
+                                    <div class="col-lg-4 col-md-4 mb-3">
                                         <select class="form-control show-tick ms select2 slc-products" name="product-id">
                                             <option selected disabled>انتخاب کنید</option>
                                         </select>
@@ -92,7 +101,7 @@
                                         @foreach($basketItems as $basketItem)
                                             <tr>
                                                 <td>{{ ++$counter }}</td>
-                                                <td>{{ $basketItem->title }}</td>
+                                                <td class="title-product-td">{{ $basketItem->title }}</td>
                                                 <td>{{ number_format($basketItem->price) }}</td>
                                                 <td>{{ $basketItem->count}}</td>
                                                 <td>{{ number_format($basketItem->price * $basketItem->count) }}</td>
@@ -120,7 +129,7 @@
                                     </ul>
                                     <h3 class="mb-0 text-success">{{ number_format($fullBasket->total_price) }} ریال</h3>
                                     <a href="javascript:void(0);" class="btn btn-info"><i class="zmdi zmdi-print"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-primary">تایید</a>
+                                    <a href="javascript:void(0);" class="btn btn-primary">ثبت نهایی</a>
                                 </div>
                             </div>
                         </div>

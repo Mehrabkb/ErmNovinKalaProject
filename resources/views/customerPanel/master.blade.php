@@ -271,7 +271,7 @@
         <ul class="list">
             <li>
                 <div class="user-info">
-                    <a class="image" href="profile.html"><img src="{{ asset('customerPanel') }}/assets/images/profile_av.jpg" alt="User"></a>
+                    <a class="image" href="profile.html"><img src="{{ asset('panelAdmin') }}/images/R.jpg" alt="User"></a>
                     <div class="detail">
                         <h4>{{ Auth::user()->user_name }}</h4>
                         <small>مشتری</small>
@@ -587,11 +587,6 @@
 
 
 @yield('content')
-
-
-
-
-
 <!-- Jquery Core Js -->
 <script src="{{ asset('customerPanel') }}/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
 <script src="{{ asset('customerPanel') }}/assets/bundles/vendorscripts.bundle.js"></script> <!-- slimscroll, waves Scripts Plugin Js -->

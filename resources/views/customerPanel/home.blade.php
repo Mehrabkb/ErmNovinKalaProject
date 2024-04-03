@@ -10,13 +10,13 @@
                         <h2>داشبورد</h2>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> آئرو</a></li>
-                            <li class="breadcrumb-item active">داشبورد 1</li>
+                            <li class="breadcrumb-item active">داشبورد</li>
                         </ul>
                         <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                     </div>
-                    <div class="col-lg-5 col-md-6 col-sm-12">
-                        <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
-                    </div>
+{{--                    <div class="col-lg-5 col-md-6 col-sm-12">--}}
+{{--                        <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="container-fluid">
@@ -24,7 +24,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="card widget_2 big_icon traffic">
                             <div class="body">
-                                <h6>ترافیک</h6>
+                                <h6>سفارش ها</h6>
                                 <h2>20 <small class="info">از 1ترابایت</small></h2>
                                 <small>2٪ بالاتر از ماه گذشته</small>
                                 <div class="progress">
