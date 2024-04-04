@@ -17,4 +17,5 @@ interface  UserRepositoryInterface{
     public function deleteUserByUserId($userId);
     public function getUserDataByUserId($userId);
     public function editUserByUserId($userId , $data);
+    public function createVerificationCode($user_id);
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\UserRepositoryInterface;
 use App\Repositories\alertifyRepository;
+use App\Repositories\smsRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -15,7 +16,7 @@ use function GuzzleHttp\default_user_agent;
 
 class UserController extends Controller
 {
-    public function __construct(UserRepository $userRepository , alertifyRepository $alertifyRepository)
+    public function __construct(UserRepository $userRepository , alertifyRepository $alertifyRepository )
     {
         $this->middleware('checkUserLoginUserRoute');
         $this->alertifyRepository = $alertifyRepository;
@@ -47,7 +48,6 @@ class UserController extends Controller
                     $password = htmlspecialchars($request->input('password'));
                     if($this->userRepository->checkUserExistByUserName($userName)) {
                         if($this->userRepository->checkUserPasswordByUserName($userName , $password)){
-                            $user_id = $this->userRepository->getUserIdByUserName($userName);
                                 if($this->userRepository->loginUserById($user_id)){
                                     return $this->alertifyRepository->successMessage('با موفقیت وارد شدید');
                                 }else{
