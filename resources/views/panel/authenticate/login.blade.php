@@ -50,14 +50,18 @@
                 <input type="password" name="password" class="form-control" placeholder="رمز عبور" data-regex="password" data-title="رمز عبور">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+            <div class="form-group">
+                <p class="text-center">{!! captcha_img() !!}  </p>
+                <p class="text-center"><input type="text" class="form-control" name="captcha" placeholder="موارد کادر بالا را وارد کنید"></p>
+            </div>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> مرا به خاطر بسپار
-                        </label>
-                    </div>
-                </div>
+{{--                <div class="col-xs-12">--}}
+{{--                    <div class="checkbox icheck">--}}
+{{--                        <label>--}}
+{{--                            <input type="checkbox"> مرا به خاطر بسپار--}}
+{{--                        </label>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <!-- /.col -->
                 <div class="col-xs-12">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">ورود</button>

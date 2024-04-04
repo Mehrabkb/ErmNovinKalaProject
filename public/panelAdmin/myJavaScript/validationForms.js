@@ -73,6 +73,9 @@ $(function(){
                                 } , 2000)
                                 break;
                         }
+                    },
+                    error:function(result){
+                        alertify.error(result.responseJSON.message);
                     }
                 })
             }

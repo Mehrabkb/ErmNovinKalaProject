@@ -40,7 +40,14 @@ class factorRepository implements factorRepositoryInterface
     public function getFactorsByUserId($user_id)
     {
         // TODO: Implement getFactorsByUserId() method.
-        $factor = Factor::where('user_id' , $user_id)->get();
-        return $factor;
+        $factors = Factor::where('user_id' , $user_id)->get();
+        foreach($factors as $factor){
+            switch ($factor->status){
+                case 'pre-factor':
+                    $factor->status = 'پیش فاکتور';
+                    break;
+            }
+        }
+        return $factors;
     }
 }

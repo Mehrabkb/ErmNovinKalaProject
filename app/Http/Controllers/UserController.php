@@ -30,10 +30,13 @@ class UserController extends Controller
                 break;
             case 'POST':
                 $validationData = $request->validate([
+                    'captcha' => 'required|captcha' .\request('key'),
                     'user-name' => 'required | max:255 | regex:/[a-zA-Z0-9]+$/',
                     'password' => 'required | max:255 | regex:/[a-zA-Z0-9]+$/'
                 ],
                 [
+                    'captcha.required' => 'مقدار کپچا الزامی میباشد',
+                    'captcha.captcha' => 'لطفا مقدار کپچا را با دقت وارد کنید',
                     'user-name.required' => 'نام کاربری الزامی می باشد' ,
                     'user-name.regex' => 'فرمت نام کاربری نامعتبر است',
                     'password.required' => 'رمز عبور الزامی می باشد',

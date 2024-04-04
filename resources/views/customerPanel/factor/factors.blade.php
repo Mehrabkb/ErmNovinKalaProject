@@ -17,9 +17,6 @@
                         </ul>
                         <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                     </div>
-                    <div class="col-lg-5 col-md-6 col-sm-12">
-                        <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
-                    </div>
                 </div>
             </div>
 
@@ -37,7 +34,8 @@
                                             <th data-breakpoints="xs">شماره فاکتور</th>
                                             <th data-breakpoints="xs">مبلغ فاکتور</th>
                                             <th data-breakpoints="xs">تاریخ</th>
-                                            <th>وضعیت</th>
+                                            <th data-breakpoints="xs">وضعیت</th>
+                                            <th>عملیات</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -50,7 +48,11 @@
                                                 <td>{{ $factor->factor_id }}</td>
                                                 <td>{{ number_format($factor->total_price) }}</td>
                                                 <td>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->format('%B %d، %Y') }}</td>
-                                                <td><span class="tag tag-danger"> معلق</span>
+                                                <td>{{ $factor->status }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-primary">
+                                                        <i class="zmdi zmdi-eye"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
