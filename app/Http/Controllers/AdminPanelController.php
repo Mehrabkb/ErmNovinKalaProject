@@ -784,4 +784,29 @@ class AdminPanelController extends Controller
             }
         }
     }
+    public function editBrandPrice(Request $request){
+        if($request->isMethod('GET')){
+            $products = $this->productRepository->allProductsFrontEndData();
+            $brands = $this->productRepository->getAllBrand();
+            return view('panel/product/brandEdit' , compact('products' , 'brands'));
+        }else if($request->isMethod('POST')){
+            $validate = $request->validate([
+                'id' => 'required' ,
+                'brand-id' => 'required'
+            ],[
+                'id.required' => 'ایدی محصول نمیتواند خالی باشد',
+                'brand-id.required' => 'لطفا یک برند را انتخاب کنید'
+            ]);
+            if($validate){
+                $id = htmlspecialchars($request->input('id'));
+                $brand = htmlspecialchars($request->input('brand-id'));
+                $final = $this->productRepository->updateProductBrandByProductId($id , $brand);
+                if($final){
+                    return $final;
+                }else{
+                    return false;
+                }
+            }
+        }
+    }
 }

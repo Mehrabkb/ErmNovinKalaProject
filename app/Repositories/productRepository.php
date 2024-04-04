@@ -333,6 +333,17 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function updateProductBrandByProductId($productId, $brandId)
+    {
+        // TODO: Implement updateProductBrandByProductId() method.
+        $product = Product::where('product_id' , $productId)->first();
+        $product->product_brand_id = $brandId;
+        if($product->save()){
+            return $product;
+        }
+        return false;
+    }
+
     public function searchProduct($value, $column)
     {
         // TODO: Implement searchProduct() method.

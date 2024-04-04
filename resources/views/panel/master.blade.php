@@ -113,6 +113,7 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ route('products') }}"><i class="fa fa-circle-o"></i>همه محصولات</a></li>
                         <li><a href="{{ route('product.edit.price') }}"><i class="fa fa-circle-o"></i>ویرایش قیمت </a></li>
+                        <li><a href="{{ route('product.edit.brand') }}"><i class="fa fa-circle-o"></i>ویرایش برندها</a></li>
                         <li><a href="{{ route('add.product') }}"><i class="fa fa-circle-o"></i>افزودن</a></li>
                         <li><a href="{{ route('importexport.product') }}"><i class="fa fa-circle-o"></i>درون ریزی / برون ریزی </a></li>
                         <li><a href="{{ route('brand.product') }}"><i class="fa fa-circle-o"></i>برند ها</a></li>
