@@ -52,6 +52,10 @@
                                     <input type="text" name="product-price" class="form-control number-separator" value="{{ number_format($product->price) }}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="product-off">تخفیف</label>
+                                    <input type="number" name="off" class="form-control" value="{{ number_format($product->off) }}">
+                                </div>
+                                <div class="form-group">
                                     <label for="categories">دسته بندی</label>
                                     <select name="product-category-id" class="form-control">
                                         <option disabled selected >یک دسته بندی برای محصول خود انتخاب کنید</option>

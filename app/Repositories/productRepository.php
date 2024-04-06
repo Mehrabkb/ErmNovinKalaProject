@@ -303,6 +303,7 @@ class productRepository implements productRepositoryInterface{
         $product->product_brand_id = $data['product-brand-id'];
         $product->date = Carbon::now()->timestamp;
         $product->description = $data['product-description'];
+        $product->off = $data['off'];
         $data['product-tag-id'] != '' ? $product->product_tag_id = $data['product-tag-id'] : '';
         isset($data['image']) ? $product->main_image = $data['image'] : '';
         if($product->save()){
