@@ -155,6 +155,9 @@ class customerPanelController extends Controller
                         }
                     }
                 }
+                if(Auth::user()->phone != $phone){
+                    return redirect()->back()->withErrors('درخواست شما نامعتبر است');
+                }
                 if($this->userRepository->editCustomerWithMobile($phone , $data)){
                     return redirect()->back()->with(['success' => 'با موفقیت ویرایش شد']);
                 }else{
