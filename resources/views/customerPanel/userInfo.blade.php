@@ -59,7 +59,8 @@
 {{--                                    </div>--}}
                                     <label for="phone">موبایل</label>
                                     <div class="form-group">
-                                        <input type="text" id="phone" class="form-control" name="phone" value="{{ $user->phone }}" placeholder="موبایل" disabled>
+                                        <input type="text" id="phone" class="form-control" value="{{ $user->phone }}" disabled placeholder="موبایل">
+                                        <input type="hidden" name="phone" value="{{ $user->phone }}">
                                     </div>
                                     <label for="company-name">نام شرکت</label>
                                     <div class="form-group">

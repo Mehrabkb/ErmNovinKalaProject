@@ -128,6 +128,40 @@ class customerPanelController extends Controller
         if($request->isMethod('GET')){
             $user = $this->userRepository->getUserByMobile(Auth::user()->phone);
             return view('customerPanel.userInfo' , compact('user') );
+        }else if($request->isMethod('POST')){
+            $validate = $request->validate([
+                'phone' => 'required'
+            ],[
+                'phone.required' => 'موبایل نمیتواند خالی باشد'
+            ]);
+            if($validate){
+                $phone = htmlspecialchars($request->input('phone'));
+                $data = [];
+                $request->input('first-name') != null ? $data['first-name'] = htmlspecialchars($request->input('first-name')) : '';
+                $request->input('last-name') != null ? $data['last-name'] = htmlspecialchars($request->input('last-name')) : '';
+                $request->input('user-name') != null ? $data['user-name'] = htmlspecialchars($request->input('user-name')) : '';
+                $request->input('email') != null ? $data['email'] = htmlspecialchars($request->input('email')) : '';
+                $request->input('company-name') != null ? $data['company-name'] = htmlspecialchars($request->input('company-name')) : '';
+                $request->input('company-phone') != null ? $data['company-phone'] = htmlspecialchars($request->input('company-phone')) : '';
+                $request->input('company-address') != null ? $data['company-address'] = htmlspecialchars($request->input('company-address')) : '';
+                $request->input('company-website') != null ? $data['company-website'] = htmlspecialchars($request->input('company-website')): '';
+                $request->input('personal-website') != null ? $data['personal-website'] = htmlspecialchars($request->input('personal-website')) : '';
+                if(isset($data['user-name'])){
+                    $user_name = $data['user-name'];
+                    $user = $this->userRepository->getUserByUserName($user_name);
+                    if($user){
+                        if($user->user_id != Auth::user()->user_id){
+                            return redirect()->back()->withErrors('نام کاربری از قبل وجود دارد');
+                        }
+                    }
+                }
+                if($this->userRepository->editCustomerWithMobile($phone , $data)){
+                    return redirect()->back()->with(['success' => 'با موفقیت ویرایش شد']);
+                }else{
+                    return redirect()->back()->withErrors('در ویرایش اطلاعات مشکلی پیش آمده');
+                }
+
+            }
         }
     }
 }

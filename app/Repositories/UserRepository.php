@@ -150,4 +150,22 @@ class UserRepository implements UserRepositoryInterface
         }
         return false;
     }
+    public function editCustomerWithMobile($mobile, $data)
+    {
+        // TODO: Implement editCustomerWithMobile() method.
+        $user = \App\Models\User::where('phone' , $mobile)->first();
+        isset($data['first-name']) ? $user->first_name = $data['first-name']: '';
+        isset($data['last-name']) ? $user->last_name = $data['last-name'] : '';
+        isset($data['user-name']) ? $user->user_name = $data['user-name'] : '';
+        isset($data['email']) ? $user->email = $data['email'] : '';
+        isset($data['company-name']) ? $user->company_name = $data['company-name'] : '';
+        isset($data['company-phone']) ? $user->company_phone = $data['company-phone'] : '';
+        isset($data['company-address']) ? $user->company_address = $data['company-address'] : '';
+        isset($data['company-website']) ? $user->company_website = $data['company-website'] : '';
+        isset($data['personal-website']) ? $user->personal_website = $data['personal-website'] : '';
+        if($user->save()){
+            return true;
+        }
+        return false;
+    }
 }
