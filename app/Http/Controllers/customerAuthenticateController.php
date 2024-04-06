@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Repositories\alertifyRepository;
 use App\Repositories\smsRepository;
 use App\Repositories\UserRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class customerAuthenticateController extends Controller
@@ -43,7 +45,8 @@ class customerAuthenticateController extends Controller
                         return redirect()->back()->withErrors('کاربر مجوز ورود ندارد');
                     }
                 }else{
-                    return redirect()->back()->withErrors('کاربری با این مشخصات یافت نشد');
+
+
                 }
             }
         }
@@ -65,6 +68,22 @@ class customerAuthenticateController extends Controller
                         return $this->alertifyRepository->successMessage('کد فعالسازی با موفقیت ارسال شد');
                     }else{
                         return $this->alertifyRepository->errorMessage('در ارسال کد فعالسازی مشکلی پیش آمده است');
+                    }
+                }else{
+                    $data = [];
+                    $number = rand(1 , 10000) + Carbon::now()->timestamp;
+                    $data['user-name'] = 'user'. $number;
+                    $data['password'] = '12345';
+                    $data['user-role'] = 3 ;
+                    $data['phone'] = $mobile;
+                    $newUser = $this->userRepository->createUser($data);
+                    $code = $this->userRepository->createVerificationCode($user->user_id);
+                    $currentUser = $this->userRepository->getUserByMobile($mobile);
+                    if($this->userRepository->checkUserCodeByMobile($mobile, $code)){
+                        $this->userRepository->loginUserById($currentUser->user_id);
+                        return redirect()->route('customer.panel.home');
+                    }else{
+                        return redirect()->back()->withErrors('کد فعالسازی اشتباه است');
                     }
                 }
             }

@@ -124,4 +124,10 @@ class customerPanelController extends Controller
             return view('customerPanel.factor.factors' , compact('factors'));
         }
     }
+    public function userInfo(Request $request){
+        if($request->isMethod('GET')){
+            $user = $this->userRepository->getUserByMobile(Auth::user()->phone);
+            return view('customerPanel.userInfo' , compact('user') );
+        }
+    }
 }

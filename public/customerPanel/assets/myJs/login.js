@@ -4,7 +4,7 @@ $(function(){
         let url = that.attr('data-url');
         let mobile = that.parent().parent().find('input[name="mobile"]').val();
         let method = 'POST';
-        if(mobile != '' && mobile.match(/(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/)){
+        if(mobile != ''){
             $.ajax({
                 url : url ,
                 method : method ,
