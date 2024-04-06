@@ -3,6 +3,7 @@
 
 <head>
 <meta charset="utf-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
@@ -31,13 +32,18 @@
                     </div>
                     <div class="body">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="نام کاربری" name="user-name">
+                            <input type="text" class="form-control" placeholder="شماره موبایل" name="mobile" autocomplete="off">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="رمزعبور" name="password">
+                            <button class="btn btn-success w-100 request-verficitaion-code-btn" type="button" data-url="{{ route('request.code.verify') }}">
+                                ارسال کد فعالسازی
+                            </button>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" minlength="1" maxlength="4"  class="form-control" placeholder="کد فعالسازی" name="code" autocomplete="off">
                             <div class="input-group-append">
                                 <span class="input-group-text"><a href="forgot-password.html" class="forgot" title="فراموشی رمز عبور"><i class="zmdi zmdi-lock"></i></a></span>
                             </div>
@@ -84,6 +90,14 @@
         alertify.success('{{ session('success') }}');
     </script>
 @endif
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+<script src="{{ asset('customerPanel/assets/myJs/login.js') }}"></script>
 </body>
 
 </html>

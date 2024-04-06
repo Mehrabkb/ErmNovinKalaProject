@@ -126,12 +126,27 @@ class UserRepository implements UserRepositoryInterface
     public function createVerificationCode($user_id)
     {
         // TODO: Implement createVerificationCode() method.
-        $user = User::where('user_id' , $user_id)->first();
+        $user = \App\Models\User::where('user_id' , $user_id)->first();
         if($user){
             $code = rand(0 , 9999);
             $user->verification_code = $code;
             $user->save();
             return $user->verification_code;
+        }
+        return false;
+    }
+    public function getUserByMobile($mobile)
+    {
+        // TODO: Implement getUserByMobile() method.
+        $user = \App\Models\User::where('phone' , $mobile)->first();
+        return $user ? $user : false;
+    }
+    public function checkUserCodeByMobile($mobile, $code)
+    {
+        // TODO: Implement checkUserCodeByMobile() method.
+        $user = \App\Models\User::where('phone' , $mobile)->first();
+        if($user->verification_code == $code){
+            return true;
         }
         return false;
     }

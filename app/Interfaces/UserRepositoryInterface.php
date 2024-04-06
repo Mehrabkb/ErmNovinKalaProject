@@ -18,4 +18,6 @@ interface  UserRepositoryInterface{
     public function getUserDataByUserId($userId);
     public function editUserByUserId($userId , $data);
     public function createVerificationCode($user_id);
+    public function getUserByMobile($mobile);
+    public function checkUserCodeByMobile($mobile , $code);
 }
