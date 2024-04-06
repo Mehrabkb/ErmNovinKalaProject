@@ -4,7 +4,7 @@ let Regexes = {
         'errorMessage' : 'نام کاربری معتبر نمیباشد'
     },
     'password' : {
-        'regex' : /^[a-zA-Z0-9]+$/,
+        'regex' : /./,
         'errorMessage' : 'رمز عبور معتبر نمیباشد'
     },
     'force-english' :{

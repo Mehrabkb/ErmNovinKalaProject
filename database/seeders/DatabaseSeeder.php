@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
 //        ]);
         DB::table('users')->insert([
             'user_name' => 'admin',
-            'password' => Hash::make('admin'),
+            'password' => Hash::make('Asdf_567'),
             'user_role_id' => 1,
             'user_status_id' => 1,
             'date' => Carbon::now()->timestamp

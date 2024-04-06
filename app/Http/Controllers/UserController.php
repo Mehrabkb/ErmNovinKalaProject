@@ -48,6 +48,7 @@ class UserController extends Controller
                     $password = htmlspecialchars($request->input('password'));
                     if($this->userRepository->checkUserExistByUserName($userName)) {
                         if($this->userRepository->checkUserPasswordByUserName($userName , $password)){
+                                $user_id = $this->userRepository->getUserIdByUserName($userName);
                                 if($this->userRepository->loginUserById($user_id)){
                                     return $this->alertifyRepository->successMessage('با موفقیت وارد شدید');
                                 }else{
