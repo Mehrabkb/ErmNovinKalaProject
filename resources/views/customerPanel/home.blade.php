@@ -57,15 +57,28 @@
                             </div>
                         </div>
                     </div>
+{{--                    <div class="col-lg-3 col-md-6 col-sm-12">--}}
+{{--                        <div class="card widget_2 big_icon domains">--}}
+{{--                            <div class="body">--}}
+{{--                                <h6>دامنه ها</h6>--}}
+{{--                                <h2>8 <small class="info">از 10</small></h2>--}}
+{{--                                <small>مجموع دامنه ثبت شده</small>--}}
+{{--                                <div class="progress">--}}
+{{--                                    <div class="progress-bar l-green" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="card widget_2 big_icon domains">
                             <div class="body">
-                                <h6>دامنه ها</h6>
-                                <h2>8 <small class="info">از 10</small></h2>
-                                <small>مجموع دامنه ثبت شده</small>
-                                <div class="progress">
-                                    <div class="progress-bar l-green" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>
-                                </div>
+                                <tgju
+                                    type="ticker-single"
+                                    items="137203"
+                                    columns="dot"
+                                    token="webservice"
+                                ></tgju>
+                                <script src="https://api.tgju.org/v1/widget/v2" defer></script>
                             </div>
                         </div>
                     </div>
