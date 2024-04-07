@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\factorRepositoryInterface;
 use App\Models\Factor;
 use App\Models\factorItem;
+use Carbon\Carbon;
 
 class factorRepository implements factorRepositoryInterface
 {
@@ -22,6 +23,7 @@ class factorRepository implements factorRepositoryInterface
         $factor = new Factor();
         $factor->user_id = $basket->user_id;
         $factor->total_price = $basket->total_price;
+        $factor->date = Carbon::now()->timestamp;
         if($factor->save()){
             foreach($basketItems as $basketItem){
                 $product = $this->productRepository->getProductById($basketItem->product_id);
@@ -44,7 +46,7 @@ class factorRepository implements factorRepositoryInterface
     public function getFactorsByUserId($user_id)
     {
         // TODO: Implement getFactorsByUserId() method.
-        $factors = Factor::where('user_id' , $user_id)->get();
+        $factors = Factor::where('user_id' , $user_id)->orderBy('date' , 'DESC')->get();
         foreach($factors as $factor){
             switch ($factor->status){
                 case 'pre-factor':
