@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('factor_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('count');
+            $table->integer('off')->default(0);
+            $table->integer('price')->default(0);
         });
     }
 

@@ -8,9 +8,10 @@ use App\Models\factorItem;
 
 class factorRepository implements factorRepositoryInterface
 {
-    public function __construct(basketRepository $basketRepository)
+    public function __construct(basketRepository $basketRepository , productRepository $productRepository)
     {
         $this->basketRepository = $basketRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function addFactor($basket_id)
@@ -23,10 +24,13 @@ class factorRepository implements factorRepositoryInterface
         $factor->total_price = $basket->total_price;
         if($factor->save()){
             foreach($basketItems as $basketItem){
+                $product = $this->productRepository->getProductById($basketItem->product_id);
                 $factorItem = new factorItem();
                 $factorItem->factor_id = $factor->factor_id;
                 $factorItem->product_id = $basketItem->product_id;
                 $factorItem->count = $basketItem->count;
+                $factorItem->off = $product->off;
+                $factorItem->price = $product->price;
                 if($factorItem->save()){
                     $basketItem->delete();
                 }
