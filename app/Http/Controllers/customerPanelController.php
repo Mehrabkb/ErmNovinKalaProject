@@ -24,7 +24,8 @@ class customerPanelController extends Controller
     }
     public function home(Request $request){
         if($request->isMethod('GET')){
-            return view('customerPanel.home');
+            $pre_factors = $this->factorRepository->getFactorsByStatus(Auth::user()->user_id , 'pre-factor');
+            return view('customerPanel.home' , compact('pre_factors'));
         }
     }
     public function logout($id){
@@ -72,7 +73,7 @@ class customerPanelController extends Controller
                 if($this->basketRepository->addBasketItem($basketId , $product_id , $count)){
                     $product = $this->productRepository->getProductById($product_id);
                     $basket = $this->basketRepository->getUserBasketFullModelByBasketId($basketId);
-                    $this->basketRepository->updateBasketPrice($basketId , $basket->total_price + $product->price * $count);
+                    $this->basketRepository->updateBasketPrice($basketId , ($basket->total_price + $product->price * $count) - (($product->price * $count) / 100) * $product->off);
                     return redirect()->back()->with(['success' => 'با موفقیت اضافه شد']);
                 }else{
                     return redirect()->back()->withErrors('مشکلی در افزودن محصول رخ داده است');
@@ -93,7 +94,7 @@ class customerPanelController extends Controller
                 $basket = $this->basketRepository->getUserBasketFullModelByBasketId($basketItem->basket_id);
                 if($basketItem){
                     $product = $this->productRepository->getProductById($basketItem->product_id);
-                    $price = $basketItem->count * $product->price;
+                    $price = ($basketItem->count * $product->price) - (($basketItem->count * $product->price / 100) * $product->off);
                     if($this->basketRepository->deleteBasketItemByBasketItemId($basketItem->basket_item_id)){
                         $totalPrice = $basket->total_price - $price;
                         $this->basketRepository->updateBasketPrice($basket->basket_id , $totalPrice);

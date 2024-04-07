@@ -1,5 +1,5 @@
 @extends('customerPanel.master')
-
+@section ('title' , 'داشبرد')
 @section('content')
 
     <section class="content">
@@ -9,7 +9,7 @@
                     <div class="col-lg-7 col-md-6 col-sm-12">
                         <h2>داشبورد</h2>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> آئرو</a></li>
+                            <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> نوین کالا</a></li>
                             <li class="breadcrumb-item active">داشبورد</li>
                         </ul>
                         <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
@@ -24,39 +24,39 @@
                     <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="card widget_2 big_icon traffic">
                             <div class="body">
-                                <h6>سفارش ها</h6>
-                                <h2>20 <small class="info">از 1ترابایت</small></h2>
-                                <small>2٪ بالاتر از ماه گذشته</small>
-                                <div class="progress">
-                                    <div class="progress-bar l-amber" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;"></div>
-                                </div>
+                                <h6>پیش فاکتورها</h6>
+                                <h2 style="color: #ee2558;">{{  count($pre_factors) }} <small class="info">عدد</small></h2>
+{{--                                <small>2٪ بالاتر از ماه گذشته</small>--}}
+{{--                                <div class="progress">--}}
+{{--                                    <div class="progress-bar l-amber" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;"></div>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="card widget_2 big_icon sales">
-                            <div class="body">
-                                <h6>فروش</h6>
-                                <h2>12% <small class="info">از 100</small></h2>
-                                <small>6٪ بالاتر از ماه گذشته</small>
-                                <div class="progress">
-                                    <div class="progress-bar l-blue" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 38%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="card widget_2 big_icon email">
-                            <div class="body">
-                                <h6>ایمیل</h6>
-                                <h2>39 <small class="info">از 100</small></h2>
-                                <small>مجموع ایمیل ثبت شده</small>
-                                <div class="progress">
-                                    <div class="progress-bar l-purple" role="progressbar" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100" style="width: 39%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="col-lg-3 col-md-6 col-sm-12">--}}
+{{--                        <div class="card widget_2 big_icon sales">--}}
+{{--                            <div class="body">--}}
+{{--                                <h6>فروش</h6>--}}
+{{--                                <h2>12% <small class="info">از 100</small></h2>--}}
+{{--                                <small>6٪ بالاتر از ماه گذشته</small>--}}
+{{--                                <div class="progress">--}}
+{{--                                    <div class="progress-bar l-blue" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 38%;"></div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-lg-3 col-md-6 col-sm-12">--}}
+{{--                        <div class="card widget_2 big_icon email">--}}
+{{--                            <div class="body">--}}
+{{--                                <h6>ایمیل</h6>--}}
+{{--                                <h2>39 <small class="info">از 100</small></h2>--}}
+{{--                                <small>مجموع ایمیل ثبت شده</small>--}}
+{{--                                <div class="progress">--}}
+{{--                                    <div class="progress-bar l-purple" role="progressbar" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100" style="width: 39%;"></div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 {{--                    <div class="col-lg-3 col-md-6 col-sm-12">--}}
 {{--                        <div class="card widget_2 big_icon domains">--}}
 {{--                            <div class="body">--}}

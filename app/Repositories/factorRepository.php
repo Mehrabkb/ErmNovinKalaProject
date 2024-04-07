@@ -50,4 +50,9 @@ class factorRepository implements factorRepositoryInterface
         }
         return $factors;
     }
+    public function getFactorsByStatus($user_id , $status)
+    {
+        // TODO: Implement getFactorsByStatus() method.
+        return Factor::where([['status' , '=' ,  $status] , ['user_id' , '=' , $user_id]] )->get();
+    }
 }

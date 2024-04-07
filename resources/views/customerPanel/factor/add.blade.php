@@ -88,8 +88,10 @@
                                         <tr>
                                             <th>#</th>
                                             <th>نام محصول</th>
+                                            <th>مشخصات</th>
                                             <th>قیمت</th>
                                             <th>تعداد</th>
+                                            <th>تخفیف</th>
                                             <th>مجموع</th>
                                             <th>عملیات</th>
                                         </tr>
@@ -102,9 +104,11 @@
                                             <tr>
                                                 <td>{{ ++$counter }}</td>
                                                 <td class="title-product-td">{{ $basketItem->title }}</td>
+                                                <td>{{ $basketItem->description }}</td>
                                                 <td>{{ number_format($basketItem->price) }}</td>
                                                 <td>{{ $basketItem->count}}</td>
-                                                <td>{{ number_format($basketItem->price * $basketItem->count) }}</td>
+                                                <td>{{ $basketItem->off }}</td>
+                                                <td>{{ number_format(($basketItem->price * $basketItem->count) - (($basketItem->price * $basketItem->count / 100) * $basketItem->off)) }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-danger btn-delete-basket-item" data-id="{{ $basketItem->basket_item_id }}" data-url="{{ route('basket.delete.item') }}"><i class="zmdi zmdi-delete"></i></button>
                                                 </td>
