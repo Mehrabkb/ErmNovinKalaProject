@@ -30,6 +30,9 @@ return new class extends Migration
             $table->string('company_website' , 250)->nullable();
             $table->string('personal_website' , 250)->nullable();
             $table->unsignedBigInteger('user_company_role_id')->nullable();
+            $table->bigInteger('registration_number')->nullable();
+            $table->bigInteger('national_id')->nullable();
+            $table->bigInteger('postal_code')->nullable();
             $table->string('date' , 250 );
         });
     }

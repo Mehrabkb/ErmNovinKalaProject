@@ -163,6 +163,9 @@ class UserRepository implements UserRepositoryInterface
         isset($data['company-address']) ? $user->company_address = $data['company-address'] : '';
         isset($data['company-website']) ? $user->company_website = $data['company-website'] : '';
         isset($data['personal-website']) ? $user->personal_website = $data['personal-website'] : '';
+        isset($data['registration-number']) ? $user->registration_number = $data['registration-number'] : '';
+        isset($data['national-id']) ? $user->national_id = $data['national-id']: '';
+        isset($data['postal-code']) ? $user->postal_code = $data['postal-code'] : '';
         if($user->save()){
             return true;
         }

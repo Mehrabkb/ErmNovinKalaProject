@@ -146,6 +146,9 @@ class customerPanelController extends Controller
                 $request->input('company-address') != null ? $data['company-address'] = htmlspecialchars($request->input('company-address')) : '';
                 $request->input('company-website') != null ? $data['company-website'] = htmlspecialchars($request->input('company-website')): '';
                 $request->input('personal-website') != null ? $data['personal-website'] = htmlspecialchars($request->input('personal-website')) : '';
+                $request->input('registration-number') != null ? $data['registration-number'] = htmlspecialchars($request->input('registration-number')) : '';
+                $request->input('national-id') != null ? $data['national-id'] = htmlspecialchars($request->input('national-id')) : '';
+                $request->input('postal-code') != null ? $data['postal-code'] = htmlspecialchars($request->input('postal-code')) : '';
                 if(isset($data['user-name'])){
                     $user_name = $data['user-name'];
                     $user = $this->userRepository->getUserByUserName($user_name);

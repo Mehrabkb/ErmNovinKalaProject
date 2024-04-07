@@ -82,6 +82,18 @@
                                     <div class="form-group">
                                         <input type="text" id="personal-website" name="personal-website" class="form-control" value="{{ $user->personal_website }}" placeholder="وبسایت شخصی">
                                     </div>
+                                    <label for="registration-number">شماره ثبت</label>
+                                    <div class="form-group">
+                                        <input type="text" id="registration-number" name="registration-number" class="form-control" value="{{ $user->registration_number }}" placeholder="وبسایت شخصی">
+                                    </div>
+                                    <label for="national-id">شناسه ملی</label>
+                                    <div class="form-group">
+                                        <input type="text" id="national-id" name="national-id" class="form-control" value="{{ $user->national_id }}" placeholder="وبسایت شخصی">
+                                    </div>
+                                    <label for="postal-code">کد پستی</label>
+                                    <div class="form-group">
+                                        <input type="text" id="postal-code" name="postal-code" class="form-control" value="{{ $user->postal_code }}" placeholder="وبسایت شخصی">
+                                    </div>
                                     <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect">ثبت</button>
                                 </form>
                             </div>

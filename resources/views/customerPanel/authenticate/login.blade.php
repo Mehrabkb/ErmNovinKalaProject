@@ -48,10 +48,6 @@
                                 <span class="input-group-text"><a href="forgot-password.html" class="forgot" title="فراموشی رمز عبور"><i class="zmdi zmdi-lock"></i></a></span>
                             </div>
                         </div>
-                        <div class="checkbox">
-                            <input id="remember_me" type="checkbox">
-                            <label for="remember_me">مرا به خاطر بسپار</label>
-                        </div>
                         <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">ورود</button>
                         {{-- <div class="signin_with mt-3">
                             <p class="mb-0">یا ثبت نام با استفاده از</p>
