@@ -13,4 +13,6 @@ interface basketRepositoryInterface
     public function getUserBasketFullModelByBasketId($basket_id);
     public function getBasketItemByBasketItemId($basket_item_id);
     public function deleteBasketItemByBasketItemId($basket_item_id);
+    public function checkBasketEmpty($basket_id);
+    public function changeOfficialBillBasketByBasketId($basket_id , $value);
 }

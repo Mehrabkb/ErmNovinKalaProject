@@ -123,6 +123,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h5>توجه</h5>
+                                    <p>
+                                        <input class="form-check-input" data-id="{{ $fullBasket->basket_id }}" data-url="{{ route('basket.official.setter') }}" onchange="changeOfficialBillCheckBox(this)" {{ $fullBasket->official_bill ? 'checked' : '' }} name="official-bill" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            فاکتور رسمی ( در نظر داشته باشید که فاکتور رسمی شامل 10 % مالیات می باشد)
+                                            در نظر داشته باشید که در مرحله بعد مالیات اعمال خواهد شد
+                                        </label>
+                                    </p>
                                     <p>در نظر داشته باشید که قیمت ها به روز می باشد.پس از ثبت سفارش کارشناسان ما با شما تماس خواهند گرفت</p>
                                 </div>
                                 <div class="col-md-6 text-right">
@@ -132,7 +140,7 @@
 {{--                                        <li><strong>مالیات بر ارزش افزوده:-</strong> 12.9%</li>--}}
                                     </ul>
                                     <h3 class="mb-0 text-success">{{ number_format($fullBasket->total_price) }} ریال</h3>
-                                    <a href="javascript:void(0);" class="btn btn-info"><i class="zmdi zmdi-print"></i></a>
+{{--                                    <a href="javascript:void(0);" class="btn btn-info"><i class="zmdi zmdi-print"></i></a>--}}
                                     <a href="{{ route('customer.prefactor.add' , ['id' => $fullBasket->basket_id]) }}" class="btn btn-primary">ثبت نهایی</a>
                                 </div>
                             </div>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('total_price')->default(0);
             $table->string('date' , 250);
             $table->string('status')->default('first-step')->nullable();
+            $table->boolean('official_bill')->default(0);
         });
     }
 

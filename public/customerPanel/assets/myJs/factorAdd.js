@@ -50,4 +50,35 @@ $(function(){
            }
        });
     });
+
 });
+function changeOfficialBillCheckBox(event){
+    let basket_id = event.getAttribute('data-id');
+    let url = event.getAttribute('data-url');
+    let value = 0 ;
+    if(event.checked){
+        value = 1;
+    }
+    $.ajax({
+        url : url ,
+        method : 'POST',
+        data:{
+            'basket-id' : basket_id,
+            'value' : value
+        },
+        success:function(result){
+            let res = JSON.parse(result);
+            switch (res.type){
+                case 'error' :
+                    alertify.error(res.message);
+                    break;
+                case 'success':
+                    alertify.success(res.message);
+                    setTimeout(function(){
+                        location.reload();
+                    } , 2000)
+                    break;
+            }
+        }
+    })
+}

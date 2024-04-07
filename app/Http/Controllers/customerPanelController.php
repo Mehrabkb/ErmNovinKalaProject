@@ -111,13 +111,17 @@ class customerPanelController extends Controller
     public function addPreFactor($id){
          $basketId = htmlspecialchars($id);
          $basket = $this->basketRepository->getUserBasketFullModelByBasketId($basketId);
-         if($basket->user_id == Auth::user()->user_id){
-            if($this->factorRepository->addFactor($basket->basket_id)){
-                 return redirect()->back()->with(['success' => 'پیش فاکتور با موفقیت ایجاد شد']);
-            }
-            }else{
-                return redirect()->back()->withErrors('کاربر گرامی شما مجوز انجام این فعالیت را ندارید');
-            }
+         if($this->basketRepository->checkBasketEmpty($basketId)){
+             if($basket->user_id == Auth::user()->user_id){
+                 if($this->factorRepository->addFactor($basket->basket_id)){
+                     return redirect()->back()->with(['success' => 'پیش فاکتور با موفقیت ایجاد شد']);
+                 }
+             }else{
+                 return redirect()->back()->withErrors('کاربر گرامی شما مجوز انجام این فعالیت را ندارید');
+             }
+         }else{
+             return redirect()->back()->withErrors('لطفا یک محصول را انتخاب کنید');
+         }
     }
     public function factors(Request $request){
         if($request->isMethod('GET')){
@@ -168,6 +172,25 @@ class customerPanelController extends Controller
                     return redirect()->back()->withErrors('در ویرایش اطلاعات مشکلی پیش آمده');
                 }
 
+            }
+        }
+    }
+    public function basketOfficialSetter(Request $request){
+        if($request->isMethod('POST')){
+            $validate = $request->validate([
+                'basket-id' => 'required',
+                'value' => 'required'
+            ],[
+                'basket-id.required' => 'آیدی سبد الزامی است',
+                'value.required' => 'مقدار نمیتواند خالی باشد'
+            ]);
+            if($validate){
+                $basket_id = htmlspecialchars($request->input('basket-id'));
+                $value = htmlspecialchars($request->input('value'));
+                if($this->basketRepository->changeOfficialBillBasketByBasketId($basket_id , $value)){
+                    return $this->alertifyRepository->successMessage('با موفقیت تغییر کرد');
+                }
+                return $this->alertifyRepository->errorMessage('مشکلی رخ داده است');
             }
         }
     }

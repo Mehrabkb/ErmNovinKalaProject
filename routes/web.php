@@ -90,5 +90,6 @@ Route::prefix('customer')->group(function(){
     Route::get('factors' , [customerPanelController::class , 'factors'])->name('customer.factors');
     Route::get('user/info' , [customerPanelController::class , 'userInfo'])->name('user.info');
     Route::post('user/info' , [customerPanelController::class , 'userInfo'])->name('user.info');
+    Route::post('basket/official/bill' , [customerPanelController::class , 'basketOfficialSetter'])->name('basket.official.setter');
 });
 

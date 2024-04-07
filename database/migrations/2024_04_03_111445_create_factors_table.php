@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('total_price')->default(0);
             $table->string('date' , 250)->default(\Carbon\Carbon::now()->timestamp);
             $table->string('status', 250)->default('pre-factor');
+            $table->boolean('official_bill')->default(false);
         });
     }
 

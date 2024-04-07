@@ -9,6 +9,11 @@ use Carbon\Carbon;
 
 class basketRepository implements basketRepositoryInterface
 {
+    public function __construct(productRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     public function checkUserBasket($user_id)
     {
         $basket = Basket::where([['user_id' , '=' , $user_id] , ['status' , '=' , 'first-step']])->first();
@@ -89,5 +94,38 @@ class basketRepository implements basketRepositoryInterface
             return true;
         }
         return false;
+    }
+    public function checkBasketEmpty($basket_id)
+    {
+        // TODO: Implement checkBasketEmpty() method.
+        $basketItems = BasketItem::where('basket_id' , $basket_id)->first();
+        if($basketItems){
+           return true;
+        }
+        return false;
+    }
+    public function changeOfficialBillBasketByBasketId($basket_id, $value)
+    {
+        // TODO: Implement changeOfficialBillBasketByBasketId() method.
+        $basket = Basket::where('basket_id' , $basket_id)->first();
+        if($basket){
+            $basket->official_bill = $value;
+            $basket->total_price = 0 ;
+            if($basket->save()){
+                $basketItems = BasketItem::where('basket_id' , $basket_id)->get();
+                foreach ($basketItems as $basketItem){
+                    $product = $this->productRepository->getProductById($basketItem->product_id);
+                    if($value){
+                        $basket->total_price += ($product->price * $basketItem->count) - ((($product->price * $basketItem->count) / 100 * $product->off ))
+                        + ($product->price * $basketItem->count) / 100 * 10 ;
+                    }else{
+                        $basket->total_price += ($product->price * $basketItem->count) - ((($product->price * $basketItem->count) / 100 * $product->off ));
+                    }
+                }
+                $basket->save();
+                return true;
+            }
+            return false;
+        }
     }
 }
