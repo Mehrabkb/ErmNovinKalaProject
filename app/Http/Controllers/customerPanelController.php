@@ -74,8 +74,8 @@ class customerPanelController extends Controller
                     $product = $this->productRepository->getProductById($product_id);
                     $basket = $this->basketRepository->getUserBasketFullModelByBasketId($basketId);
                     if($basket->official_bill){
-                        $p = ($basket->total_price + $product->price * $count) - (($product->price * $count) / 100) * $product->off;
-                        $this->basketRepository->updateBasketPrice($basketId , (double) ($p + ($product->price * $count) / 100 * 10));
+                        $p = ($product->price * $count) - (($product->price * $count) / 100) * $product->off ;
+                        $this->basketRepository->updateBasketPrice($basketId , (double) ($basket->total_price + ($p + ($p / 100) * 10)));
                     }else{
                         $this->basketRepository->updateBasketPrice($basketId , ($basket->total_price + $product->price * $count) - (($product->price * $count) / 100) * $product->off);
                     }
@@ -101,7 +101,10 @@ class customerPanelController extends Controller
                     $product = $this->productRepository->getProductById($basketItem->product_id);
                     $price = ($basketItem->count * $product->price) - (($basketItem->count * $product->price / 100) * $product->off);
                     if($this->basketRepository->deleteBasketItemByBasketItemId($basketItem->basket_item_id)){
-                        $totalPrice = $basket->total_price - $price;
+                        if($basket->official_bill){
+                            $price += ($price / 100) * 10;
+                        }
+                        $totalPrice = $basket->total_price - $price ;
                         $this->basketRepository->updateBasketPrice($basket->basket_id , $totalPrice);
                         return $this->alertifyRepository->successMessage('با موفقیت حذف شد');
                     }else{

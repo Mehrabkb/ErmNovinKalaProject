@@ -77,7 +77,6 @@ class basketRepository implements basketRepositoryInterface
     {
         // TODO: Implement updateBasketPrice() method.
         $basket = Basket::where('basket_id' , $basket_id)->first();
-        $price = (double)str_replace(',' , '' , $price);
         $basket->total_price = (double)str_replace(',' , '' , $price);
         $basket->save();
     }
