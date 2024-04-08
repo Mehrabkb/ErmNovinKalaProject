@@ -108,7 +108,7 @@
                                                 <td>{{ number_format($basketItem->price) }}</td>
                                                 <td>{{ $basketItem->count}}</td>
                                                 <td>{{ $basketItem->off }}</td>
-                                                <td>{{ number_format(($basketItem->price * $basketItem->count) - (($basketItem->price * $basketItem->count / 100) * $basketItem->off)) }}</td>
+                                                <td>{{ number_format(($basketItem->price * $basketItem->count) - (($basketItem->price * $basketItem->count / 100) * $basketItem->off) , 3 , '.') }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-danger btn-delete-basket-item" data-id="{{ $basketItem->basket_item_id }}" data-url="{{ route('basket.delete.item') }}"><i class="zmdi zmdi-delete"></i></button>
                                                 </td>

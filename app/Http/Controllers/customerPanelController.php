@@ -73,7 +73,12 @@ class customerPanelController extends Controller
                 if($this->basketRepository->addBasketItem($basketId , $product_id , $count)){
                     $product = $this->productRepository->getProductById($product_id);
                     $basket = $this->basketRepository->getUserBasketFullModelByBasketId($basketId);
-                    $this->basketRepository->updateBasketPrice($basketId , ($basket->total_price + $product->price * $count) - (($product->price * $count) / 100) * $product->off);
+                    if($basket->official_bill){
+                        $p = ($basket->total_price + $product->price * $count) - (($product->price * $count) / 100) * $product->off;
+                        $this->basketRepository->updateBasketPrice($basketId , (double) ($p + ($product->price * $count) / 100 * 10));
+                    }else{
+                        $this->basketRepository->updateBasketPrice($basketId , ($basket->total_price + $product->price * $count) - (($product->price * $count) / 100) * $product->off);
+                    }
                     return redirect()->back()->with(['success' => 'با موفقیت اضافه شد']);
                 }else{
                     return redirect()->back()->withErrors('مشکلی در افزودن محصول رخ داده است');
