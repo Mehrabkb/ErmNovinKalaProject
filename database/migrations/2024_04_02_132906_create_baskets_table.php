@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('baskets', function (Blueprint $table) {
             $table->id('basket_id');
             $table->unsignedBigInteger('user_id');
-            $table->bigInteger('total_price')->default(0);
+            $table->double('total_price')->default(0);
             $table->string('date' , 250);
             $table->string('status')->default('first-step')->nullable();
             $table->boolean('official_bill')->default(0);

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('factors', function (Blueprint $table) {
             $table->id('factor_id');
             $table->unsignedBigInteger('user_id');
-            $table->bigInteger('total_price')->default(0);
+            $table->double('total_price')->default(0);
             $table->string('date' , 250)->default(\Carbon\Carbon::now()->timestamp);
             $table->string('status', 250)->default('pre-factor');
             $table->boolean('official_bill')->default(false);

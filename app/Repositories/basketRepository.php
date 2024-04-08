@@ -116,8 +116,8 @@ class basketRepository implements basketRepositoryInterface
                 foreach ($basketItems as $basketItem){
                     $product = $this->productRepository->getProductById($basketItem->product_id);
                     if($value){
-                        $basket->total_price += (($product->price * $basketItem->count) - ((($product->price * $basketItem->count) / 100  )* $product->off ))
-                        + (($product->price * $basketItem->count) / 100 )* 10 ;
+                        $price_off = (($product->price * $basketItem->count) - ((($product->price * $basketItem->count) / 100  )* $product->off ));
+                        $basket->total_price += (double) ($price_off + (($price_off/100) * 10));
                     }else{
                         $basket->total_price += ($product->price * $basketItem->count) - ((($product->price * $basketItem->count) / 100 * $product->off ));
                     }

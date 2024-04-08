@@ -139,7 +139,7 @@
 {{--                                        <li class="text-danger"><strong>تخفیف:-</strong> 12.9%</li>--}}
 {{--                                        <li><strong>مالیات بر ارزش افزوده:-</strong> 12.9%</li>--}}
                                     </ul>
-                                    <h3 class="mb-0 text-success">{{ number_format($fullBasket->total_price) }} ریال</h3>
+                                    <h3 class="mb-0 text-success">{{ number_format($fullBasket->total_price  , 3 , '.' ) }} ریال</h3>
 {{--                                    <a href="javascript:void(0);" class="btn btn-info"><i class="zmdi zmdi-print"></i></a>--}}
                                     <a href="{{ route('customer.prefactor.add' , ['id' => $fullBasket->basket_id]) }}" class="btn btn-primary">ثبت نهایی</a>
                                 </div>
