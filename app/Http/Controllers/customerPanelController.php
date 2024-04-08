@@ -202,4 +202,14 @@ class customerPanelController extends Controller
             }
         }
     }
+    public function showSingleFactor($id){
+        $factor_id = htmlspecialchars($id);
+        $factor = $this->factorRepository->getFactorByFactorId($factor_id);
+        if($factor){
+            $factorItems = $this->factorRepository->getFactorItemsByFactorId($factor->factor_id);
+            return view('customerPanel.factor.single' , compact('factor' , 'factorItems'));
+        }else{
+            return redirect()->route('customer.factors')->withErrors('خطایی در استعلام فاکتور رخ داده است');
+        }
+    }
 }

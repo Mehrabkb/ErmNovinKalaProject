@@ -50,7 +50,7 @@
                                                 <td>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->format('%B %d، %Y') }}</td>
                                                 <td>{{ $factor->status }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-primary">
+                                                    <a href="{{ route('customer.factor.single.show' , ['id' => $factor->factor_id]) }}" class="btn btn-primary">
                                                         <i class="zmdi zmdi-eye"></i>
                                                     </a>
                                                 </td>

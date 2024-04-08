@@ -6,6 +6,7 @@ use App\Interfaces\factorRepositoryInterface;
 use App\Models\Factor;
 use App\Models\factorItem;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class factorRepository implements factorRepositoryInterface
 {
@@ -60,5 +61,21 @@ class factorRepository implements factorRepositoryInterface
     {
         // TODO: Implement getFactorsByStatus() method.
         return Factor::where([['status' , '=' ,  $status] , ['user_id' , '=' , $user_id]] )->get();
+    }
+    public function getFactorByFactorId($factorId)
+    {
+        // TODO: Implement getFactorByFactorId() method.
+        $factor = Factor::where('factor_id' , $factorId)->first();
+        if($factor->user_id &&  Auth::user()->user_id){
+            return $factor;
+        }
+        return false;
+    }
+    public function getFactorItemsByFactorId($factorId)
+    {
+        // TODO: Implement getFactorItemsByFactorId() method.
+        return factorItem::where('factor_id' , $factorId)
+            ->join('products' , 'products.product_id' , '=' , 'factor_items.product_id')
+            ->get();
     }
 }
