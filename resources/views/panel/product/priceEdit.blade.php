@@ -27,6 +27,7 @@
                                 <th>عنوان محصول</th>
                                 <th>توضیحات</th>
                                 <th>قیمت</th>
+                                <th>قیمت فاکتور غیر رسمی</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
@@ -44,12 +45,15 @@
                                         {{ $product->description}}
                                     </td>
                                     <td>
-                                        <input type="text" name="price" class="price form-control number-separator" value="{{ number_format($product->price) }}" >
+                                        <input type="text" name="price" class="price form-control number-seperator" value="{{ number_format($product->price) }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="product-company-price" class="product-company-price form-control number-seperator" value="{{ number_format($product->company_price) }}" >
                                     </td>
                                     <td>
                                         <button class="btn btn-primary btn-edit-price-submit" data-url="{{ route('product.edit.price') }}" data-id="{{ $product->product_id }}" data-method="POST">ثبت قیمت</button>
                                     </td>
-                                </tr> 
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

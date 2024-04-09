@@ -776,15 +776,18 @@ class AdminPanelController extends Controller
         }else if($request->isMethod('POST')){
             $validate = $request->validate([
                 'id' => 'required',
-                'price' => 'required'
+                'price' => 'required',
+                'product-company-price' => 'required',
             ],[
                 'id.required' => 'ایدی الزامی میباشد',
-                'price.required' => 'قیمت الزامی میباشدد'
+                'price.required' => 'قیمت الزامی میباشدد',
+                'product-company-price' => 'قیمت فاکتور غیر رسمی الزامی میباشد'
             ]);
             if($validate){
                 $id = htmlspecialchars($request->input('id'));
                 $price = htmlspecialchars($request->input('price'));
-                $final = $this->productRepository->updateProductPriceByProductId($id , $price);
+                $company_price = htmlspecialchars($request->input('product-company-price'));
+                $final = $this->productRepository->updateProductPriceByProductId($id , $price , $company_price);
                 if($final){
                     return $final;
                 }else{

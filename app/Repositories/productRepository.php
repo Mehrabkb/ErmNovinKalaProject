@@ -328,9 +328,10 @@ class productRepository implements productRepositoryInterface{
         // TODO: Implement getCategoriesCount() method.
         return productCategory::all()->count();
     }
-    public function updateProductPriceByProductId($productId , $price){
+    public function updateProductPriceByProductId($productId , $price , $company_price){
         $product = \App\Models\Product::where('product_id' , $productId)->first();
         $product->price =  (int)str_replace( ',' , '' , $price);
+        $product->company_price = (int)str_replace(',' , '' , $company_price);
         if($product->save()){
             return $product;
         }
