@@ -105,10 +105,18 @@
                                                 <td>{{ ++$counter }}</td>
                                                 <td class="title-product-td">{{ $basketItem->title }}</td>
                                                 <td>{{ $basketItem->description }}</td>
-                                                <td>{{ number_format($basketItem->price) }}</td>
+                                                @if($fullBasket->official_bill)
+                                                    <td>{{ number_format($basketItem->price) }}</td>
+                                                @else
+                                                    <td>{{ number_format($basketItem->company_price) }}</td>
+                                                @endif
                                                 <td>{{ $basketItem->count}}</td>
                                                 <td>{{ $basketItem->off }}</td>
-                                                <td>{{ number_format(($basketItem->price * $basketItem->count) - (($basketItem->price * $basketItem->count / 100) * $basketItem->off) , 3 , '.') }}</td>
+                                                @if($fullBasket->official_bill)
+                                                    <td>{{ number_format(($basketItem->price * $basketItem->count) - (($basketItem->price * $basketItem->count / 100) * $basketItem->off) , 3 , '.') }}</td>
+                                                @else
+                                                    <td>{{ number_format(($basketItem->company_price * $basketItem->count) - (($basketItem->company_price * $basketItem->count / 100) * $basketItem->off) , 3 , '.') }}</td>
+                                                @endif
                                                 <td>
                                                     <button type="button" class="btn btn-danger btn-delete-basket-item" data-id="{{ $basketItem->basket_item_id }}" data-url="{{ route('basket.delete.item') }}"><i class="zmdi zmdi-delete"></i></button>
                                                 </td>

@@ -77,7 +77,7 @@ class customerPanelController extends Controller
                         $p = ($product->price * $count) - (($product->price * $count) / 100) * $product->off ;
                         $this->basketRepository->updateBasketPrice($basketId , (double) ($basket->total_price + ($p + ($p / 100) * 10)));
                     }else{
-                        $this->basketRepository->updateBasketPrice($basketId , ($basket->total_price + $product->price * $count) - (($product->price * $count) / 100) * $product->off);
+                        $this->basketRepository->updateBasketPrice($basketId , ($basket->total_price + $product->company_price * $count) - (($product->company_price * $count) / 100) * $product->off);
                     }
                     return redirect()->back()->with(['success' => 'با موفقیت اضافه شد']);
                 }else{
@@ -103,6 +103,8 @@ class customerPanelController extends Controller
                     if($this->basketRepository->deleteBasketItemByBasketItemId($basketItem->basket_item_id)){
                         if($basket->official_bill){
                             $price += ($price / 100) * 10;
+                        }else{
+                            $price = ($basketItem->count * $product->company_price) - (($basketItem->count * $product->company_price / 100) * $product->off);
                         }
                         $totalPrice = $basket->total_price - $price ;
                         $this->basketRepository->updateBasketPrice($basket->basket_id , $totalPrice);

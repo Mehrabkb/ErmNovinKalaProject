@@ -119,7 +119,7 @@ class basketRepository implements basketRepositoryInterface
                         $price_off = (($product->price * $basketItem->count) - ((($product->price * $basketItem->count) / 100  )* $product->off ));
                         $basket->total_price += (double) ($price_off + (($price_off/100) * 10));
                     }else{
-                        $basket->total_price += ($product->price * $basketItem->count) - ((($product->price * $basketItem->count) / 100 * $product->off ));
+                        $basket->total_price += ($product->company_price * $basketItem->count) - ((($product->company_price * $basketItem->count) / 100 * $product->off ));
                     }
                 }
                 $basket->save();
