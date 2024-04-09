@@ -52,6 +52,10 @@
                                     <input type="text" name="product-price" class="form-control number-separator" value="{{ number_format($product->price) }}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="product-company-price">قیمت</label>
+                                    <input type="text" name="product-company-price" class="form-control number-separator" placeholder="قیمت فاکتور غیر رسمی">
+                                </div>
+                                <div class="form-group">
                                     <label for="product-off">تخفیف</label>
                                     <input type="number" name="off" class="form-control" value="{{ number_format($product->off) }}">
                                 </div>

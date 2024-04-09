@@ -45,6 +45,10 @@
                                     <input type="text" name="product-price" class="form-control number-separator">
                                 </div>
                                 <div class="form-group">
+                                    <label for="product-company-price">قیمت</label>
+                                    <input type="text" name="product-company-price" class="form-control number-separator" placeholder="قیمت فاکتور غیر رسمی">
+                                </div>
+                                <div class="form-group">
                                     <label for="categories">دسته بندی</label>
                                     <select name="product-category-id" class="form-control">
                                         <option disabled selected >یک دسته بندی برای محصول خود انتخاب کنید</option>

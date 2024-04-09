@@ -241,6 +241,7 @@ class productRepository implements productRepositoryInterface{
         $product->title = $data['product-title'];
         $product->balance = $data['product-balance'];
         $product->price = (int)str_replace( ',' , '' , $data['product-price']);
+        $product->company_price = (int)str_replace( ',' , '' , $data['product-company-price']);
         $product->sku = rand(1 , 1000) + Carbon::now()->timestamp;
         $product->product_category_id = $data['product-category-id'];
         $product->product_status_id = $data['product-status-id'];
@@ -295,6 +296,7 @@ class productRepository implements productRepositoryInterface{
         $product->title = $data['product-title'];
         $product->balance = $data['product-balance'];
         $product->price = (int)str_replace( ',' , '' , $data['product-price']);
+        $product->company_price = (int)str_replace(',' ,'' , $data['product-company-price']);
         $product->sku = rand(1 , 1000) + Carbon::now()->timestamp;
         $product->product_category_id = $data['product-category-id'];
         $product->product_status_id = $data['product-status-id'];

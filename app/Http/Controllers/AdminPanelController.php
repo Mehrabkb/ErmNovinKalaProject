@@ -154,6 +154,7 @@ class AdminPanelController extends Controller
                     'product-title' => 'required',
                     'product-balance' => 'required',
                     'product-price' => 'required',
+                    'product-company-price' => 'required',
                     'product-category-id' => 'required',
                     'product-status-id' => 'required',
                     'product-brand-id' => 'required',
@@ -162,6 +163,7 @@ class AdminPanelController extends Controller
                     'product-title.required' => 'عنوان محصول الزامی می باشد',
                     'product-balance.required' => 'موجودی الزامی می باشد',
                     'product-price.required' => 'قیمت الزامی می باشد',
+                    'product-company-price.required' => 'قیمت غیر رسمی الزامی می باشد',
                     'product-category-id.required' => 'دسته بندی الزامی می باشد',
                     'product-status-id.required' => 'وضعیت نمی تواند خالی باشد',
                     'product-brand-id.required' => 'برند نمیتواند خالی باشد',
@@ -173,6 +175,7 @@ class AdminPanelController extends Controller
                     $data['product-title'] = htmlspecialchars($request->input('product-title'));
                     $data['product-balance'] = htmlspecialchars($request->input('product-balance'));
                     $data['product-price'] = htmlspecialchars($request->input('product-price'));
+                    $data['product-company-price'] = htmlspecialchars($request->input('product-company-price'));
                     $data['product-category-id'] = htmlspecialchars($request->input('product-category-id'));
                     $data['product-status-id'] = htmlspecialchars($request->input('product-status-id'));
                     $data['product-brand-id'] = htmlspecialchars($request->input('product-brand-id'));
@@ -210,6 +213,7 @@ class AdminPanelController extends Controller
             'product-title' => 'required',
             'product-balance' => 'required',
             'product-price' => 'required',
+            'product-company-price' => 'required',
             'product-category-id' => 'required',
             'product-status-id' => 'required',
             'product-brand-id' => 'required',
@@ -220,6 +224,7 @@ class AdminPanelController extends Controller
             'product-title.required' => 'عنوان محصول الزامی می باشد',
             'product-balance.required' => 'موجودی الزامی می باشد',
             'product-price.required' => 'قیمت الزامی می باشد',
+            'product-company-price' => 'قیمت فاکتور غیر رسمی الزامی می باشد',
             'product-category-id.required' => 'دسته بندی الزامی می باشد',
             'product-status-id.required' => 'وضعیت نمی تواند خالی باشد',
             'product-brand-id.required' => 'برند نمیتواند خالی باشد',
@@ -234,6 +239,7 @@ class AdminPanelController extends Controller
             $data['product-title'] = htmlspecialchars($request->input('product-title'));
             $data['product-balance'] = htmlspecialchars($request->input('product-balance'));
             $data['product-price'] = htmlspecialchars($request->input('product-price'));
+            $data['product-company-price'] = htmlspecialchars($request->input('product-company-price'));
             $data['product-category-id'] = htmlspecialchars($request->input('product-category-id'));
             $data['product-status-id'] = htmlspecialchars($request->input('product-status-id'));
             $data['product-brand-id'] = htmlspecialchars($request->input('product-brand-id'));

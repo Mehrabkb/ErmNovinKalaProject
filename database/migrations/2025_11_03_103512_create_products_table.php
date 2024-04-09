@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('balance')->default(0);
             $table->bigInteger('price')->default(0);
+            $table->bigInteger('company_price')->default(0);
             $table->unsignedBigInteger('product_category_id');
             $table->unsignedBigInteger('product_status_id');
             $table->unsignedBigInteger('user_publisher_id' );
