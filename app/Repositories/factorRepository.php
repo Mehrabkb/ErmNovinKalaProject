@@ -24,6 +24,7 @@ class factorRepository implements factorRepositoryInterface
         $factor = new Factor();
         $factor->user_id = $basket->user_id;
         $factor->total_price = $basket->total_price;
+        $factor->official_bill = $basket->official_bill;
         $factor->date = Carbon::now()->timestamp;
         if($factor->save()){
             foreach($basketItems as $basketItem){
