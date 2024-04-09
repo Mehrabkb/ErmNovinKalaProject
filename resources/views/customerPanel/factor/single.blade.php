@@ -11,10 +11,15 @@
                 width: 1518px;
                 height: 989px;
             }
+
+            table , tr , th , td {
+                border-collapse: collapse!important;
+                border : 1px solid #000!important;
+            }
         }
         table , tr , th , td {
-            border-collapse: collapse;
-            border : 1px solid #000;
+            border-collapse: collapse!important;
+            border : 1px solid #000!important;
         }
     </style>
 @endsection
@@ -37,11 +42,11 @@
 
             <div class="container-fluid printer-div" style="align-items: center" id="printer-div">
                 <!-- Basic Table -->
-                <div class="row text-dark bg-white clearfix py-3 align-items-center">
+                <div class="row text-dark bg-white clearfix py-3 align-items-center" ">
                     <div class="col-lg-3 col-md-3 col-sm-3 text-center">
                         <img src="{{ asset('pictures/logo.png') }}" class="w-50" alt="">
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center" >
                         <h2 class="text-dark my-3">پیش فاکتور فروش کالا و خدمات</h2>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
@@ -60,8 +65,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 border">
-                        <h4 class="border text-dark py-2 text-center" style="background : #f5f5f5;">مشخصات فروشنده</h4>
+                    <div class="col-lg-12 col-md-12 col-sm-12 border" >
+                        <h4 class="text-dark py-2 text-center" style="background : #ccc; border : 1px solid #000;">مشخصات فروشنده</h4>
                         <div class="row justify-content-center">
                             <div class="col-lg-4 col-md-4 col-sm-4 text-center">
                                 <span><strong>نام شخص حقیقی / حقوقی : </strong></span>
@@ -92,7 +97,7 @@
                                 <span>44832374</span>
                             </div>
                         </div>
-                        <h4 class="border text-dark py-2 text-center" style="background : #f5f5f5;">مشخصات خریدار</h4>
+                        <h4 class="text-dark py-2 text-center" style="background : #ccc; border: 1px solid #000;">مشخصات خریدار</h4>
                         <div class="row justify-content-center">
                             <div class="col-lg-4 col-md-4 col-sm-4 text-center">
                                 <span><strong>شماره تلفن :</strong></span>
@@ -126,7 +131,7 @@
                             </div>
 
                         </div>
-                        <h4 class="border text-dark py-2 text-center" style="background : #f5f5f5;">مشخصات کالا یا خدمات مورد معامله</h4>
+                        <h4 class="text-dark py-2 text-center" style="background : #ccc; border : 1px solid #000;">مشخصات کالا یا خدمات مورد معامله</h4>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="table-responsive">
                                 <table class="table" style="border-collapse: collapse; border : 1px solid #000;">
