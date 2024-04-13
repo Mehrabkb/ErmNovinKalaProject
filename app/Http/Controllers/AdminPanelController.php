@@ -830,4 +830,12 @@ class AdminPanelController extends Controller
             return view('panel/factors/all' , compact('factors'));
         }
     }
+    public function showSingleFactor(Request $request , $id){
+        if($request->isMethod('GET')){
+            $id = htmlspecialchars($id);
+            $factor = $this->factorRepository->getFactorByFactorId($id);
+            $factorItems = $this->factorRepository->getFactorItemsByFactorId($id);
+            return view('panel/factors/single' , compact('factor' , 'factorItems'));
+        }
+    }
 }

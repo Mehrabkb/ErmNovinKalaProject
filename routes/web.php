@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('customer.login');
 });
 Route::get('/panel' , function(){
     return view('panel/master');
@@ -34,6 +34,7 @@ Route::prefix('panel')->group(function(){
     Route::post('user/edit' , [AdminPanelController::class , 'editUser'])->name('user.edit');
     Route::prefix('factor')->group(function(){
        Route::get('all' , [AdminPanelController::class , 'showAllFactors'])->name('factor.all.panel.admin');
+       Route::get('single/{id}' , [AdminPanelController::class , 'showSingleFactor'])->name('factor.single.panel.admin.show');
     });
     Route::prefix('product')->group(function(){
         Route::get('/' , [\App\Http\Controllers\AdminPanelController::class , 'product'])->name('products');

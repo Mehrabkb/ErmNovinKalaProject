@@ -87,6 +87,6 @@ class factorRepository implements factorRepositoryInterface
     public function getAllFactorsWithUsersData()
     {
         // TODO: Implement getAllFactorsWithUsersData() method.
-        return Factor::join('users' , 'users.user_id' , '=' , 'factors.user_id')->get();
+        return Factor::join('users' , 'users.user_id' , '=' , 'factors.user_id')->orderBy('factors.date' , 'DESC')->get();
     }
 }

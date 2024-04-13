@@ -28,6 +28,7 @@
                                 <th>مبلغ فاکتور</th>
                                 <th>تاریخ</th>
                                 <th>کاربر</th>
+                                <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,6 +49,9 @@
                                     </td>
                                     <td>
                                         {{ $factor->phone }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ route('factor.single.panel.admin.show' , ['id' => $factor->factor_id]) }}"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

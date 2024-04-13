@@ -57,11 +57,11 @@
                             </li>
                             <li class="text-center">
                                 <span>تاریخ:</span>
-                                <span><strong>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->format('%Y/%M/%d'); }}</strong> </span>
+                                <span><strong>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->format('%Y/%m/%d'); }}</strong> </span>
                             </li>
                             <li class="text-center">
                                 <span>تاریخ اعتبار:</span>
-                                <span><strong>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->addDay(1)->format('%Y/%M/%d'); }}</strong> </span>
+                                <span><strong>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->addDay(1)->format('%Y/%m/%d'); }}</strong> </span>
                             </li>
                         </ul>
                     </div>
@@ -269,7 +269,7 @@
     <script src="{{ asset('plugins/divJsPrinter/divjs.js') }}" ></script>
     <script !src="">
         let number = $('td.num2persian').html();
-        $('td.num2persian').html('مبلغ به حروف : ' + number.num2persian());
+        $('td.num2persian').html('مبلغ به حروف : ' + number.num2persian() + ' ریال');
         function PrintDiv()
         {
             var divContents = document.querySelector(".printer-div").innerHTML;
