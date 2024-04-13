@@ -43,4 +43,5 @@ interface  productRepositoryInterface
     public function updateProductPriceByProductId($productId , $price , $company_price);
     public function updateProductBrandByProductId($productId , $brandId);
     public function searchProduct($value , $column);
+    public function getProductsByCategoryId($category_id);
 }

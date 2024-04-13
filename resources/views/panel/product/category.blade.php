@@ -112,7 +112,7 @@
                             <thead>
                             <tr>
                                 <th>ردیف</th>
-                                <th>نام انگلیسی دسته</th>
+                                <th>آیدی دسته بندی</th>
                                 <th>نام فارسی دسته</th>
                                 <th>عکس</th>
                                 <th>والد</th>
@@ -127,7 +127,7 @@
                                 <tr>
                                     <td>{{ ++$count }}</td>
                                     <td>
-                                        {{ $category->english_category }}
+                                        {{ $category->product_category_id }}
                                     </td>
                                     <td>
                                         {{ $category->persian_category }}

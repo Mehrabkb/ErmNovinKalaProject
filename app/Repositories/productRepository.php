@@ -354,4 +354,9 @@ class productRepository implements productRepositoryInterface{
         $products = Product::where($column , 'LIKE' , '%'.$value.'%')->get();
         return $products;
     }
+    public function getProductsByCategoryId($category_id)
+    {
+        // TODO: Implement getProductsByCategoryId() method.
+        return Product::where('product_category_id' , $category_id)->get();
+    }
 }

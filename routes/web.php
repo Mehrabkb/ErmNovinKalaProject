@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('customer.login');
 });
+Route::get('/category/table/{id}',[\App\Http\Controllers\PublicPanelController::class , 'categoryTableGetter'])->name('category.table');
 Route::get('/panel' , function(){
     return view('panel/master');
 });
