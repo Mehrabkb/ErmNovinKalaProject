@@ -51,17 +51,17 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
                         <ul class="mx-auto data-list-ul p-0">
-                            <li>
+                            <li class="text-center">
                                 <span>شماره سریال:</span>
-                                <span>{{ $factor->factor_id }}</span>
+                                <span><strong>{{ $factor->factor_id }}</strong> </span>
                             </li>
-                            <li>
+                            <li class="text-center">
                                 <span>تاریخ:</span>
-                                <span>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->format('%Y/%M/%d'); }}</span>
+                                <span><strong>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->format('%Y/%M/%d'); }}</strong> </span>
                             </li>
-                            <li>
+                            <li class="text-center">
                                 <span>تاریخ اعتبار:</span>
-                                <span>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->addDay(1)->format('%Y/%M/%d'); }}</span>
+                                <span><strong>{{ \Morilog\Jalali\Jalalian::forge($factor->date)->addDay(1)->format('%Y/%M/%d'); }}</strong> </span>
                             </li>
                         </ul>
                     </div>

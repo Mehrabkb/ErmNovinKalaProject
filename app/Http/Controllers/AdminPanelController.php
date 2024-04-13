@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\categoryImporterClass;
 use App\Repositories\alertifyRepository;
+use App\Repositories\factorRepository;
 use App\Repositories\productRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -14,12 +15,14 @@ use Maatwebsite\Excel\Excel;
 
 class AdminPanelController extends Controller
 {
-    public function __construct(UserRepository $userRepository , productRepository $productRepository , alertifyRepository $alertifyRepository)
+    public function __construct(UserRepository $userRepository , productRepository $productRepository , alertifyRepository $alertifyRepository
+     , factorRepository $factorRepository)
     {
         $this->middleware('checkUserLogin');
         $this->userRepository = $userRepository;
         $this->productRepository = $productRepository;
         $this->alertifyRepository = $alertifyRepository;
+        $this->factorRepository = $factorRepository;
     }
 
     public function index(Request $request){
@@ -819,6 +822,12 @@ class AdminPanelController extends Controller
                     return false;
                 }
             }
+        }
+    }
+    public function showAllFactors(Request $request){
+        if($request->isMethod('GET')){
+            $factors = $this->factorRepository->getAllFactorsWithUsersData();
+            return view('panel/factors/all' , compact('factors'));
         }
     }
 }

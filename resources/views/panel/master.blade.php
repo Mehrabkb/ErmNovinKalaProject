@@ -105,6 +105,17 @@
                 <li><a href="{{ route('panel.users') }}"><i class="fa fa-users"></i> <span>کاربران</span></a></li>
                 <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-file"></i> <span>فاکتور ها</span>
+                        <span class="pull-left-container">
+              <i class="fa fa-angle-right pull-left"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('factor.all.panel.admin') }}"><i class="fa fa-circle-o"></i>همه </a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
                         <i class="fa fa-product-hunt"></i> <span>محصولات</span>
                         <span class="pull-left-container">
               <i class="fa fa-angle-right pull-left"></i>

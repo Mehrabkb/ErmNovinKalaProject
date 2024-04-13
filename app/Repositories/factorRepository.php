@@ -79,4 +79,14 @@ class factorRepository implements factorRepositoryInterface
             ->join('products' , 'products.product_id' , '=' , 'factor_items.product_id')
             ->get();
     }
+    public function getAllFactors()
+    {
+        // TODO: Implement getAllFactors() method.
+        return Factor::all();
+    }
+    public function getAllFactorsWithUsersData()
+    {
+        // TODO: Implement getAllFactorsWithUsersData() method.
+        return Factor::join('users' , 'users.user_id' , '=' , 'factors.user_id')->get();
+    }
 }
