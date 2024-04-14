@@ -28,11 +28,27 @@ $(function(){
                 }
             });
             that.attr('disabled' , true);
-            setInterval(function(){
+            changeBtnHtml(true);
+            setTimeout(function(){
                 that.attr('disabled' , false);
-            },120000);
+                changeBtnHtml(false);
+            },124000);
         }else{
             alertify.error('شماره موبایل معتبر نمی باشد');
         }
     });
 });
+function changeBtnHtml(flag){
+    let elm = $('.request-verficitaion-code-btn');
+    if(flag){
+        let counter =  121 ;
+        let myInterval = setInterval(function(){
+            elm.html(--counter + ' ثانیه');
+            if(counter == 0){
+                clearInterval(myInterval);
+            }
+        } , 1000);
+    }else{
+        elm.html('ارسال کد فعالسازی');
+    }
+}
