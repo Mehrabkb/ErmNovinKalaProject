@@ -51,6 +51,8 @@ class UserRepository implements UserRepositoryInterface
         $user = \App\Models\User::where('user_id' , $user_id)->first();
         Auth::login($user);
         if(Auth::check() && Auth::user()->user_id == $user_id){
+            $user->verification_code = null ;
+            $user->save();
             return true;
         }else{
             return false;
