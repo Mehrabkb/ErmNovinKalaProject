@@ -27,12 +27,12 @@
                         <div class="card">
                             <div class="body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped m-b-0">
+                                    <table class="table table-striped m-b-0 table-factor">
                                         <thead>
                                         <tr>
                                             <th>ردیف</th>
-                                            <th data-breakpoints="xs">شماره فاکتور</th>
-                                            <th data-breakpoints="xs">مبلغ فاکتور</th>
+                                            <th>شماره فاکتور</th>
+                                            <th>مبلغ فاکتور</th>
                                             <th data-breakpoints="xs">تاریخ</th>
                                             <th data-breakpoints="xs">وضعیت</th>
                                             <th>عملیات</th>

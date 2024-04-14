@@ -60,6 +60,7 @@
                             <thead>
                             <tr>
                                 <th>ردیف</th>
+                                <th>آیدی برند</th>
                                 <th>نام برند</th>
                                 <th>لوگو</th>
                                 <th>عملیات</th>
@@ -72,6 +73,7 @@
                             @foreach($brands as $brand)
                                 <tr>
                                     <td>{{ ++$count }}</td>
+                                    <td>{{ $brand->product_brand_id }}</td>
                                     <td>
                                         {{ $brand->brand_name }}
                                     </td>
