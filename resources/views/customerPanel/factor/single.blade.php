@@ -21,6 +21,11 @@
             border-collapse: collapse!important;
             border : 1px solid #000!important;
         }
+        @media (max-width: 1024px){
+            .btn-print{
+                display : none ;
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -35,21 +40,22 @@
                             <li class="breadcrumb-item"><a href="javascript:void(0);">فاکتورها</a></li>
                         </ul>
                         <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
+                        <button class="btn btn-danger btn-pdf" >دانلود فاکتور</button>
                         <button class="btn btn-primary btn-print" onclick="PrintDiv()">پرینت فاکتور</button>
                     </div>
                 </div>
             </div>
 
-            <div class="container-fluid printer-div" style="align-items: center" id="printer-div">
+            <div class="container-fluid printer-div" style="align-items: center; font-size : .8rem; " id="printer-div">
                 <!-- Basic Table -->
                 <div class="row text-dark bg-white clearfix py-3 align-items-center" ">
-                    <div class="col-lg-3 col-md-3 col-sm-3 text-center">
+                    <div class="col-3 col-lg-3 col-md-3 col-sm-3 text-center">
                         <img src="{{ asset('pictures/logo.png') }}" class="w-50" alt="">
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 text-center" >
+                    <div class="col-6 col-lg-6 col-md-6 col-sm-6 text-center" >
                         <h2 class="text-dark my-3">پیش فاکتور فروش کالا و خدمات</h2>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="col-3 col-lg-3 col-md-3 col-sm-3">
                         <ul class="mx-auto data-list-ul p-0">
                             <li class="text-center">
                                 <span>شماره سریال:</span>
@@ -68,62 +74,62 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 border" >
                         <h4 class="text-dark py-2 text-center" style="background : #ccc; border : 1px solid #000;">مشخصات فروشنده</h4>
                         <div class="row justify-content-center">
-                            <div class="col-lg-4 col-md-4 col-sm-4 text-center">
+                            <div class="col-4 col-lg-4 col-md-4 col-sm-4 text-center">
                                 <span><strong>نام شخص حقیقی / حقوقی : </strong></span>
                                 <span>تامین تاسیسات نوین کالا</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 text-center">
                                 <span><strong>شماره اقتصادی :</strong></span>
                                 <span>14012129710</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 text-center">
                                 <span><strong>شماره ثبت :</strong></span>
                                 <span>611154</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 text-center">
                                 <span><strong>شناسه ملی :</strong></span>
                                 <span>14012129710</span>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 my-3 text-center">
+                            <div class="col-6 col-lg-6 col-md-6 col-sm-6 mt-3 text-center">
                                 <span><strong>نشانی :</strong></span>
                                 <span>تهران ، جنت آباد شمالی ، خیابان ایرانشهر جنوبی ، خیابان گلزار شرقی ، پلاک 27 و طبقه 5 واحد 15 </span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 my-3 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 mt-3 text-center">
                                 <span><strong>کدپستی :</strong></span>
                                 <span>1477933759</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 my-3 text-center">
+                            <div class=" col-2 col-lg-2 col-md-2 col-sm-2 mt-3 text-center">
                                 <span><strong>شماره تلفن :</strong></span>
                                 <span>44832374</span>
                             </div>
                         </div>
-                        <h4 class="text-dark py-2 text-center" style="background : #ccc; border: 1px solid #000;">مشخصات خریدار</h4>
+                        <h4 class="text-dark py-1 text-center" style="background : #ccc; border: 1px solid #000;">مشخصات خریدار</h4>
                         <div class="row justify-content-center">
-                            <div class="col-lg-4 col-md-4 col-sm-4 text-center">
+                            <div class="col-4 col-lg-4 col-md-4 col-sm-4 text-center">
                                 <span><strong>شماره تلفن :</strong></span>
                                 <span>{{ Auth::user()->phone }}</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 text-center">
                                 <span><strong>شماره اقتصادی :</strong></span>
                                 <span>{{ Auth::user()->registration_number ?  Auth::user()->registration_number  : 'فاقد مقدار'}}</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 text-center">
                                 <span><strong>شماره ثبت :</strong></span>
                                 <span>{{ Auth::user()->national_id ? Auth::user()->national_id : 'فاقد مقدار' }}</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 text-center">
                                 <span><strong>شناسه ملی :</strong></span>
                                 <span>{{ Auth::user()->registration_number ? Auth::user()->registration_number : 'فاقد مقدار' }}</span>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 my-3 text-center">
+                            <div class="col-4 col-lg-4 col-md-4 col-sm-4 mt-3 text-center">
                                 <span><strong>نشانی :</strong></span>
                                 <span>{{ Auth::user()->address ? Auth::user()->address : 'فاقد مقدار' }}</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 my-3 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 mt-3 text-center">
                                 <span><strong>کد پستی :</strong></span>
                                 <span>{{ Auth::user()->postal_code ? Auth::user()->postal_code : 'فاقد مقدار' }}</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 my-3 text-center">
+                            <div class="col-2 col-lg-2 col-md-2 col-sm-2 mt-3 text-center">
                                 <span><strong>نام و نام خانوادگی :</strong></span>
                                 <span>{{ Auth::user()->first_name ? Auth::user()->first_name : 'فاقد مقدار' }}
                                       {{ Auth::user()->last_name ? Auth::user()->last_name : 'فاقد مقدار' }}
@@ -131,7 +137,7 @@
                             </div>
 
                         </div>
-                        <h4 class="text-dark py-2 text-center" style="background : #ccc; border : 1px solid #000;">مشخصات کالا یا خدمات مورد معامله</h4>
+                        <h4 class="text-dark py-1 text-center" style="background : #ccc; border : 1px solid #000;">مشخصات کالا یا خدمات مورد معامله</h4>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="table-responsive">
                                 <table class="table" style="border-collapse: collapse; border : 1px solid #000;">
@@ -225,12 +231,12 @@
                                                 <span>شرایط و نحوه فروش :</span>
                                                 <span>
                                                     نقدی
-                                                    &nbsp;<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    &nbsp;<input class="form-check-input position-relative" type="checkbox" value="" id="flexCheckDefault">
                                                 </span>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                                 <span>
                                                     غیر نقدی
-                                                    &nbsp;<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    &nbsp;<input class="form-check-input position-relative" type="checkbox" value="" id="flexCheckDefault">
                                                 </span>
                                             </td>
                                             <td colspan="6" class="num2persian">
@@ -267,6 +273,7 @@
 @section('js')
     <script src="https://cdn.jsdelivr.net/gh/mahmoud-eskandari/NumToPersian/dist/num2persian-min.js"></script>
     <script src="{{ asset('plugins/divJsPrinter/divjs.js') }}" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script !src="">
         let number = $('td.num2persian').html();
         $('td.num2persian').html('مبلغ به حروف : ' + number.num2persian() + ' ریال');
@@ -282,6 +289,17 @@
             printWindow.document.write('</body></html>');
             printWindow.document.close();
         }
-
+        $('.btn-pdf').click(function(e){
+            e.preventDefault();
+            let element = document.querySelector('.printer-div');
+            var opt = {
+                margin:       .3,
+                filename:     'myfile.pdf',
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale : 2 },
+                jsPDF:        { unit: 'in', format: 'a4'  , orientation: 'landscape'  }
+            };
+            html2pdf().set(opt).from(element).save();
+        });
     </script>
 @endsection
