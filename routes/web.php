@@ -21,6 +21,7 @@ Route::get('/', function () {
     return redirect()->route('customer.login');
 });
 Route::get('/category/table/{id}',[\App\Http\Controllers\PublicPanelController::class , 'categoryTableGetter'])->name('category.table');
+Route::get('/products/table/{category_id}/{brand_id}' , [\App\Http\Controllers\PublicPanelController::class , 'productTableByCatIdBrandId'])->name('products.table.cat.brand');
 Route::get('/panel' , function(){
     return view('panel/master');
 });

@@ -19,4 +19,12 @@ class PublicPanelController extends Controller
             return view('public/categoryTable' , compact('products'));
         }
     }
+    public function productTableByCatIdBrandId( Request $request , $category_id , $brand_id){
+        if($request->isMethod('GET')){
+             $cat_id = htmlspecialchars($category_id);
+             $brand_id = htmlspecialchars($brand_id);
+            $products = $this->productRepository->getProductByCatIdBrandId($cat_id , $brand_id);
+            return view('public/categoryTable' , compact('products'));
+        }
+    }
 }

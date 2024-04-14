@@ -359,4 +359,9 @@ class productRepository implements productRepositoryInterface{
         // TODO: Implement getProductsByCategoryId() method.
         return Product::where('product_category_id' , $category_id)->get();
     }
+    public function getProductByCatIdBrandId($category_id, $brand_id)
+    {
+        // TODO: Implement getProductByCatIdBrandId() method.
+        return Product::where([['product_category_id' , '=' , $category_id] , ['product_brand_id' , '=' , $brand_id]])->get();
+    }
 }
