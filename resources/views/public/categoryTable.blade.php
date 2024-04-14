@@ -62,7 +62,7 @@
                         {{ $product->off }}
                     </td>
                     <td>
-                        {{ number_format($product->price) }}
+                        {{ $product->price > 0 ? number_format($product->price) : 'استعلام بگیرید' }}
                     </td>
                 </tr>
             @endforeach

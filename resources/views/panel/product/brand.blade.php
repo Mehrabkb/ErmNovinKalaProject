@@ -56,7 +56,7 @@
                         <!-- /. tools -->
                     </div>
                     <div class="box-body">
-                        <table id="unit-table" class="table table-bordered table-hover">
+                        <table id="unit-table" class="table table-bordered table-hover table-info">
                             <thead>
                             <tr>
                                 <th>ردیف</th>

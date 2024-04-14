@@ -106,9 +106,9 @@
                                                 <td class="title-product-td">{{ $basketItem->title }}</td>
                                                 <td>{{ $basketItem->description }}</td>
                                                 @if($fullBasket->official_bill)
-                                                    <td>{{ number_format($basketItem->price) }}</td>
+                                                    <td>{{ number_format($basketItem->price) > 0 ? number_format($basketItem->price) : 'استعلام بگیرید' }}</td>
                                                 @else
-                                                    <td>{{ number_format($basketItem->company_price) }}</td>
+                                                    <td>{{ number_format($basketItem->company_price) > 0 ? number_format($basketItem->company_price) : 'استعلام بگیرید' }}</td>
                                                 @endif
                                                 <td>{{ $basketItem->count}}</td>
                                                 <td>{{ $basketItem->off }}</td>
