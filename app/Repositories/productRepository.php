@@ -228,6 +228,7 @@ class productRepository implements productRepositoryInterface{
         // TODO: Implement allProductsFrontEndData() method.
         $products = DB::table('products')
             ->join('product_categories' , 'products.product_category_id' , '=' , 'product_categories.product_category_id')
+            ->leftJoin('product_brands' , 'products.product_brand_id' , '=' , 'product_brands.product_brand_id')
             ->get();
         return $products;
     }

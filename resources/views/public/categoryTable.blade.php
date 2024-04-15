@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="{{ asset('panelAdmin') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 </head>
 <body>
-    <section class="p-3">
+    <section class="p-3" style="padding: 4%;">
         <table id="unit-table" class="table table-bordered table-hover table-info">
             <thead>
             <tr>
@@ -122,7 +122,7 @@
                     'previous': 'قبلی',
                     'next': 'بعدی'
                 }
-            }
+            },
         })
     </script>
 </body>

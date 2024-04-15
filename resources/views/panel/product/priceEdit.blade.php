@@ -26,6 +26,7 @@
                                 <th>ردیف</th>
                                 <th>عنوان محصول</th>
                                 <th>توضیحات</th>
+                                <th>برند</th>
                                 <th>قیمت</th>
                                 <th>قیمت فاکتور غیر رسمی</th>
                                 <th>عملیات</th>
@@ -43,6 +44,9 @@
                                     </td>
                                     <td>
                                         {{ $product->description}}
+                                    </td>
+                                    <td>
+                                        {{ $product->product_brand_id == 1 ? 'فاقد مقدار' : $product->brand_name }}
                                     </td>
                                     <td>
                                         <input type="text" name="price" class="price form-control number-seperator" value="{{ number_format($product->price) }}">
