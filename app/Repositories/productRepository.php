@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\productBrand;
 use App\Models\productCategory;
 use App\Models\productFeature;
+use App\Models\productFeatureConnection;
 use App\Models\productStatus;
 use App\Models\publicTags;
 use App\Models\Unit;
@@ -255,6 +256,11 @@ class productRepository implements productRepositoryInterface{
         $data['product-tag-id'] != '' ? $product->product_tag_id = $data['product-tag-id'] : '';
         isset($data['image']) ? $product->main_image = $data['image'] : '';
         if($product->save()){
+            if(isset($data['product-feature-values'])){
+                for($i = 0 ; $i < count($data['product-feature-values']) ; $i++){
+                    $this->addProductFeatureConnection($data['product-feature-values'][$i]['product-feature-id'] , $data['product-feature-values'][$i]['product-feature-value'] , $product->product_id);
+                }
+            }
             return true;
         }
         return false;
@@ -378,6 +384,19 @@ class productRepository implements productRepositoryInterface{
         $productFeature->date = Carbon::now()->timestamp;
         if($productFeature->save()){
             return $productFeature;
+        }
+        return false;
+    }
+    public function addProductFeatureConnection($product_feature_key_id, $product_feature_value , $product_id)
+    {
+        // TODO: Implement addProductFeatureConnection() method.
+        $productFeatureConnection = new productFeatureConnection();
+        $productFeatureConnection->product_id = $product_id;
+        $productFeatureConnection->product_feature_id = $product_feature_key_id;
+        $productFeatureConnection->product_feature_value = $product_feature_value;
+        $productFeatureConnection->date = Carbon::now()->timestamp;
+        if($productFeatureConnection->save()){
+            return true;
         }
         return false;
     }

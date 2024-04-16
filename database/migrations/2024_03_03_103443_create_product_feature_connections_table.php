@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('product_feature_id');
             $table->string('product_feature_value' , 255)->nullable();
-            $table->date('date' , 250);
+            $table->string('date' , 250);
         });
     }
 

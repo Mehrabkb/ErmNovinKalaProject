@@ -47,4 +47,5 @@ interface  productRepositoryInterface
     public function getProductByCatIdBrandId($category_id , $brand_id);
     public function getProductFeatures();
     public function addProductFeature($feature_key);
+    public function addProductFeatureConnection($product_feature_key_id , $product_feature_value , $product_id);
 }

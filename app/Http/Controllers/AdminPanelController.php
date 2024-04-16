@@ -150,7 +150,8 @@ class AdminPanelController extends Controller
                 $productStatuses = $this->productRepository->allProductStatuses();
                 $brands = $this->productRepository->getAllBrand();
                 $tags = $this->productRepository->getAllTags();
-                return view('panel/product/add' , compact('products' , 'categories' , 'productStatuses' , 'brands' , 'tags'));
+                $productFeatures = $this->productRepository->getProductFeatures();
+                return view('panel/product/add' , compact('products' , 'categories' , 'productStatuses' , 'brands' , 'tags' , 'productFeatures'));
                 break;
             case 'POST':
                 $validate = $request->validate([
@@ -184,12 +185,23 @@ class AdminPanelController extends Controller
                     $data['product-brand-id'] = htmlspecialchars($request->input('product-brand-id'));
                     $data['product-tag-id'] = htmlspecialchars($request->input('product-tag-id'));
                     $data['product-description'] = htmlspecialchars($request->input('description'));
+                    $product_feature_keys = $request->input('product-feature-key-id');
+                    $product_feature_values = $request->input('product-feature-value');
                     if($request->hasFile('main-image')){
                         $image = $request->file('main-image');
                         $imageName = 'images/' . time() . '.' . request()->file('main-image')->getClientOriginalExtension();
 
                         $image->move(public_path('images'), $imageName);
                         $data['image'] = url($imageName);
+                    }
+                    if($product_feature_values[0] != null){
+                        $data['product-feature-values'] = array();
+                        for($i = 0 ; $i < count($product_feature_keys) ; $i++){
+                            array_push($data['product-feature-values'] ,[
+                                'product-feature-id' => $product_feature_keys[$i],
+                                'product-feature-value' => $product_feature_values[$i]
+                            ]);
+                        }
                     }
                     if($this->productRepository->addProduct($data)){
                         return redirect()->back()->with(['success' => 'با موفقیت اضافه شد']);
