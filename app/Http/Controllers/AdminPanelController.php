@@ -875,4 +875,19 @@ class AdminPanelController extends Controller
             return view('panel/factors/single' , compact('factor' , 'factorItems'));
         }
     }
+    public function descToSize(Request $request){
+        if($request->isMethod('GET')){
+            $products = $this->productRepository->allProducts();
+            foreach($products as $key => $value){
+                if(preg_match('/^[0-9]*$/' , $value->description )){
+                    unset($products[$key]);
+                }
+            }
+            foreach ($products as $key => $value){
+                $finalSize = str_replace('سایز:' , '' , $value->description);
+                $this->productRepository->addProductFeatureConnection(1 , $finalSize , $value->product_id);
+            }
+            return true;
+        }
+    }
 }

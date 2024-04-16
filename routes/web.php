@@ -75,6 +75,7 @@ Route::prefix('panel')->group(function(){
         Route::post('product/edit/price' , [AdminPanelController::class , 'editProductPrice'])->name('product.edit.price');
         Route::get('product/edit/brand' , [AdminPanelController::class , 'editBrandPrice'])->name('product.edit.brand');
         Route::post('product/edit/brand' , [AdminPanelController::class , 'editBrandPrice'])->name('product.edit.brand');
+        Route::get('description/to/size' ,  [AdminPanelController::class , 'descToSize'])->name('description.to.size');
     });
 });
 

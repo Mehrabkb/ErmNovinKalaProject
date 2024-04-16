@@ -52,4 +52,5 @@ interface  productRepositoryInterface
     public function deleteProductFeatureConnectionByProductIdFeatureId($product_id , $feature_id);
     public function getProductFeatureConnectionByProductAndFeatureId($product_id , $feature_id);
     public function updateProductFeatureConnectionByProductAndFeatureId($product_id , $feature_id , $product_feature_value);
+    public function allProducts();
 }

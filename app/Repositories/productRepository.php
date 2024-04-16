@@ -451,4 +451,9 @@ class productRepository implements productRepositoryInterface{
         }
         return false;
     }
+    public function allProducts()
+    {
+        // TODO: Implement allProducts() method.
+        return Product::all();
+    }
 }
