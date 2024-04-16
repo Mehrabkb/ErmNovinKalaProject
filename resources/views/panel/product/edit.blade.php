@@ -48,12 +48,26 @@
                                     <input type="number"  min="0" class="form-control" value="{{ $product->balance }}" name="product-balance">
                                 </div>
                                 <div class="form-group">
+                                    <label>ویژگی ها</label>
+                                    @foreach($productFeatures as $productFeature)
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <input type="hidden" name="product-feature-key-id[]" value="{{ $productFeature->product_feature_id  }}">
+                                                <input type="text" class="form-control" disabled value="{{ $productFeature->feature_key }}">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="product-feature-value[]" value="{{ $productFeature->product_feature_value }}" class="form-control" placeholder="لطفا مقدار مورد نظر را وارد کنید مثال : 10cm">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="form-group">
                                     <label for="product-price">قیمت</label>
                                     <input type="text" name="product-price" class="form-control number-separator" value="{{ number_format($product->price) }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="product-company-price">قیمت</label>
-                                    <input type="text" name="product-company-price" class="form-control number-separator" placeholder="قیمت فاکتور غیر رسمی">
+                                    <input type="text" name="product-company-price" class="form-control number-separator" value="{{ number_format($product->company_price) }}" placeholder="قیمت فاکتور غیر رسمی">
                                 </div>
                                 <div class="form-group">
                                     <label for="product-off">تخفیف</label>

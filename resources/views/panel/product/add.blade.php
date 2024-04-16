@@ -49,7 +49,7 @@
                                              <input type="text" class="form-control" disabled value="{{ $productFeature->feature_key }}">
                                          </div>
                                          <div class="col-lg-4">
-                                             <input type="text" name="product-feature-value[]" class="form-control" placeholder="لطفا مقدار مورد نظر را وارد کنید مثال : 10cm">
+                                             <input type="text" name="product-feature-value[]"  class="form-control" placeholder="لطفا مقدار مورد نظر را وارد کنید مثال : 10cm">
                                          </div>
                                      </div>
                                     @endforeach

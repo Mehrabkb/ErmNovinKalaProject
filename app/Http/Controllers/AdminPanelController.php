@@ -219,7 +219,8 @@ class AdminPanelController extends Controller
             $brands = $this->productRepository->getAllBrand();
             $tags = $this->productRepository->getAllTags();
             $product = $this->productRepository->getProductById(htmlspecialchars($id));
-            return view('panel/product/edit' , compact('categories' , 'productStatuses' , 'brands' , 'tags' , 'product'));
+            $productFeatures = $this->productRepository->getProductFeatureIdByproductId($product->product_id);
+            return view('panel/product/edit' , compact('categories' , 'productStatuses' , 'brands' , 'tags' , 'product' , 'productFeatures'));
         }
     }
     public function editProductSingle(Request $request){
@@ -261,12 +262,21 @@ class AdminPanelController extends Controller
             $data['product-tag-id'] = htmlspecialchars($request->input('product-tag-id'));
             $data['product-description'] = htmlspecialchars($request->input('description'));
             $data['off'] = htmlspecialchars($request->input('off'));
+            $product_feature_keys = $request->input('product-feature-key-id');
+            $product_feature_values = $request->input('product-feature-value');
             if($request->hasFile('main-image')){
                 $image = $request->file('main-image');
                 $imageName = 'images/' . time() . '.' . request()->file('main-image')->getClientOriginalExtension();
 
                 $image->move(public_path('images'), $imageName);
                 $data['image'] = url($imageName);
+            }
+            $data['product-feature-values'] = array();
+            for($i = 0 ; $i < count($product_feature_keys) ; $i++){
+                array_push($data['product-feature-values'] ,[
+                    'product-feature-id' => $product_feature_keys[$i],
+                    'product-feature-value' => $product_feature_values[$i]
+                ]);
             }
             if($this->productRepository->editProductById($product_id , $data)){
                 return redirect()->back()->with(['success' => 'با موفقیت ویرایش شد']);

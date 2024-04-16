@@ -315,6 +315,18 @@ class productRepository implements productRepositoryInterface{
         $product->description = $data['product-description'];
         $product->off = $data['off'];
         $data['product-tag-id'] != '' ? $product->product_tag_id = $data['product-tag-id'] : '';
+        if(isset($data['product-feature-values'])){
+            for($i = 0 ; $i < count($data['product-feature-values']) ; $i++){
+                if($data['product-feature-values'][$i]['product-feature-value'] == null){
+                    $this->deleteProductFeatureConnectionByProductIdFeatureId($product->product_id , $data['product-feature-values'][$i]['product-feature-id']);
+                }else if($this->getProductFeatureConnectionByProductAndFeatureId($product->product_id , $data['product-feature-values'][$i]['product-feature-id'])){
+                    $this->updateProductFeatureConnectionByProductAndFeatureId($product->product_id , $data['product-feature-values'][$i]['product-feature-id'] , $data['product-feature-values'][$i]['product-feature-value']);
+                }
+                else{
+                    $this->addProductFeatureConnection($data['product-feature-values'][$i]['product-feature-id'] , $data['product-feature-values'][$i]['product-feature-value'] , $product->product_id);
+                }
+            }
+        }
         isset($data['image']) ? $product->main_image = $data['image'] : '';
         if($product->save()){
             return true;
@@ -395,6 +407,45 @@ class productRepository implements productRepositoryInterface{
         $productFeatureConnection->product_feature_id = $product_feature_key_id;
         $productFeatureConnection->product_feature_value = $product_feature_value;
         $productFeatureConnection->date = Carbon::now()->timestamp;
+        if($productFeatureConnection->save()){
+            return true;
+        }
+        return false;
+    }
+    public function getProductFeatureIdByproductId($product_id)
+    {
+        // TODO: Implement getProductFeatureIdByproductId() method.
+        $productFeatureConnection = productFeatureConnection::where('product_id' , $product_id)
+                    ->leftJoin('product_features' , 'product_feature_connections.product_feature_id' , '=' , 'product_features.product_feature_id')
+                    ->get();
+        if($productFeatureConnection){
+            return $productFeatureConnection;
+        }
+        return false;
+    }
+    public function deleteProductFeatureConnectionByProductIdFeatureId($product_id, $feature_id)
+    {
+        // TODO: Implement deleteProductFeatureConnectionByProductIdFeatureId() method.
+        $productFeatureConnection = productFeatureConnection::where([['product_id' , '=' ,  $product_id] , ['product_feature_id' , '=' ,  $feature_id]])->first();
+        if($productFeatureConnection->delete()){
+            return true;
+        }
+        return false;
+    }
+    public function getProductFeatureConnectionByProductAndFeatureId($product_id, $feature_id)
+    {
+        // TODO: Implement getProductFeatureConnectionByProductAndFeatureId() method.
+        $productFeatureConnection = productFeatureConnection::where([['product_id' , '=' ,  $product_id] , ['product_feature_id' ,'=' ,  $feature_id]])->first();
+        if($productFeatureConnection){
+            return $productFeatureConnection;
+        }
+        return false;
+    }
+    public function updateProductFeatureConnectionByProductAndFeatureId($product_id, $feature_id , $product_feature_value)
+    {
+        // TODO: Implement updateProductFeatureConnectionByProductAndFeatureId() method.
+        $productFeatureConnection = productFeatureConnection::where([['product_id' , '=' ,  $product_id] , ['product_feature_id' , '=' , $feature_id]])->first();
+        $productFeatureConnection->product_feature_value = $product_feature_value;
         if($productFeatureConnection->save()){
             return true;
         }

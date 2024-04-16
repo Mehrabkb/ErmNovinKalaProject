@@ -48,4 +48,8 @@ interface  productRepositoryInterface
     public function getProductFeatures();
     public function addProductFeature($feature_key);
     public function addProductFeatureConnection($product_feature_key_id , $product_feature_value , $product_id);
+    public function getProductFeatureIdByproductId($product_id);
+    public function deleteProductFeatureConnectionByProductIdFeatureId($product_id , $feature_id);
+    public function getProductFeatureConnectionByProductAndFeatureId($product_id , $feature_id);
+    public function updateProductFeatureConnectionByProductAndFeatureId($product_id , $feature_id , $product_feature_value);
 }
