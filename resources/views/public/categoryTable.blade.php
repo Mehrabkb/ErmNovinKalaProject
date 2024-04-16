@@ -32,10 +32,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/alertify/css/themes/bootstrap.rtl.css') }}">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-{{--    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.3/b-3.0.1/b-colvis-3.0.1/r-3.0.1/datatables.min.css" rel="stylesheet">--}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.css">
-    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.material.css">
-
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.3/b-3.0.1/r-3.0.1/datatables.min.css" rel="stylesheet">
 </head>
 <body>
     <section class="p-3" style="padding: 4%;">
@@ -112,9 +109,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('panelAdmin') }}/dist/js/demo.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/dt-2.0.3/b-3.0.1/b-colvis-3.0.1/r-3.0.1/datatables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.js"></script>
-{{--    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.material.js"></script>--}}
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.0.3/b-3.0.1/r-3.0.1/datatables.min.js"></script>
     <script>
         $('.table-info').DataTable({
             "language": {
