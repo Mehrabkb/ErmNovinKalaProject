@@ -16,7 +16,7 @@ class checkUserLoginUserRoute
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->user_role_id == 1){
             return redirect()->route('panel.home');
         }
         return $next($request);
