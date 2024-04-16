@@ -279,7 +279,22 @@ class AdminPanelController extends Controller
     public function feature(Request $request){
         switch($request->method()){
             case 'GET':
-                return view('panel/product/feature');
+                $productFeatures = $this->productRepository->getProductFeatures();
+                return view('panel/product/feature' , compact('productFeatures'));
+            case 'POST':
+                $validate = $request->validate([
+                    'feature-key' => 'required'
+                ],[
+                    'feature-key.required' => 'نام ویژگی الزامی میباشد'
+                ]);
+                if($validate){
+                    $feature_key = htmlspecialchars($request->input('feature-key'));
+                    if($this->productRepository->addProductFeature($feature_key)){
+                        return redirect()->back()->with(['success' => 'با موفقیت ثبت شد']);
+                    }else{
+                        return redirect()->back()->withErrors('مشکلی در ثبت ویژگی رخ داده است');
+                    }
+                }
         }
     }
     public function category(Request $request){

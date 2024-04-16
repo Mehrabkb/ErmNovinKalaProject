@@ -6,6 +6,7 @@ use App\Interfaces\productRepositoryInterface;
 use App\Models\Product;
 use App\Models\productBrand;
 use App\Models\productCategory;
+use App\Models\productFeature;
 use App\Models\productStatus;
 use App\Models\publicTags;
 use App\Models\Unit;
@@ -364,5 +365,20 @@ class productRepository implements productRepositoryInterface{
     {
         // TODO: Implement getProductByCatIdBrandId() method.
         return Product::where([['product_category_id' , '=' , $category_id] , ['product_brand_id' , '=' , $brand_id]])->get();
+    }
+    public function getProductFeatures(){
+        $productFeatures = productFeature::all();
+        return $productFeatures;
+    }
+    public function addProductFeature($feature_key)
+    {
+        // TODO: Implement addProductFeature() method.
+        $productFeature = new productFeature();
+        $productFeature->feature_key = $feature_key;
+        $productFeature->date = Carbon::now()->timestamp;
+        if($productFeature->save()){
+            return $productFeature;
+        }
+        return false;
     }
 }

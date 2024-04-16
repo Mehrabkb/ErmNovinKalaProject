@@ -47,6 +47,7 @@ Route::prefix('panel')->group(function(){
         Route::get('edit/{id}' , [\App\Http\Controllers\AdminPanelController::class , 'editProduct'])->name('edit.product');
         Route::post('edit' , [\App\Http\Controllers\AdminPanelController::class , 'editProductSingle'])->name('edit.product.single');
         Route::get('feature' , [\App\Http\Controllers\AdminPanelController::class , 'feature'])->name('feature.product');
+        Route::post('feature/add'  ,[AdminPanelController::class , 'feature'])->name('add.feature.product');
         Route::get('category' , [\App\Http\Controllers\AdminPanelController::class , 'category'])->name('category.product');
         Route::get('unit' , [\App\Http\Controllers\AdminPanelController::class , 'unit'])->name('unit.product');
         Route::post('unit/add' , [\App\Http\Controllers\AdminPanelController::class , 'addUnit'])->name('add.unit.product');
@@ -74,7 +75,6 @@ Route::prefix('panel')->group(function(){
         Route::post('product/edit/price' , [AdminPanelController::class , 'editProductPrice'])->name('product.edit.price');
         Route::get('product/edit/brand' , [AdminPanelController::class , 'editBrandPrice'])->name('product.edit.brand');
         Route::post('product/edit/brand' , [AdminPanelController::class , 'editBrandPrice'])->name('product.edit.brand');
-
     });
 });
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('product_feature_connection_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('product_feature_id');
+            $table->string('product_feature_value' , 255)->nullable();
             $table->date('date' , 250);
         });
     }

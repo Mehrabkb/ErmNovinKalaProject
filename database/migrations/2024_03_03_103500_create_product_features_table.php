@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('product_features', function (Blueprint $table) {
             $table->id('product_feature_id');
             $table->string('feature_key' , 250);
-            $table->string('feature_value' , 250);
-            $table->date('date' , 250);
+            $table->string('date' , 250);
         });
     }
 

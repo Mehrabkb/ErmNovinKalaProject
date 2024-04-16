@@ -45,4 +45,6 @@ interface  productRepositoryInterface
     public function searchProduct($value , $column);
     public function getProductsByCategoryId($category_id);
     public function getProductByCatIdBrandId($category_id , $brand_id);
+    public function getProductFeatures();
+    public function addProductFeature($feature_key);
 }
